@@ -1,0 +1,31 @@
+.course-header{
+    background-image: url(dark-velvet/dark-velvet-css/images/comment-rowsubmit.png);
+    background-size: cover;
+    min-height: 16rem;
+}
+
+#overview {
+    border-right: 2px solid white;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    text-align: center;
+}
+
+#title-section {
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-right: 4rem;
+}
+
+.course-sidebar {
+    padding: 2rem;
+}
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.card-inverse{
+    background-color: #333; 
+    border-color: #333;
+}
