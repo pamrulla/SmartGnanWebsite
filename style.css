@@ -1,3 +1,9 @@
+.course-page{
+    padding-top: 1rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    padding-bottom: 1rem;
+}
 .course-header{
     background-image: url(dark-velvet/dark-velvet-css/images/comment-rowsubmit.png);
     background-size: cover;
@@ -5,7 +11,7 @@
 }
 
 #overview {
-    border-right: 2px solid white;
+    border-right: 0.2rem solid white;
     padding-bottom: 2rem;
     padding-top: 2rem;
     text-align: center;
@@ -26,6 +32,15 @@
 }
 
 .card-inverse{
-    background-color: #333; 
-    border-color: #333;
+    background-image: url(dark-velvet/dark-velvet-css/images/comment-bg3.png);
+    border-color: #2D333A;
+}
+
+.lesson-outline {
+  background-image: url(dark-velvet/dark-velvet-css/images/comment-bg2.png);
+  border-color: #424B56;
+}
+
+.lesson-status{
+    color: #1bff08;
 }
