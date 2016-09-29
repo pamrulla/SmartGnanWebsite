@@ -12,43 +12,44 @@
 </head>
 
 <body>
-
-     <!-- Question Modal -->
+    <my-app></my-app>
+    
+    <!-- Question Modal -->
     <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-              <h3 class="modal-title" id="questionModalLabel">New question</h3>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="recipient-name" class="form-control-label">Question Title:</label>
-                  <input type="text" class="form-control" id="recipient-name" style="color:black;">
+                    <h3 class="modal-title" id="questionModalLabel">New question</h3>
                 </div>
-                <div class="form-group">
-                  <label for="message-text" class="form-control-label">Question Description:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Question Title:</label>
+                            <input type="text" class="form-control" id="recipient-name" style="color:black;">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label">Question Description:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
                 </div>
-              </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-black" data-dismiss="modal"><span>Close</span></button>
+                    <button type="button" class="btn btn-primary"><span>Ask</span></button>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-black" data-dismiss="modal"><span>Close</span></button>
-              <button type="button" class="btn btn-primary"><span>Ask</span></button>
-            </div>
-          </div>
         </div>
     </div>
-    
+
     <!-- Course page -->
     <div class="container-fluid course-page">
-        
+
         <!-- Course page main body -->
         <div class="col-sm-9">
-            
+
             <!-- Course header -->
             <div class="row course-header">
                 <div class="col-sm-4" id="overview">
@@ -63,13 +64,16 @@
                 <div class="col-sm-8" id="title-section">
                     <h2>This is course title</h2>
                     <p>By Author</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aut consequuntur eum quaerat debitis iste dolores, perspiciatis aspernatur assumenda temporibus placeat cumque odio similique delectus eligendi enim nam nobis recusandae.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aut consequuntur eum quaerat debitis
+                        iste dolores, perspiciatis aspernatur assumenda temporibus placeat cumque odio similique delectus
+                        eligendi enim nam nobis recusandae.</p>
 
                     <div id="progressBar1" class="progressbar">
                         <span class="mark-left">0%</span>
                         <span class="mark-right">100%</span>
                         <div class="percent"><b>100%</b></div>
-                        <div class="pbar ui-progressbar ui-widget ui-widget-content ui-corner-all" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                        <div class="pbar ui-progressbar ui-widget ui-widget-content ui-corner-all" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                            aria-valuenow="0">
                             <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 50%;"></div>
                         </div>
                         <div class="elapsed">10</div>
@@ -78,7 +82,7 @@
 
                 </div>
             </div>
-            
+
             <!-- Course tabs -->
             <div class="row">
                 <div class="tabs_framed styled">
@@ -91,18 +95,18 @@
                         </ul>
 
                         <div class="tab-content clearfix">
-                             <!-- Lessons accordion -->
+                            <!-- Lessons accordion -->
                             <div class="tab-pane clearfix fade gradient active in" id="lessons">
                                 <div id="accordion" role="tablist" aria-multiselectable="true">
-                                  <div class="card card-inverse">
-                                    <div class="card-block lessons-block" role="tab" id="headingOne">
-                                      <h4 class="card-title">
-                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                          <div class="col-xs-12 col-sm-8">
-                                                  <h4>Cahpter 1</h4>
-                                              </div>
-                                              <div class="col-xs-4 col-sm-2">
-                                                  <span id="progressBar2" class="progressbar style2">
+                                    <div class="card card-inverse">
+                                        <div class="card-block lessons-block" role="tab" id="headingOne">
+                                            <h4 class="card-title">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                    <div class="col-xs-12 col-sm-8">
+                                                        <h4>Cahpter 1</h4>
+                                                    </div>
+                                                    <div class="col-xs-4 col-sm-2">
+                                                        <span id="progressBar2" class="progressbar style2">
                                                         <div class="percent"><b>100%</b></div>
                                                         <div class="pbar ui-progressbar ui-widget ui-widget-content ui-corner-all" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                                                             <div id="downloadBar" class="downloadbar">
@@ -114,67 +118,69 @@
                                                             <div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 60%;"></div>
                                                         </div>
                                                     </span>
-                                              </div>
-                                              <div class="col-xs-4 col-sm-2">
-                                                  <h5>5m 24s</h5>
-                                              </div>
-                                        </a>
-                                      </h4>
+                                                    </div>
+                                                    <div class="col-xs-4 col-sm-2">
+                                                        <h5>5m 24s</h5>
+                                                    </div>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="card card-block lessons-block lesson-outline">
+                                                <a href="#" class="card-title">
+                                                    <div class="col-xs-12 col-sm-8">
+                                                        <h4>Lesson 1</h4>
+                                                    </div>
+                                                    <div class="col-xs-4 col-sm-1">
+                                                        <i class="fa fa-check lesson-status" aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="col-xs-4 col-sm-1">
+                                                        <i class="fa fa-universal-access lesson-status" aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="col-xs-4 col-sm-2">
+                                                        <h5>5m 24s</h5>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="card card-block lessons-block lesson-outline">
+                                                <a href="#" class="card-title">
+                                                    <div class="col-xs-12 col-sm-8">
+                                                        <h4>Lesson 1</h4>
+                                                    </div>
+                                                    <div class="col-xs-4 col-sm-1">
+                                                        <i class="fa fa-check lesson-status" aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="col-xs-4 col-sm-1">
+                                                        <i class="fa fa-universal-access lesson-status" aria-hidden="true"></i>
+                                                    </div>
+                                                    <div class="col-xs-4 col-sm-2">
+                                                        <h5>5m 24s</h5>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                      <div class="card card-block lessons-block lesson-outline">
-                                          <a href="#" class="card-title">
-                                              <div class="col-xs-12 col-sm-8">
-                                                  <h4>Lesson 1</h4>
-                                              </div>
-                                              <div class="col-xs-4 col-sm-1">
-                                                  <i class="fa fa-check lesson-status" aria-hidden="true"></i>
-                                              </div>
-                                              <div class="col-xs-4 col-sm-1">
-                                                  <i class="fa fa-universal-access lesson-status" aria-hidden="true"></i>
-                                              </div>
-                                              <div class="col-xs-4 col-sm-2">
-                                                  <h5>5m 24s</h5>
-                                              </div>                                              
-                                          </a>
-                                      </div>
-                                      <div class="card card-block lessons-block lesson-outline">
-                                          <a href="#" class="card-title">
-                                              <div class="col-xs-12 col-sm-8">
-                                                  <h4>Lesson 1</h4>
-                                              </div>
-                                              <div class="col-xs-4 col-sm-1">
-                                                  <i class="fa fa-check lesson-status" aria-hidden="true"></i>
-                                              </div>
-                                              <div class="col-xs-4 col-sm-1">
-                                                  <i class="fa fa-universal-access lesson-status" aria-hidden="true"></i>
-                                              </div>
-                                              <div class="col-xs-4 col-sm-2">
-                                                  <h5>5m 24s</h5>
-                                              </div>                                              
-                                          </a>
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
                             </div>
                             <div class="tab-pane clearfix fade gradient" id="description">
-                                <h6>This is course description.</h6>                                
+                                <h6>This is course description.</h6>
                             </div>
                             <div class="tab-pane clearfix fade gradient" id="downloads">
                                 <h6>You can download couse content from <a href="#" class="btn btn-round" hidefocus="true"><span>Download all files</span></a></h6>
                             </div>
                             <div class="tab-pane clearfix fade gradient" id="questions">
-                                
-                               <div class="container">
+
+                                <div class="container">
                                     <div class="add-comment add-comment-velvet styled" id="addfeedback">
-                                        <div class="add-comment-title"><h3></h3></div>
+                                        <div class="add-comment-title">
+                                            <h3></h3>
+                                        </div>
                                         <div class="comment-form">
                                             <form action="#" method="get" id="SearchForm" class="form-inline ajax_form">
                                                 <div class="form-inner text-xs-center" style="padding:5px">
-                                                    <input type="text" name="searchquestion" id="searchquestion" value="" placeholder="Search a question"/>                                                
+                                                    <input type="text" name="searchquestion" id="searchquestion" value="" placeholder="Search a question" />
                                                     <h6>OR</h6>
-                                                    <button type="button" class="btn btn-small" data-toggle="modal" data-target="#questionModal"><span>Ask a question</span></button>                                  
+                                                    <button type="button" class="btn btn-small" data-toggle="modal" data-target="#questionModal"><span>Ask a question</span></button>
                                                 </div>
                                             </form>
                                         </div>
@@ -212,7 +218,8 @@
                                                         <div class="inner gradient">
                                                             <div class="comment-arrow"></div>
                                                             <div class="comment-avatar">
-                                                                <div class="avatar"><img src="dark-velvet/dark-velvet-css/images/temp/avatar1.png" alt=""></div>
+                                                                <div class="avatar"><img src="dark-velvet/dark-velvet-css/images/temp/avatar1.png"
+                                                                        alt=""></div>
                                                             </div>
                                                             <div class="comment-text">
                                                                 <div class="col-xs-12 col-sm-8">
@@ -240,7 +247,8 @@
                                                         <div class="inner gradient">
                                                             <div class="comment-arrow"></div>
                                                             <div class="comment-avatar">
-                                                                <div class="avatar"><img src="dark-velvet/dark-velvet-css/images/temp/avatar1.png" alt=""></div>
+                                                                <div class="avatar"><img src="dark-velvet/dark-velvet-css/images/temp/avatar1.png"
+                                                                        alt=""></div>
                                                             </div>
                                                             <div class="comment-text">
                                                                 <div class="col-xs-12 col-sm-8">
@@ -275,14 +283,16 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Course feedback -->
             <div class="row">
                 <h3 class="container">What they say:</h3>
                 <!-- Feedback form -->
                 <div class="container">
                     <div class="add-comment add-comment-velvet styled" id="addfeedback">
-                        <div class="add-comment-title"><h3>Your Feedback</h3></div>
+                        <div class="add-comment-title">
+                            <h3>Your Feedback</h3>
+                        </div>
                         <div class="comment-form">
                             <form action="#" method="post" id="feedbackForm" class="ajax_form">
                                 <div class="form-inner">
@@ -301,13 +311,13 @@
                                     <div class="clear"></div>
                                     <div class="field_text field_textarea">
                                         <label for="styled_message" class="label_title">Message:</label>
-                                        <textarea name="feedback" id="feedback" class="textarea textarea_middle gradient" hidefocus="true" ></textarea>
+                                        <textarea name="feedback" id="feedback" class="textarea textarea_middle gradient" hidefocus="true"></textarea>
                                     </div>
                                     <div class="clear"></div>
                                 </div>
 
                                 <div class="rowSubmit">
-                                    <a onclick="document.getElementById('feedbackForm').reset();return false" href="#" class="link-reset btn btn-black" hidefocus="true" ><span>Clear</span></a>
+                                    <a onclick="document.getElementById('feedbackForm').reset();return false" href="#" class="link-reset btn btn-black" hidefocus="true"><span>Clear</span></a>
                                     <span class="btn btn-send">
                                         <input type="submit" id="send" value="Send Feedback" hidefocus="true" class="gradient">
                                     </span>
@@ -315,9 +325,9 @@
                             </form>
                         </div>
                     </div>
-                    
+
                     <div class="container">
-                        <div class="col-xs-12 col-sm-4"> 
+                        <div class="col-xs-12 col-sm-4">
                             <h4>Average Rating</h4>
                             <div class="rating">
                                 <span class="star on"></span>
@@ -327,10 +337,10 @@
                                 <span class="star off"></span>
                             </div>
                         </div>
-                        <div class="col-xs-12 offset-sm-3 col-sm-4"> 
+                        <div class="col-xs-12 offset-sm-3 col-sm-4">
                             <div class="rate-list-title" translate="">
                                 <h5>Details</h5>
-                            </div> 
+                            </div>
                             <ol>
                                 <li class="row">
                                     <div class="col-xs-3">
@@ -403,7 +413,7 @@
                     </div>
                     <br />
                     <br />
-                    
+
                     <div class="comment-list clearfix" id="comments">
                         <ol>
                             <li class="comment">
@@ -468,7 +478,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Course page side bar -->
         <div class="col-sm-3 course-sidebar">
             <!-- Course Info -->
@@ -478,7 +488,8 @@
                 <div class="row">
                     <div class="col-xs-4">Level</div>
                     <div class="col-xs-8">
-                        <h6>Beginner</h6></div>
+                        <h6>Beginner</h6>
+                    </div>
                 </div>
                 <div class="divider"></div>
                 <div class="row">
@@ -497,38 +508,44 @@
                 <div class="row">
                     <div class="col-xs-4">Duration</div>
                     <div class="col-xs-8">
-                        <h6>3h 6m</h6></div>
+                        <h6>3h 6m</h6>
+                    </div>
                 </div>
                 <div class="divider"></div>
                 <div class="row">
                     <div class="col-xs-4">Students</div>
                     <div class="col-xs-8">
-                        <h6>30</h6></div>
+                        <h6>30</h6>
+                    </div>
                 </div>
                 <div class="divider"></div>
                 <div class="row">
                     <div class="col-xs-4">Released</div>
                     <div class="col-xs-8">
-                        <h6>7 Jul 2016</h6></div>
+                        <h6>7 Jul 2016</h6>
+                    </div>
                 </div>
                 <div class="divider"></div>
             </div>
-            
+
             <!-- About Author(s) -->
             <div>
                 <h5>About Author(s)</h5>
                 <div class="row vertical-align">
                     <div class="col-xs-12"><img src="images/play_button_white_desktop.png" alt="" class="img-fluid"></div>
                     <div class="col-xs-12">
-                        <h4>Patan Amrulla Khan</h4></div>
+                        <h4>Patan Amrulla Khan</h4>
+                    </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, at, repellendus facere dolorum perspiciatis voluptatum inventore, architecto ut voluptas, incidunt suscipit cum. Voluptate facilis culpa, consectetur quis iure quibusdam, explicabo.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, at, repellendus facere dolorum perspiciatis
+                    voluptatum inventore, architecto ut voluptas, incidunt suscipit cum. Voluptate facilis culpa, consectetur
+                    quis iure quibusdam, explicabo.</p>
                 <div class="divider"></div>
             </div>
-            
+
             <!-- Share course-->
             <div>
-            <h5>Share course</h5>
+                <h5>Share course</h5>
                 <div class="row">
                     <div class="col-xs-2"><a href="#"><i class="fa fa-facebook-square fa-2x" title="Align Left"></i></a></div>
                     <div class="col-xs-2"><a href="#"><i class="fa fa-twitter fa-2x" title="Align Left"></i></a></div>
@@ -537,7 +554,7 @@
                 </div>
                 <div class="divider"></div>
             </div>
-            
+
             <!-- Other Courses -->
             <div>
                 <h5>Other Courses</h5>
@@ -579,11 +596,20 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
-    
+
     <footer>
-        <scrip src="dark-velvet/dark-velvet-css/js/libs/modernizr.min.js"></scrip>
+        <script src="node_modules/core-js/client/shim.min.js"></script>
+        <script src="node_modules/zone.js/dist/zone.js"></script>
+        <script src="node_modules/reflect-metadata/Reflect.js"></script>
+        <script src="node_modules/systemjs/dist/system.src.js"></script>
+        <script src="systemjs.config.js"></script>
+        <script>
+            System.import('app').catch(function(err){ console.error(err); });
+        </script>
+
+        <script src="dark-velvet/dark-velvet-css/js/libs/modernizr.min.js"></script>
         <script src="./node_modules/bootstrap/node_modules/jquery/dist/jquery.min.js"></script>
         <!--<script src="dark-velvet/dark-velvet-css/js/libs/jquery-1.10.0.js"></script>-->
         <script src="dark-velvet/dark-velvet-css/js/libs/jquery-ui.min.js"></script>
