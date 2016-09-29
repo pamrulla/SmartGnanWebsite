@@ -44,3 +44,8 @@
 .lesson-status{
     color: #1bff08;
 }
+
+.lessons-block {
+    padding: 0.2rem;
+    margin: 0.1rem;
+}
