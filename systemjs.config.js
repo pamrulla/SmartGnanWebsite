@@ -22,6 +22,9 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       '@angular/material': 'npm:@angular/material/material.umd.js',
+      "materialize-css": "npm:materialize-css",
+      "angular2-materialize": "npm:angular2-materialize",
+      'materialize': 'npm:angular2-materialize',
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
@@ -37,6 +40,14 @@
       },
       'angular-in-memory-web-api': {
         main: './index.js',
+        defaultExtension: 'js'
+      },
+     'materialize-css': {
+        'main': "dist/js/materialize/",
+        defaultExtension: 'js'
+      },
+      'angular2-materialize': {
+        'main': "dist/js/materialize/",
         defaultExtension: 'js'
       }
     }

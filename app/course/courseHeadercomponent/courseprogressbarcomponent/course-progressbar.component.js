@@ -9,17 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var CourseProgressbarComponent = (function () {
+    function CourseProgressbarComponent() {
+        this.Progress = "0%";
     }
-    AppComponent = __decorate([
+    CourseProgressbarComponent.prototype.ngOnInit = function () {
+        this.Progress = "50" + "%";
+    };
+    CourseProgressbarComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "<router-outlet></router-outlet>"
+            moduleId: module.id,
+            selector: 'course-progressbar',
+            templateUrl: 'course-progressbar.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], CourseProgressbarComponent);
+    return CourseProgressbarComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.CourseProgressbarComponent = CourseProgressbarComponent;
+//# sourceMappingURL=course-progressbar.component.js.map

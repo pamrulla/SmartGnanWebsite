@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MaterialModule } from '@angular/material';
+import {MaterializeDirective} from "angular2-materialize/dist/materialize-directive";
 
 import {AppComponent} from './app.component';
+import { CourseModule } from './course/course.module';
+
+import { routing } from './app.router';
 
 @NgModule({
-    imports: [BrowserModule, MaterialModule.forRoot()],
-    declarations: [AppComponent],
+    imports: [BrowserModule, CourseModule, routing ],
+    declarations: [AppComponent, MaterializeDirective ],
     bootstrap: [AppComponent]
 })
 

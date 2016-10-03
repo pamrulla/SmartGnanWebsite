@@ -9,17 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var CourseMainComponent = (function () {
+    function CourseMainComponent() {
     }
-    AppComponent = __decorate([
+    CourseMainComponent.prototype.ngOnInit = function () { };
+    CourseMainComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "<router-outlet></router-outlet>"
+            moduleId: module.id,
+            selector: 'course-main',
+            templateUrl: 'course-main.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], CourseMainComponent);
+    return CourseMainComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.CourseMainComponent = CourseMainComponent;
+//# sourceMappingURL=course-main.component.js.map
