@@ -13,10 +13,10 @@ var CourseOverviewHeaderComponent = (function () {
     function CourseOverviewHeaderComponent() {
     }
     CourseOverviewHeaderComponent.prototype.ngOnInit = function () {
-        this.isUserLoggedIn = false;
-        this.isBought = false;
-        this.isExamEnabled = false;
-        this.isExamPassed = false;
+        this.isUserLoggedIn = true;
+        this.isBought = true;
+        this.isExamPassed = this.isUserLoggedIn && this.isBought && true;
+        this.isExamEnabled = this.isUserLoggedIn && this.isBought && !this.isExamPassed && true;
         this.isCourseDiscounted = false;
         this.CourseOverviewVideo = "";
         this.CourseActualPrice = 300;
@@ -33,7 +33,7 @@ var CourseOverviewHeaderComponent = (function () {
         }
     };
     CourseOverviewHeaderComponent.prototype.getCourseFinalPrice = function () {
-        this.CoursePrice = this.CourseActualPrice * this.CourseDiscount / 100;
+        this.CoursePrice = this.CourseActualPrice - (this.CourseActualPrice * this.CourseDiscount / 100);
     };
     CourseOverviewHeaderComponent = __decorate([
         core_1.Component({

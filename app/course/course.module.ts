@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MaterializeDirective } from 'angular2-materialize';
 
 import { CourseMainComponent }   from './course-main.component';
 import { CourseProgressbarComponent } from './courseheadercomponent/courseprogressbarcomponent/course-progressbar.component';
@@ -8,6 +10,7 @@ import { CourseHeaderInfoComponent } from './courseheadercomponent/courseheaderi
 import { routing } from './course-routing';
 @NgModule({
     imports: [
+        CommonModule,
         routing
         ],
 
@@ -17,7 +20,7 @@ import { routing } from './course-routing';
         CourseProgressbarComponent,
         CourseOverviewHeaderComponent,
         CourseHeaderInfoComponent,
-        
+        MaterializeDirective
         ],
     providers: [],
 })

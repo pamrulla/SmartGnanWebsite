@@ -9,6 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var common_1 = require('@angular/common');
+var angular2_materialize_1 = require('angular2-materialize');
 var course_main_component_1 = require('./course-main.component');
 var course_progressbar_component_1 = require('./courseheadercomponent/courseprogressbarcomponent/course-progressbar.component');
 var course_overview_header_component_1 = require('./courseheadercomponent/courseoverviewheadercomponent/course-overview-header.component');
@@ -20,6 +22,7 @@ var CourseModule = (function () {
     CourseModule = __decorate([
         core_1.NgModule({
             imports: [
+                common_1.CommonModule,
                 course_routing_1.routing
             ],
             exports: [],
@@ -28,6 +31,7 @@ var CourseModule = (function () {
                 course_progressbar_component_1.CourseProgressbarComponent,
                 course_overview_header_component_1.CourseOverviewHeaderComponent,
                 course_header_info_component_1.CourseHeaderInfoComponent,
+                angular2_materialize_1.MaterializeDirective
             ],
             providers: [],
         }), 

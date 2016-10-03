@@ -21,10 +21,10 @@ export class CourseOverviewHeaderComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        this.isUserLoggedIn = false;
-        this.isBought = false;
-        this.isExamEnabled = false;
-        this.isExamPassed = false;
+        this.isUserLoggedIn = true;
+        this.isBought = true;
+        this.isExamPassed = this.isUserLoggedIn && this.isBought && true;
+        this.isExamEnabled = this.isUserLoggedIn && this.isBought && !this.isExamPassed && true;
         this.isCourseDiscounted = false;
 
         this.CourseOverviewVideo = "";
@@ -47,6 +47,6 @@ export class CourseOverviewHeaderComponent implements OnInit {
      }
 
      getCourseFinalPrice() {
-         this.CoursePrice = this.CourseActualPrice * this.CourseDiscount / 100;
+         this.CoursePrice = this.CourseActualPrice - (this.CourseActualPrice * this.CourseDiscount / 100);
      }
 }

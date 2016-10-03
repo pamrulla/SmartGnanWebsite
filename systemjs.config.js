@@ -47,7 +47,7 @@
         defaultExtension: 'js'
       },
       'angular2-materialize': {
-        'main': "dist/js/materialize/",
+        'main': "dist/index",
         defaultExtension: 'js'
       }
     }
