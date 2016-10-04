@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
     moduleId: module.id,
@@ -16,9 +17,9 @@ export class CourseOverviewHeaderComponent implements OnInit {
     CourseActualPrice: number;
     CourseDiscount: number;
     CoursePrice: number;
-    CourseOverviewVideo: string;
+    CourseOverviewVideo: SafeResourceUrl;
 
-    constructor() { }
+    constructor(private sanitizer: DomSanitizer) { }
 
     ngOnInit() {
         this.isUserLoggedIn = true;
@@ -27,7 +28,7 @@ export class CourseOverviewHeaderComponent implements OnInit {
         this.isExamEnabled = this.isUserLoggedIn && this.isBought && !this.isExamPassed && true;
         this.isCourseDiscounted = false;
 
-        this.CourseOverviewVideo = "";
+        this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl("//www.youtube.com/embed/Q8TXgCzxEnw?rel=0");
         this.CourseActualPrice = 300;
         this.CourseDiscount = 20;
 

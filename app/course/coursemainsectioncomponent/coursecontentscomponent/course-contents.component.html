@@ -1,0 +1,14 @@
+<ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+    <li *ngFor="let ch of Chapters">
+        <div class="collapsible-header">{{ ch.Name }}</div>
+        <div class="collapsible-body">
+            <div class="row">
+                <table class="striped highlight">
+                    <tr *ngFor="let ls of ch.Lessons">
+                        <td>{{ ls.Name }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </li>
+</ul>

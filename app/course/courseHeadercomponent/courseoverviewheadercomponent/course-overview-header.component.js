@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var platform_browser_1 = require('@angular/platform-browser');
 var CourseOverviewHeaderComponent = (function () {
-    function CourseOverviewHeaderComponent() {
+    function CourseOverviewHeaderComponent(sanitizer) {
+        this.sanitizer = sanitizer;
     }
     CourseOverviewHeaderComponent.prototype.ngOnInit = function () {
         this.isUserLoggedIn = true;
@@ -18,7 +20,7 @@ var CourseOverviewHeaderComponent = (function () {
         this.isExamPassed = this.isUserLoggedIn && this.isBought && true;
         this.isExamEnabled = this.isUserLoggedIn && this.isBought && !this.isExamPassed && true;
         this.isCourseDiscounted = false;
-        this.CourseOverviewVideo = "";
+        this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl("//www.youtube.com/embed/Q8TXgCzxEnw?rel=0");
         this.CourseActualPrice = 300;
         this.CourseDiscount = 20;
         this.checkIfCourseisDiscounted();
@@ -41,7 +43,7 @@ var CourseOverviewHeaderComponent = (function () {
             selector: 'course-overview',
             templateUrl: 'course-overview-header.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [platform_browser_1.DomSanitizer])
     ], CourseOverviewHeaderComponent);
     return CourseOverviewHeaderComponent;
 }());

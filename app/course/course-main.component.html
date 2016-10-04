@@ -1,22 +1,25 @@
 <div class="container">
     <div class="row">
         <div class="col s12 m9">
-            <div class="card-panel">
-                <div class="row">
-                    <div class="valign-wrapper">
-                        <div class="col s4 center-align" id="overview">
-                            <course-overview></course-overview>
-                        </div>
-                        <div class="col s8">
-                            <course-header-info></course-header-info>
-                            <course-progressbar></course-progressbar>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">
+                <course-header></course-header>
             </div>
         </div>
         <div class="col s12 m3">
-
+            <course-sidebar-details></course-sidebar-details>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m9">
+            <div class="row">
+                <course-main-section></course-main-section>
+            </div>
+            <div class="row">
+                <h1>Course feedback</h1>
+            </div>
+        </div>
+        <div class="col s12 m3">
+            <course-sidebar-author></course-sidebar-author>
         </div>
     </div>
 </div>

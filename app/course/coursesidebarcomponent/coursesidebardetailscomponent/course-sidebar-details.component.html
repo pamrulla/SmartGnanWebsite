@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">Course Info</span>
+        <div class="divider"></div>
+        <div class="row">
+            <table class="bordered">
+                <tr>
+                    <td>Level</td>
+                    <td>{{ Level }}</td>
+                </tr>
+                <tr>
+                    <td>Rating</td>
+                    <td><stars starCount="5" [rating]="Rating" disabled="true"></stars></td>
+                </tr>
+                <tr>
+                    <td>Duration</td>
+                    <td>{{ Duration }}</td>
+                </tr>
+                <tr>
+                    <td>Students</td>
+                    <td>{{ Students }}</td>
+                </tr>
+                <tr>
+                    <td>Released</td>
+                    <td>{{ Released | date }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

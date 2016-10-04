@@ -1,0 +1,31 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+
+@Component({
+  selector: 'star',
+  template: `<span class="star" [class.active]="active" [class.disable]="disabled" (click)="handleRate($event)">&#9733;</span>`,
+  styles: [`
+    .star {
+      color: #efefef;
+      cursor: pointer;
+      font-size: 2rem;
+      transition: color .4s ease-in-out;
+    }
+    .star.active {
+      color: #FFD600;
+    }
+  `]
+})
+
+export class Star {
+  @Input() active: boolean;
+  @Input() position: number;
+  @Input() disabled: boolean;
+  @Output() rate = new EventEmitter();
+
+  handleRate() {
+    if (!this.disabled) {
+      this.rate.emit(this.position);
+    }
+  }
+}
