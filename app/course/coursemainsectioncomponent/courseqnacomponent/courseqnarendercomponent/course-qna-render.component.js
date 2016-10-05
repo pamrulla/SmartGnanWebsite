@@ -27,9 +27,17 @@ var QTNS = [
 ];
 var CourseQnARenderComponent = (function () {
     function CourseQnARenderComponent() {
+        this.onShowQuestion = new core_1.EventEmitter();
         this.questions = QTNS;
     }
     CourseQnARenderComponent.prototype.ngOnInit = function () { };
+    CourseQnARenderComponent.prototype.showQuestion = function (qtn) {
+        this.onShowQuestion.emit(qtn);
+    };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], CourseQnARenderComponent.prototype, "onShowQuestion", void 0);
     CourseQnARenderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

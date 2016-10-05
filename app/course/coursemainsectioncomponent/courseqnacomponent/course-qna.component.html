@@ -1,5 +1,5 @@
 <div class="card-panel">
-    <course-qna-form></course-qna-form>
-    <course-qna-render></course-qna-render>
-    <course-single-qna></course-single-qna>
+    <course-qna-form *ngIf="!isShowQuestion"></course-qna-form>
+    <course-qna-render (onShowQuestion)="showQuestion($event)"  *ngIf="!isShowQuestion"></course-qna-render>
+    <course-single-qna (goBack)="onGoBack()" *ngIf="isShowQuestion" [question]="question"></course-single-qna>
 </div>

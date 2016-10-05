@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { QuestionInfo } from '../../../shared/QuestionInfo';
 
@@ -25,10 +25,14 @@ const QTNS : QuestionInfo[] = [
     templateUrl: 'course-qna-render.component.html'
 })
 export class CourseQnARenderComponent implements OnInit {
-
+    @Output() onShowQuestion = new EventEmitter<QuestionInfo>();
     questions = QTNS;
 
     constructor() { }
 
     ngOnInit() { }
+
+    showQuestion(qtn : QuestionInfo){
+        this.onShowQuestion.emit(qtn);
+    }
 }

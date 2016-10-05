@@ -1,8 +1,8 @@
-<div class="card-panel">
+<div class="card-panel1">
     <div class="row">
         <div *ngFor="let qtn of questions">
             <div class="card-panel">
-                <a href="#id" class="link-no-color">
+                <a class="link-no-color" (click)="showQuestion(qtn)" style="cursor:pointer">
                     <div class="row valign-wrapper">
                         <div class="col s2">
                             <img [src]="qtn.authorImage" alt="" class="circle responsive-img">

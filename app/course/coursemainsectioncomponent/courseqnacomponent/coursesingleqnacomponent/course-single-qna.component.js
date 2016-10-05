@@ -9,10 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var QuestionInfo_1 = require('../../../shared/QuestionInfo');
+var ANS = [
+    {
+        name: "khan",
+        description: "this is test",
+        authorImage: "test1"
+    },
+    {
+        name: "Patan",
+        description: "this is test2",
+        authorImage: "test2"
+    }
+];
 var CourseSingleQnAComponent = (function () {
     function CourseSingleQnAComponent() {
+        this.answers = ANS;
+        this.goBack = new core_1.EventEmitter();
     }
     CourseSingleQnAComponent.prototype.ngOnInit = function () { };
+    CourseSingleQnAComponent.prototype.onGoBack = function () {
+        this.goBack.emit();
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', QuestionInfo_1.QuestionInfo)
+    ], CourseSingleQnAComponent.prototype, "question", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], CourseSingleQnAComponent.prototype, "goBack", void 0);
     CourseSingleQnAComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

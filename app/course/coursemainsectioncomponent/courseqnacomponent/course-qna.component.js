@@ -11,8 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var CourseQnAComponent = (function () {
     function CourseQnAComponent() {
+        this.isShowQuestion = false;
     }
     CourseQnAComponent.prototype.ngOnInit = function () { };
+    CourseQnAComponent.prototype.showQuestion = function (qtn) {
+        console.log(qtn);
+        this.question = qtn;
+        this.isShowQuestion = true;
+    };
+    CourseQnAComponent.prototype.onGoBack = function () {
+        this.isShowQuestion = false;
+    };
     CourseQnAComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
