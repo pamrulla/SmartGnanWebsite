@@ -13,35 +13,22 @@
     height: 10px;
 }
 
-#title-section {
-    padding-left: 2rem;
-    padding-top: 1rem;
-    padding-right: 4rem;
+.link-no-color{
+    color:#000000;
 }
 
-.course-sidebar {
-    padding: 2rem;
-}
-.vertical-align {
-    display: flex;
-    align-items: center;
-}
-
-.card-inverse{
-    background-image: url(dark-velvet/dark-velvet-css/images/comment-bg3.png);
-    border-color: #2D333A;
+.lessons-row{
+    margin-bottom: 2px;
+    margin-left: 0px;
+    margin-right: 0px;
+    widows: 95%;
 }
 
-.lesson-outline {
-  background-image: url(dark-velvet/dark-velvet-css/images/comment-bg2.png);
-  border-color: #424B56;
+.lessons-card{
+    margin: 0px;
+    padding: 0px;
+    width:96%;
+    margin-left: 20px;
+    cursor: pointer;
 }
 
-.lesson-status{
-    color: #1bff08;
-}
-
-.lessons-block {
-    padding: 0.2rem;
-    margin: 0.1rem;
-}

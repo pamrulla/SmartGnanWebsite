@@ -1,14 +1,30 @@
-<ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
-    <li *ngFor="let ch of Chapters">
-        <div class="collapsible-header">{{ ch.Name }}</div>
-        <div class="collapsible-body">
-            <div class="row">
-                <table class="striped highlight">
-                    <tr *ngFor="let ls of ch.Lessons">
-                        <td>{{ ls.Name }}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </li>
-</ul>
+<div class="card-panel">
+    <div class="row">
+        <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+            <li *ngFor="let ch of Chapters">
+                <div class="collapsible-header">{{ ch.Name }}</div>
+                <div class="collapsible-body">
+                    <div *ngFor="let ls of ch.Lessons">
+                            <div class="card-panel lessons-card grey lighten-4" (click)="onLessonsClick()">
+                                <div class="row lessons-row valign-wrapper">
+                                    <div class="col s12 m8">
+                                        <h6 style="padding: 0.5rem;">{{ ls.Name }}</h6>
+                                    </div>
+                                    <div class="col s4 m1">
+                                        <i *ngIf="ls.IsCompleted" class="material-icons" style="color:green">done</i>
+                                    </div>
+                                    <div class="col s4 m1">
+                                        <i *ngIf="ls.IsFree" class="material-icons" style="color:green">lock_open</i>
+                                        <i *ngIf="!ls.IsFree" class="material-icons" style="color:red">lock_outline</i>
+                                    </div>
+                                    <div class="col s4 m2">
+                                        {{ ls.Duration }}
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

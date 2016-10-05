@@ -9,44 +9,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var Lesson_1 = require('../../shared/Lesson');
-var Chapter_1 = require('../../shared/Chapter');
+var CNTS = [
+    {
+        Name: "Ch 1",
+        IsEnabled: true,
+        Duration: "1h 20m",
+        Progress: 10,
+        Lessons: [
+            {
+                Duration: "1m 30s",
+                Name: "Ls 1 1",
+                IsCompleted: true,
+                IsFree: true,
+                VideoURL: "ls11"
+            },
+            {
+                Duration: "1m 30s",
+                Name: "Ls 1 2",
+                IsCompleted: false,
+                IsFree: true,
+                VideoURL: "ls12"
+            }
+        ]
+    },
+    {
+        Name: "Ch 2",
+        IsEnabled: false,
+        Duration: "2h 20m",
+        Progress: 0,
+        Lessons: [
+            {
+                Duration: "1m 30s",
+                Name: "Ls 2 1",
+                IsCompleted: false,
+                IsFree: false,
+                VideoURL: "ls11"
+            },
+            {
+                Duration: "1m 30s",
+                Name: "Ls 2 2",
+                IsCompleted: false,
+                IsFree: false,
+                VideoURL: "ls12"
+            }
+        ]
+    }
+];
 var CourseContentsComponent = (function () {
     function CourseContentsComponent() {
-        this.Chapters = Array(Chapter_1.Chapter);
+        this.Chapters = CNTS;
     }
     CourseContentsComponent.prototype.ngOnInit = function () {
-        this.Chapters.pop();
-        console.log(this.Chapters.length);
-        var ch = new Chapter_1.Chapter();
-        ch.Name = "Chapter 1";
-        ch.IsEnabled = true;
-        ch.Progress = 45;
-        ch.Duration = "1h 2m";
-        ch.Lessons.pop();
-        var ls = new Lesson_1.Lesson();
-        ls.Duration = "Lesson 1 1";
-        ls.IsCompleted = true;
-        ls.IsFree = true;
-        ls.VideoURL = "Lesson 1 1";
-        ls.Name = "Lesson 1 1";
-        ch.Lessons.push(ls);
-        this.Chapters.push(ch);
-        var ch1 = new Chapter_1.Chapter();
-        ch1.Name = "Chapter 2";
-        ch1.IsEnabled = true;
-        ch1.Progress = 45;
-        ch1.Duration = "1h 2m";
-        ch1.Lessons.pop();
-        var ls1 = new Lesson_1.Lesson();
-        ls1.Duration = "Lesson 2 1";
-        ls1.IsCompleted = true;
-        ls1.IsFree = true;
-        ls1.VideoURL = "Lesson 2 1";
-        ls1.Name = "Lesson 2 1";
-        ch1.Lessons.push(ls1);
-        this.Chapters.push(ch1);
-        console.log(this.Chapters.length);
+    };
+    CourseContentsComponent.prototype.onLessonsClick = function () {
+        console.log("Clicked");
     };
     CourseContentsComponent = __decorate([
         core_1.Component({

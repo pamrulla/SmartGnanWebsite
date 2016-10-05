@@ -16,6 +16,15 @@ import { CourseDownloadComponent } from './coursemainsectioncomponent/coursedown
 import { CourseDescriptionComponent } from './coursemainsectioncomponent/coursedescriptioncomponent/course-description.component';
 import { CourseContentsComponent } from './coursemainsectioncomponent/coursecontentscomponent/course-contents.component';
 
+import { CourseQnAComponent } from './coursemainsectioncomponent/courseqnacomponent/course-qna.component';
+import { CourseQnAFormComponent } from './coursemainsectioncomponent/courseqnacomponent/courseqnaformcomponent/course-qna-form.component';
+import { CourseQnARenderComponent } from './coursemainsectioncomponent/courseqnacomponent/courseqnarendercomponent/course-qna-render.component';
+import { CourseSingleQnAComponent } from './coursemainsectioncomponent/courseqnacomponent/coursesingleqnacomponent/course-single-qna.component';
+
+import { CourseFeedbackComponent } from './coursefeedbackcomponent/course-feedback.component';
+import { CourseFeedbackFormComponent } from './coursefeedbackcomponent/coursefeedbackformcomponent/course-feedback-form.component';
+import { CourseFeedbackRenderComponent } from './coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component';
+
 import { routing } from './course-routing';
 @NgModule({
     imports: [
@@ -37,6 +46,13 @@ import { routing } from './course-routing';
         CourseDownloadComponent,
         CourseDescriptionComponent,
         CourseContentsComponent,
+        CourseQnAComponent,
+        CourseQnAFormComponent,
+        CourseQnARenderComponent,
+        CourseSingleQnAComponent,
+        CourseFeedbackComponent,
+        CourseFeedbackFormComponent,
+        CourseFeedbackRenderComponent,
         MaterializeDirective
         ],
     providers: [],

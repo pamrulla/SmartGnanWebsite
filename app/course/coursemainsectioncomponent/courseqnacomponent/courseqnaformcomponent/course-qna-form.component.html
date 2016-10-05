@@ -1,0 +1,66 @@
+<div class="card-panel">
+    <div class="row" *ngIf="!isNewQuestion">
+        <form materialize class="col s12">
+            <div class="row">
+                <div class="input-field col s12 m8">
+                    <input type="text" id="searchItem" name="searchItem">
+                    <label for="searchItem">Search</label>
+                </div>
+                <div class="col s12 m1">
+                    OR
+                </div>
+                <div class="col s12 m3">
+                    <a class="waves-effect waves-light btn" (click)="newQuestion()"><i class="material-icons left">question_answer</i>Ask Question</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m4">
+                    <select name="filterOption" id="" materialize="material_select" [materializeSelectOptions]="filterOptions">
+                        <option *ngFor="let option of filterOptions" [value]="option.value">{{option.name}}</option>
+                    </select>
+                    <label>Select Filter</label>
+                </div>
+                <div class="col s12 m4 offset-m4">
+                    <div class="row">
+                        <div class="switch">
+                            <label>
+                                <input type="checkbox">
+                                <span class="lever"></span>
+                                Show my questions
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="switch">
+                            <label>
+                                <input type="checkbox">
+                                <span class="lever"></span>
+                                Show questions with no resonse
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" *ngIf="isNewQuestion">
+        <form materialize class="col s12">
+            <div class="input-field col s12">
+                <input type="text" id="questionTitle" name="questionTitle">
+                <label for="questionTitle">Question Title</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea id="questionDesc" class="materialize-textarea" name="questionDesc"></textarea>
+                <label for="questionDesc">Question Description</label>
+            </div>
+            <div class="row">
+                <div class="col s12 m4">
+                        <a class="waves-effect waves-light btn red" (click)="newQuestionCancel()">Cancel</a>
+                </div>
+                <div class="col s12 m4 offset-m4">
+                        <a class="waves-effect waves-light btn"><i class="material-icons right">send</i>Submit</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

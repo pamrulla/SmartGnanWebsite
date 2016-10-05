@@ -23,6 +23,13 @@ var course_main_section_component_1 = require('./coursemainsectioncomponent/cour
 var course_download_component_1 = require('./coursemainsectioncomponent/coursedownloadcomponent/course-download.component');
 var course_description_component_1 = require('./coursemainsectioncomponent/coursedescriptioncomponent/course-description.component');
 var course_contents_component_1 = require('./coursemainsectioncomponent/coursecontentscomponent/course-contents.component');
+var course_qna_component_1 = require('./coursemainsectioncomponent/courseqnacomponent/course-qna.component');
+var course_qna_form_component_1 = require('./coursemainsectioncomponent/courseqnacomponent/courseqnaformcomponent/course-qna-form.component');
+var course_qna_render_component_1 = require('./coursemainsectioncomponent/courseqnacomponent/courseqnarendercomponent/course-qna-render.component');
+var course_single_qna_component_1 = require('./coursemainsectioncomponent/courseqnacomponent/coursesingleqnacomponent/course-single-qna.component');
+var course_feedback_component_1 = require('./coursefeedbackcomponent/course-feedback.component');
+var course_feedback_form_component_1 = require('./coursefeedbackcomponent/coursefeedbackformcomponent/course-feedback-form.component');
+var course_feedback_render_component_1 = require('./coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component');
 var course_routing_1 = require('./course-routing');
 var CourseModule = (function () {
     function CourseModule() {
@@ -47,6 +54,13 @@ var CourseModule = (function () {
                 course_download_component_1.CourseDownloadComponent,
                 course_description_component_1.CourseDescriptionComponent,
                 course_contents_component_1.CourseContentsComponent,
+                course_qna_component_1.CourseQnAComponent,
+                course_qna_form_component_1.CourseQnAFormComponent,
+                course_qna_render_component_1.CourseQnARenderComponent,
+                course_single_qna_component_1.CourseSingleQnAComponent,
+                course_feedback_component_1.CourseFeedbackComponent,
+                course_feedback_form_component_1.CourseFeedbackFormComponent,
+                course_feedback_render_component_1.CourseFeedbackRenderComponent,
                 angular2_materialize_1.MaterializeDirective
             ],
             providers: [],

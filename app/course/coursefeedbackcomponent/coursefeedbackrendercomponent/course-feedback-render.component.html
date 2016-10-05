@@ -1,0 +1,28 @@
+<div class="card-panel">
+    <div class="row">
+        <div *ngFor="let rtg of ratings">
+            <div class="card-panel">
+                <div class="row valign-wrapper">
+                    <div class="col s2">
+                        <img [src]="rtg.authorImage" alt="" class="circle responsive-img">
+                    </div>
+                    <div class="col s7">
+                        <div class="row">
+                            <stars [rating]="rtg.rating" disabled="true"></stars>
+                        </div>
+                        <div class="row">
+                            <p>{{ rtg.feedback }}</p>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    <div class="center-align">
+        <ul class="pagination">
+            <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a>1</a></li>
+            <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+    </div>
+</div>
