@@ -30,6 +30,7 @@ var course_single_qna_component_1 = require('./coursemainsectioncomponent/course
 var course_feedback_component_1 = require('./coursefeedbackcomponent/course-feedback.component');
 var course_feedback_form_component_1 = require('./coursefeedbackcomponent/coursefeedbackformcomponent/course-feedback-form.component');
 var course_feedback_render_component_1 = require('./coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component');
+var course_service_1 = require('./services/course.service');
 var course_routing_1 = require('./course-routing');
 var CourseModule = (function () {
     function CourseModule() {
@@ -63,7 +64,7 @@ var CourseModule = (function () {
                 course_feedback_render_component_1.CourseFeedbackRenderComponent,
                 angular2_materialize_1.MaterializeDirective
             ],
-            providers: [],
+            providers: [course_service_1.CourseService],
         }), 
         __metadata('design:paramtypes', [])
     ], CourseModule);

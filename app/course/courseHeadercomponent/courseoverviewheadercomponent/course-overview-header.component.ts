@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+import { CourseService } from '../../services/course.service';
+
+import { Overview } from '../../shared/header/overview';
+
 @Component({
     moduleId: module.id,
     selector: 'course-overview',
@@ -8,46 +12,39 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class CourseOverviewHeaderComponent implements OnInit {
 
-    isUserLoggedIn: boolean;
-    isBought: boolean;
-    isExamEnabled: boolean;
-    isExamPassed: boolean;
-    isCourseDiscounted: boolean;
-
-    CourseActualPrice: number;
-    CourseDiscount: number;
+    overview: Overview;
     CoursePrice: number;
     CourseOverviewVideo: SafeResourceUrl;
 
-    constructor(private sanitizer: DomSanitizer) { }
+    isCourseDiscounted: boolean;
+
+    constructor(private sanitizer: DomSanitizer, private courseService: CourseService) { }
 
     ngOnInit() {
-        this.isUserLoggedIn = true;
-        this.isBought = true;
-        this.isExamPassed = this.isUserLoggedIn && this.isBought && true;
-        this.isExamEnabled = this.isUserLoggedIn && this.isBought && !this.isExamPassed && true;
-        this.isCourseDiscounted = false;
+        this.overview = this.courseService.getHeaderOverview().then(o => this.extractData(o));
+            //.then(o => {this.overview = o; this.extractData();});
+    }
 
-        this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl("//www.youtube.com/embed/Q8TXgCzxEnw?rel=0");
-        this.CourseActualPrice = 300;
-        this.CourseDiscount = 20;
+    private extractData(response: Overview) : Overview {
+      console.log(response);
+      return response;
+    }
+    private extractData1() {
+       this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.overview.link);
+       this.checkIfCourseisDiscounted();
+       this.getCourseFinalPrice();
+    }
 
-        this.checkIfCourseisDiscounted();
-        this.getCourseFinalPrice();
-     }
+    checkIfCourseisDiscounted() {
+        if (this.overview.courseDiscount == 0) {
+            this.isCourseDiscounted = false;
+        }
+        else {
+            this.isCourseDiscounted = true;
+        }
+    }
 
-     checkIfCourseisDiscounted(){
-         if( this.CourseDiscount == 0)
-         {
-             this.isCourseDiscounted = false;
-         }
-         else
-         {
-             this.isCourseDiscounted = true;
-         }
-     }
-
-     getCourseFinalPrice() {
-         this.CoursePrice = this.CourseActualPrice - (this.CourseActualPrice * this.CourseDiscount / 100);
-     }
+    getCourseFinalPrice() {
+        this.CoursePrice = this.overview.courseActualPrice - (this.overview.courseActualPrice * this.overview.courseDiscount / 100);
+    }
 }

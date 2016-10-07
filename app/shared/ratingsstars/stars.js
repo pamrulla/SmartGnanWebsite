@@ -18,7 +18,6 @@ var Stars = (function () {
     }
     Stars.prototype.ngOnInit = function () {
         this.ratinga = this.rating;
-        console.log(this.disabled);
     };
     Stars.prototype.onRate = function (star) {
         if (!this.disabled) {

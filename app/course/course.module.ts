@@ -5,12 +5,15 @@ import { MaterializeDirective } from 'angular2-materialize';
 import { RatingsStartModule } from '../shared/ratingsstars/ratingstar.module';
 
 import { CourseMainComponent }   from './course-main.component';
+
 import { CourseProgressbarComponent } from './courseheadercomponent/courseprogressbarcomponent/course-progressbar.component';
 import { CourseOverviewHeaderComponent } from './courseheadercomponent/courseoverviewheadercomponent/course-overview-header.component';
 import { CourseHeaderInfoComponent } from './courseheadercomponent/courseheaderinfocomponent/course-header-info.component';
 import { CourseHeaderComponent } from './courseheadercomponent/course-header.component';
+
 import { CourseSidebarDetailsComponent } from './coursesidebarcomponent/coursesidebardetailscomponent/course-sidebar-details.component';
 import { CourseSidebarAuthorComponent } from './coursesidebarcomponent/coursesidebarauthorcomponent/course-sidebar-author.component';
+
 import { CourseMainSectionComponent } from './coursemainsectioncomponent/course-main-section.component';
 import { CourseDownloadComponent } from './coursemainsectioncomponent/coursedownloadcomponent/course-download.component';
 import { CourseDescriptionComponent } from './coursemainsectioncomponent/coursedescriptioncomponent/course-description.component';
@@ -24,6 +27,9 @@ import { CourseSingleQnAComponent } from './coursemainsectioncomponent/courseqna
 import { CourseFeedbackComponent } from './coursefeedbackcomponent/course-feedback.component';
 import { CourseFeedbackFormComponent } from './coursefeedbackcomponent/coursefeedbackformcomponent/course-feedback-form.component';
 import { CourseFeedbackRenderComponent } from './coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component';
+
+import { CourseService } from './services/course.service';
+
 
 import { routing } from './course-routing';
 @NgModule({
@@ -55,6 +61,6 @@ import { routing } from './course-routing';
         CourseFeedbackRenderComponent,
         MaterializeDirective
         ],
-    providers: [],
+    providers: [CourseService],
 })
 export class CourseModule { }

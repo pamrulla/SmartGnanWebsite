@@ -31,7 +31,6 @@ export class Stars implements OnInit {
 
     ngOnInit() {
         this.ratinga = this.rating;
-        console.log(this.disabled);
     }
 
     onRate(star) {

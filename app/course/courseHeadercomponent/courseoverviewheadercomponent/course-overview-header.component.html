@@ -2,17 +2,17 @@
 <a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger" href="#OverviewVideoModal"><i class="Large material-icons">play_circle_outline</i></a>
 <!-- Modal Structure -->
 <div id="OverviewVideoModal" class="modal">
-  <div class="modal-content">
-    <div class="video-container">
-        <iframe width="853" height="480" [src]="CourseOverviewVideo" frameborder="0"></iframe>
-      </div>
-  </div>
+    <div class="modal-content">
+        <div class="video-container">
+            <iframe width="853" height="480" [src]="CourseOverviewVideo" frameborder="0"></iframe>
+        </div>
+    </div>
 </div>
 
 <div *ngIf="isCourseDiscounted">
     <p class="blue-text text-darken-2"><strong>{{ CoursePrice | currency:'INR':false }}</strong>
-     <small><s>{{ CourseActualPrice | currency:'INR':false }}</s>
-    </small> {{ CourseDiscount }}% off</p>
+        <small><s>{{ overview.courseActualPrice | currency:'INR':false }}</s>
+    </small> {{ overview.courseDiscount }}% off</p>
 </div>
 
 <div *ngIf="!isCourseDiscounted">
@@ -20,18 +20,21 @@
 </div>
 
 <!-- redirect to login or register page -->
-<div *ngIf="!isUserLoggedIn">
+<div *ngIf="!overview.isUserLoggedIn">
     <a class="waves-effect waves-light btn"><i class="material-icons left">shopping_cart</i>Add to Cart</a>
 </div>
 <!-- redirect to cart page -->
-<div *ngIf="isUserLoggedIn && !isBought">
+<div *ngIf="overview.isUserLoggedIn && !overview.isBought">
     <a class="waves-effect waves-light btn"><i class="material-icons left">shopping_cart</i>Add to Cart</a>
 </div>
-<!-- redirect to exam page -->
-<div *ngIf="isExamEnabled">
-    <a class="waves-effect waves-light btn"><i class="material-icons left">assignment</i>Take Assignment</a>
-</div>
-<!-- redirec to certificate page -->
-<div *ngIf="isExamPassed">
-    <a class="waves-effect waves-light btn"><i class="material-icons left">done_all</i>Get Certificate</a>
+
+<div *ngIf="overview.isUserLoggedIn && overview.isBought">
+    <!-- redirect to exam page -->
+    <div *ngIf="overview.isExamEnabled && !overview.isCompleted">
+        <a class="waves-effect waves-light btn"><i class="material-icons left">assignment</i>Take Assignment</a>
+    </div>
+    <!-- redirec to certificate page -->
+    <div *ngIf="overview.isCompleted">
+        <a class="waves-effect waves-light btn"><i class="material-icons left">done_all</i>Get Certificate</a>
+    </div>
 </div>

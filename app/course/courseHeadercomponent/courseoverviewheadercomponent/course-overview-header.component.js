@@ -10,24 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var course_service_1 = require('../../services/course.service');
 var CourseOverviewHeaderComponent = (function () {
-    function CourseOverviewHeaderComponent(sanitizer) {
+    function CourseOverviewHeaderComponent(sanitizer, courseService) {
         this.sanitizer = sanitizer;
+        this.courseService = courseService;
     }
     CourseOverviewHeaderComponent.prototype.ngOnInit = function () {
-        this.isUserLoggedIn = true;
-        this.isBought = true;
-        this.isExamPassed = this.isUserLoggedIn && this.isBought && true;
-        this.isExamEnabled = this.isUserLoggedIn && this.isBought && !this.isExamPassed && true;
-        this.isCourseDiscounted = false;
-        this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl("//www.youtube.com/embed/Q8TXgCzxEnw?rel=0");
-        this.CourseActualPrice = 300;
-        this.CourseDiscount = 20;
+        var _this = this;
+        this.overview = this.courseService.getHeaderOverview().then(function (o) { return _this.extractData(o); });
+        //.then(o => {this.overview = o; this.extractData();});
+    };
+    CourseOverviewHeaderComponent.prototype.extractData = function (response) {
+        console.log(response);
+        return response;
+    };
+    CourseOverviewHeaderComponent.prototype.extractData1 = function () {
+        this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.overview.link);
         this.checkIfCourseisDiscounted();
         this.getCourseFinalPrice();
     };
     CourseOverviewHeaderComponent.prototype.checkIfCourseisDiscounted = function () {
-        if (this.CourseDiscount == 0) {
+        if (this.overview.courseDiscount == 0) {
             this.isCourseDiscounted = false;
         }
         else {
@@ -35,7 +39,7 @@ var CourseOverviewHeaderComponent = (function () {
         }
     };
     CourseOverviewHeaderComponent.prototype.getCourseFinalPrice = function () {
-        this.CoursePrice = this.CourseActualPrice - (this.CourseActualPrice * this.CourseDiscount / 100);
+        this.CoursePrice = this.overview.courseActualPrice - (this.overview.courseActualPrice * this.overview.courseDiscount / 100);
     };
     CourseOverviewHeaderComponent = __decorate([
         core_1.Component({
@@ -43,7 +47,7 @@ var CourseOverviewHeaderComponent = (function () {
             selector: 'course-overview',
             templateUrl: 'course-overview-header.component.html'
         }), 
-        __metadata('design:paramtypes', [platform_browser_1.DomSanitizer])
+        __metadata('design:paramtypes', [platform_browser_1.DomSanitizer, course_service_1.CourseService])
     ], CourseOverviewHeaderComponent);
     return CourseOverviewHeaderComponent;
 }());
