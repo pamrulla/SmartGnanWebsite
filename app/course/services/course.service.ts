@@ -54,4 +54,19 @@ export class CourseService {
         return this.http.get(this.headerURL+"course.download.json")
                 .map(res => res.json());
     }
+
+    getCourseLessons(){
+        return this.http.get(this.headerURL+"course.lessons.json")
+                .map(res => res.json());
+    }
+
+    getCourseReviews(){
+        return this.http.get(this.headerURL+"course.review.json")
+                .map(res => res.json());
+    }
+
+    getCourseQuestions(){
+        return this.http.get(this.headerURL+"course.questions.json")
+                .map(res => res.json());
+    }
 }

@@ -1,23 +1,23 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { QuestionInfo } from '../../../shared/QuestionInfo';
-
-const QTNS : QuestionInfo[] = [
-    {
-        title: "question 1",
-        shortDescription: "question 1 description",
-        authorImage: "test",
-        responses: 2,
-        id: 1
-    },
-    {
-        title: "question 2",
-        shortDescription: "question 2 description",
-        authorImage: "test 2",
-        responses: 10,
-        id: 2
-    }
-];
+import { CourseService } from '../../../services/course.service';
+// const QTNS : QuestionInfo[] = [
+//     {
+//         title: "question 1",
+//         shortDescription: "question 1 description",
+//         authorImage: "test",
+//         responses: 2,
+//         id: 1
+//     },
+//     {
+//         title: "question 2",
+//         shortDescription: "question 2 description",
+//         authorImage: "test 2",
+//         responses: 10,
+//         id: 2
+//     }
+// ];
 
 @Component({
     moduleId: module.id,
@@ -26,12 +26,25 @@ const QTNS : QuestionInfo[] = [
 })
 export class CourseQnARenderComponent implements OnInit {
     @Output() onShowQuestion = new EventEmitter<QuestionInfo>();
-    questions = QTNS;
+    
+    questions : QuestionInfo[];
+    isReady = false;
 
-    constructor() { }
+    constructor(private courseService: CourseService) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.courseService.getCourseQuestions()
+            .subscribe(
+                res => this.extractData(res),
+                err => console.log(err),
+                () => this.isReady = true
+            )
+     }
 
+    extractData(res: QuestionInfo[]){
+        this.questions = res;
+    }
+    
     showQuestion(qtn : QuestionInfo){
         this.onShowQuestion.emit(qtn);
     }

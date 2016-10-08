@@ -1,4 +1,4 @@
-<div class="container card-panel1">
+<div *ngIf="isReady" class="container card-panel1">
     <div class="row">
         <div *ngFor="let rtg of ratings">
             <div class="card-panel">
@@ -7,8 +7,13 @@
                         <img [src]="rtg.authorImage" alt="" class="circle responsive-img">
                     </div>
                     <div class="col s7">
-                        <div class="row">
-                            <stars [rating]="rtg.rating" disabled="true"></stars>
+                        <div class="row valign-wrapper">
+                            <div class="col s8">
+                                <stars [rating]="rtg.rating" disabled="true"></stars>
+                            </div>
+                            <div class="col s4 right-align">
+                                <small><i class="tiny material-icons">schedule</i> {{ rtg.date | date }}</small>
+                            </div>
                         </div>
                         <div class="row">
                             <p>{{ rtg.feedback }}</p>

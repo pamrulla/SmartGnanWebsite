@@ -25,7 +25,6 @@ export class CourseSidebarAuthorComponent implements OnInit {
     }
 
     extractData(res: CourseAuthor){
-        console.log(res);
         this.author = res;
     }
 }

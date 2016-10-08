@@ -21,7 +21,6 @@ var CourseSidebarAuthorComponent = (function () {
             .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseSidebarAuthorComponent.prototype.extractData = function (res) {
-        console.log(res);
         this.author = res;
     };
     CourseSidebarAuthorComponent = __decorate([

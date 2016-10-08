@@ -52,6 +52,18 @@ var CourseService = (function () {
         return this.http.get(this.headerURL + "course.download.json")
             .map(function (res) { return res.json(); });
     };
+    CourseService.prototype.getCourseLessons = function () {
+        return this.http.get(this.headerURL + "course.lessons.json")
+            .map(function (res) { return res.json(); });
+    };
+    CourseService.prototype.getCourseReviews = function () {
+        return this.http.get(this.headerURL + "course.review.json")
+            .map(function (res) { return res.json(); });
+    };
+    CourseService.prototype.getCourseQuestions = function () {
+        return this.http.get(this.headerURL + "course.questions.json")
+            .map(function (res) { return res.json(); });
+    };
     CourseService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

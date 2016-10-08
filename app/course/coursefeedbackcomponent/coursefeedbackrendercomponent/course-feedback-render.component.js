@@ -9,35 +9,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var RATINGS = [
-    {
-        authorImage: "img1",
-        feedback: "Awesome",
-        rating: 5
-    },
-    {
-        authorImage: "img2",
-        feedback: "Ok",
-        rating: 3
-    },
-    {
-        authorImage: "img3",
-        feedback: "Worst",
-        rating: 1
-    }
-];
+var course_service_1 = require('../../services/course.service');
+// const RATINGS: CourseRating[] = [
+//     {
+//         authorImage: "img1",
+//         feedback: "Awesome",
+//         rating: 5
+//     },
+//     {
+//         authorImage: "img2",
+//         feedback: "Ok",
+//         rating: 3
+//     },
+//     {
+//         authorImage: "img3",
+//         feedback: "Worst",
+//         rating: 1
+//     }
+// ]
 var CourseFeedbackRenderComponent = (function () {
-    function CourseFeedbackRenderComponent() {
-        this.ratings = RATINGS;
+    function CourseFeedbackRenderComponent(courseService) {
+        this.courseService = courseService;
+        this.isReady = false;
     }
-    CourseFeedbackRenderComponent.prototype.ngOnInit = function () { };
+    CourseFeedbackRenderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.courseService.getCourseReviews()
+            .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
+    };
+    CourseFeedbackRenderComponent.prototype.extractData = function (res) {
+        this.ratings = res;
+    };
     CourseFeedbackRenderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'course-feedback-render',
             templateUrl: 'course-feedback-render.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [course_service_1.CourseService])
     ], CourseFeedbackRenderComponent);
     return CourseFeedbackRenderComponent;
 }());

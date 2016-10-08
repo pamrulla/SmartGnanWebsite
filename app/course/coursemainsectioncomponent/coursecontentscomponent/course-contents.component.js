@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var course_service_1 = require('../../services/course.service');
 var CNTS = [
     {
         Name: "Ch 1",
@@ -56,10 +57,17 @@ var CNTS = [
     }
 ];
 var CourseContentsComponent = (function () {
-    function CourseContentsComponent() {
-        this.Chapters = CNTS;
+    function CourseContentsComponent(courseService) {
+        this.courseService = courseService;
+        this.isReady = false;
     }
     CourseContentsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.courseService.getCourseLessons()
+            .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
+    };
+    CourseContentsComponent.prototype.extractData = function (res) {
+        this.Chapters = res;
     };
     CourseContentsComponent.prototype.onLessonsClick = function () {
         console.log("Clicked");
@@ -70,7 +78,7 @@ var CourseContentsComponent = (function () {
             selector: 'course-contents',
             templateUrl: 'course-contents.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [course_service_1.CourseService])
     ], CourseContentsComponent);
     return CourseContentsComponent;
 }());

@@ -1,4 +1,4 @@
-<div class="card-panel1">
+<div *ngIf="isReady" class="card-panel1">
     <div class="row">
         <div *ngFor="let qtn of questions">
             <div class="card-panel">
@@ -17,6 +17,7 @@
                         </div>
                         <div class="col s3">
                             <div class="center-align">
+                                <small><i class="tiny material-icons">schedule</i> {{ qtn.date | date }}</small>
                                 <h5>{{ qtn.responses }}</h5>
                                 <h6>Responses</h6>
                             </div>

@@ -1,4 +1,4 @@
-<div class="card-panel">
+<div *ngIf="isReady" class="card-panel">
     <div class="row">
         <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
             <li *ngFor="let ch of Chapters">

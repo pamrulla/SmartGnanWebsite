@@ -4,4 +4,5 @@ export class QuestionInfo{
     authorImage: string;
     responses: number;
     id: number;
+    date: string;
 }
