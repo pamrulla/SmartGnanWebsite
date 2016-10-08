@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CourseService } from '../../services/course.service';
+
+import { Title } from '../../shared/header/title'
 
 @Component({
     moduleId: module.id,
@@ -7,16 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseHeaderInfoComponent implements OnInit {
 
-    Title : string;
-    ShortDescription: string;
-    Author: string;
+    title: Title;
+    isReady = false;
 
-    constructor() { }
+    constructor(private courseService: CourseService) { }
 
     ngOnInit() {
-        this.Title = "This is course title";
-        this.Author = "P Amrulla Khan";
-        this.ShortDescription = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aut consequuntur eum quaerat debitis iste dolores, perspiciatis
-    aspernatur assumenda temporibus placeat cumque odio similique delectus eligendi enim nam nobis recusandae.`;
+        this.courseService.getHeaderTitle()
+            .subscribe(o => this.extractData(o),
+            err => console.log(err),
+            () => this.isReady = true);
      }
+
+     private extractData(response: Title) {
+        this.title = response;
+    }
 }

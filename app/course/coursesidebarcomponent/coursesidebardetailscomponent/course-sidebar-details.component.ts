@@ -1,24 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CourseService } from '../../services/course.service';
+import { CourseDetails } from '../../shared/sidebar/details';
+
 @Component({
     moduleId: module.id,
     selector: 'course-sidebar-details',
     templateUrl: 'course-sidebar-details.component.html'
 })
 export class CourseSidebarDetailsComponent implements OnInit {
-    Level: string;
-    Rating: number;
-    Duration: string;
-    Released: number;
-    Students: number;
+    
+    courseDetails: CourseDetails;
+    isReady = false;
 
-    constructor() {
-        this.Level = "Beginner";
-        this.Duration = "6h 3m";
-        this.Rating = 3;
-        this.Students = 30;
-        this.Released = Date.now();
+    constructor(private courseService: CourseService) {
      }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.courseService.getSidebarCourseDetails()
+            .subscribe(
+                res => this.extractData(res),
+                err => console.log(err),
+                () => this.isReady = true
+            );
+     }
+
+     extractData(res : CourseDetails){
+         this.courseDetails = res;
+     }
 }

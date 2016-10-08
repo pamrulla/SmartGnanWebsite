@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngIf="isReady">
     <div class="card-content">
         <span class="card-title">Course Info</span>
         <div class="divider"></div>
@@ -6,23 +6,23 @@
             <table class="bordered">
                 <tr>
                     <td>Level</td>
-                    <td>{{ Level }}</td>
+                    <td>{{ courseDetails.Level }}</td>
                 </tr>
                 <tr>
                     <td>Rating</td>
-                    <td><stars starCount="5" [rating]="Rating" disabled="true"></stars></td>
+                    <td><stars starCount="5" [rating]="courseDetails.Rating" disabled="true"></stars></td>
                 </tr>
                 <tr>
                     <td>Duration</td>
-                    <td>{{ Duration }}</td>
+                    <td>{{ courseDetails.Duration }}</td>
                 </tr>
                 <tr>
                     <td>Students</td>
-                    <td>{{ Students }}</td>
+                    <td>{{ courseDetails.Students }}</td>
                 </tr>
                 <tr>
                     <td>Released</td>
-                    <td>{{ Released | date }}</td>
+                    <td>{{ courseDetails.Released | date }}</td>
                 </tr>
             </table>
         </div>

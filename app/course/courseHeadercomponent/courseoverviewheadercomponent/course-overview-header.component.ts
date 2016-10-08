@@ -24,8 +24,8 @@ export class CourseOverviewHeaderComponent implements OnInit {
     ngOnInit() {
         this.courseService.getHeaderOverview()
             .subscribe(o => this.extractData(o),
-            err => console.log("Khan "+err),
-            () => this.isReady = false);
+            err => console.log(err),
+            () => this.isReady = true);
     }
 
     private extractData(response: Overview) {

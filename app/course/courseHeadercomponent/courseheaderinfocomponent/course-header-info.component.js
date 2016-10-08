@@ -9,13 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var course_service_1 = require('../../services/course.service');
 var CourseHeaderInfoComponent = (function () {
-    function CourseHeaderInfoComponent() {
+    function CourseHeaderInfoComponent(courseService) {
+        this.courseService = courseService;
+        this.isReady = false;
     }
     CourseHeaderInfoComponent.prototype.ngOnInit = function () {
-        this.Title = "This is course title";
-        this.Author = "P Amrulla Khan";
-        this.ShortDescription = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aut consequuntur eum quaerat debitis iste dolores, perspiciatis\n    aspernatur assumenda temporibus placeat cumque odio similique delectus eligendi enim nam nobis recusandae.";
+        var _this = this;
+        this.courseService.getHeaderTitle()
+            .subscribe(function (o) { return _this.extractData(o); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
+    };
+    CourseHeaderInfoComponent.prototype.extractData = function (response) {
+        this.title = response;
     };
     CourseHeaderInfoComponent = __decorate([
         core_1.Component({
@@ -23,7 +29,7 @@ var CourseHeaderInfoComponent = (function () {
             selector: 'course-header-info',
             templateUrl: 'course-header-info.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [course_service_1.CourseService])
     ], CourseHeaderInfoComponent);
     return CourseHeaderInfoComponent;
 }());

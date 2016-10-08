@@ -1,3 +1,11 @@
-<div class="progress">
-    <div class="determinate" [style.width]="Progress"></div>
+<div *ngIf="isReady">
+    <div class="col s10">
+        <div class="progress">
+            <div class="determinate" [style.width]="Progress"></div>
+        </div>
+    </div>
+    <div class="col s2">
+        <i *ngIf="!courseProgress.isCompleted" class="material-icons" style="color:lightgray">done_all</i>
+        <i *ngIf="courseProgress.isCompleted" class="material-icons" style="color:green">done_all</i>
+    </div>
 </div>

@@ -9,11 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var course_service_1 = require('../../services/course.service');
 var CourseDownloadComponent = (function () {
-    function CourseDownloadComponent() {
+    function CourseDownloadComponent(courseService) {
+        this.courseService = courseService;
+        this.isReady = false;
     }
     CourseDownloadComponent.prototype.ngOnInit = function () {
-        this.courseMaterial = "test";
+        var _this = this;
+        this.courseService.getCourseDownload()
+            .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
+    };
+    CourseDownloadComponent.prototype.extractData = function (res) {
+        this.download = res;
     };
     CourseDownloadComponent = __decorate([
         core_1.Component({
@@ -21,7 +29,7 @@ var CourseDownloadComponent = (function () {
             selector: 'course-download',
             templateUrl: 'course-download.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [course_service_1.CourseService])
     ], CourseDownloadComponent);
     return CourseDownloadComponent;
 }());

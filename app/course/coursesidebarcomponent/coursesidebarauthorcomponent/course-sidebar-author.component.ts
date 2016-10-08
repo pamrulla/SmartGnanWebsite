@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CourseService } from '../../services/course.service';
+import { CourseAuthor } from '../../shared/sidebar/author';
+
 @Component({
     moduleId: module.id,
     selector: 'course-sidebar-author',
@@ -7,16 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseSidebarAuthorComponent implements OnInit {
 
-    AuthorName: string;
-    AuthorImage: string;
-    AuthorShortDescription: string;
+    author : CourseAuthor;
+    isReady = false;
 
-    constructor() { }
+    constructor(private courseService : CourseService) { }
 
     ngOnInit() { 
-        this.AuthorName = "Patan Amrulla Khan";
-        this.AuthorImage = "https://s-media-cache-ak0.pinimg.com/avatars/amrullakhan5_1418723629_140.jpg";
-        this.AuthorShortDescription = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, doloribus, autem possimus veritatis illo tenetur 
-            iste natus ipsam nostrum repudiandae eveniet hic fugit error asperiores odit dolor assumenda. Labore, velit.`;
+        this.courseService.getSidebarCourseAuthor()
+            .subscribe(
+                res => this.extractData(res),
+                err => console.log(err),
+                () => this.isReady = true
+            )
+    }
+
+    extractData(res: CourseAuthor){
+        console.log(res);
+        this.author = res;
     }
 }

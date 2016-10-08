@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { Overview } from '../shared/header/overview';
-
 @Injectable()
 export class CourseService {
 
-    private headerOverviewURL = "app/course/services/headeroverview.json";
+    private headerURL = "app/course/services/";
 
     constructor(private http: Http) { }
 
@@ -22,16 +20,38 @@ export class CourseService {
     // }
 
     getHeaderOverview(){
-        return this.http.get(this.headerOverviewURL)
+
+        return this.http.get(this.headerURL+"headeroverview.json")
                 .map(res => res.json());
     }
 
-    getHeaderTitle(): void{
-
+    getHeaderTitle(){
+        return this.http.get(this.headerURL+"header.title.json")
+                .map(res => res.json());
     }
 
-    getHeaderCourseProgress(): void{
-
+    getHeaderCourseProgress(){
+        return this.http.get(this.headerURL+"header.progress.json")
+                .map(res => res.json());
     }
 
+    getSidebarCourseDetails(){
+        return this.http.get(this.headerURL+"course.details.json")
+                .map(res => res.json());
+    }
+
+    getSidebarCourseAuthor(){
+        return this.http.get(this.headerURL+"course.author.json")
+                .map(res => res.json());
+    }
+
+    getCourseDescription(){
+        return this.http.get(this.headerURL+"course.description.json")
+                .map(res => res.json());
+    }
+
+    getCourseDownload(){
+        return this.http.get(this.headerURL+"course.download.json")
+                .map(res => res.json());
+    }
 }

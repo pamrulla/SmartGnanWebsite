@@ -9,22 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var course_service_1 = require('../../services/course.service');
 var CourseSidebarDetailsComponent = (function () {
-    function CourseSidebarDetailsComponent() {
-        this.Level = "Beginner";
-        this.Duration = "6h 3m";
-        this.Rating = 3;
-        this.Students = 30;
-        this.Released = Date.now();
+    function CourseSidebarDetailsComponent(courseService) {
+        this.courseService = courseService;
+        this.isReady = false;
     }
-    CourseSidebarDetailsComponent.prototype.ngOnInit = function () { };
+    CourseSidebarDetailsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.courseService.getSidebarCourseDetails()
+            .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
+    };
+    CourseSidebarDetailsComponent.prototype.extractData = function (res) {
+        this.courseDetails = res;
+    };
     CourseSidebarDetailsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'course-sidebar-details',
             templateUrl: 'course-sidebar-details.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [course_service_1.CourseService])
     ], CourseSidebarDetailsComponent);
     return CourseSidebarDetailsComponent;
 }());

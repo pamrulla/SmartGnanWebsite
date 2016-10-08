@@ -12,7 +12,8 @@ var core_1 = require('@angular/core');
 var CourseHeaderComponent = (function () {
     function CourseHeaderComponent() {
     }
-    CourseHeaderComponent.prototype.ngOnInit = function () { };
+    CourseHeaderComponent.prototype.ngOnInit = function () {
+    };
     CourseHeaderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

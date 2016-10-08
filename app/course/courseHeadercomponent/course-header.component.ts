@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: 'course-header.component.html'
 })
 export class CourseHeaderComponent implements OnInit {
+
+    
+
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        
+     }
 }

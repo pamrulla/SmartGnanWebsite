@@ -20,7 +20,7 @@ var CourseOverviewHeaderComponent = (function () {
     CourseOverviewHeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.courseService.getHeaderOverview()
-            .subscribe(function (o) { return _this.extractData(o); }, function (err) { return console.log("Khan " + err); }, function () { return _this.isReady = false; });
+            .subscribe(function (o) { return _this.extractData(o); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseOverviewHeaderComponent.prototype.extractData = function (response) {
         this.overview = response;

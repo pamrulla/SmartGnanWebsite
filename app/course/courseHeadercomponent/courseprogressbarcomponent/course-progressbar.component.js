@@ -9,12 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var course_service_1 = require('../../services/course.service');
 var CourseProgressbarComponent = (function () {
-    function CourseProgressbarComponent() {
+    function CourseProgressbarComponent(courseService) {
+        this.courseService = courseService;
+        this.isReady = false;
         this.Progress = "0%";
     }
     CourseProgressbarComponent.prototype.ngOnInit = function () {
-        this.Progress = "50" + "%";
+        var _this = this;
+        this.courseService.getHeaderCourseProgress()
+            .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
+    };
+    CourseProgressbarComponent.prototype.extractData = function (res) {
+        this.courseProgress = res;
+        this.Progress = res.progress + "%";
     };
     CourseProgressbarComponent = __decorate([
         core_1.Component({
@@ -22,7 +31,7 @@ var CourseProgressbarComponent = (function () {
             selector: 'course-progressbar',
             templateUrl: 'course-progressbar.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [course_service_1.CourseService])
     ], CourseProgressbarComponent);
     return CourseProgressbarComponent;
 }());

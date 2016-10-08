@@ -9,11 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var course_service_1 = require('../../services/course.service');
 var CourseDescriptionComponent = (function () {
-    function CourseDescriptionComponent() {
+    function CourseDescriptionComponent(courseService) {
+        this.courseService = courseService;
+        this.isReady = false;
     }
     CourseDescriptionComponent.prototype.ngOnInit = function () {
-        this.courseFullDescription = "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolorum, expedita rerum quia veniam obcaecati quam consequatur repudiandae \n        exercitationem aliquam similique recusandae perferendis odio eos, fugiat nemo, commodi iusto fugit.<p>";
+        var _this = this;
+        this.courseService.getCourseDescription()
+            .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
+    };
+    CourseDescriptionComponent.prototype.extractData = function (res) {
+        this.courseDescription = res;
     };
     CourseDescriptionComponent = __decorate([
         core_1.Component({
@@ -21,7 +29,7 @@ var CourseDescriptionComponent = (function () {
             selector: 'course-description',
             templateUrl: 'course-description.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [course_service_1.CourseService])
     ], CourseDescriptionComponent);
     return CourseDescriptionComponent;
 }());

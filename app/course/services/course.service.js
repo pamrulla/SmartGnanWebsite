@@ -14,7 +14,7 @@ require('rxjs/add/operator/map');
 var CourseService = (function () {
     function CourseService(http) {
         this.http = http;
-        this.headerOverviewURL = "app/course/services/headeroverview.json";
+        this.headerURL = "app/course/services/";
     }
     // getHeaderOverview(): Overview{
     //     return { isBought: true, isCompleted: true, isExamEnabled: true, isUserLoggedIn: true, 
@@ -25,12 +25,32 @@ var CourseService = (function () {
     //         link: "//www.youtube.com/embed/Q8TXgCzxEnw?rel=0", courseActualPrice: 500, courseDiscount: 0});
     // }
     CourseService.prototype.getHeaderOverview = function () {
-        return this.http.get(this.headerOverviewURL)
+        return this.http.get(this.headerURL + "headeroverview.json")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getHeaderTitle = function () {
+        return this.http.get(this.headerURL + "header.title.json")
+            .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getHeaderCourseProgress = function () {
+        return this.http.get(this.headerURL + "header.progress.json")
+            .map(function (res) { return res.json(); });
+    };
+    CourseService.prototype.getSidebarCourseDetails = function () {
+        return this.http.get(this.headerURL + "course.details.json")
+            .map(function (res) { return res.json(); });
+    };
+    CourseService.prototype.getSidebarCourseAuthor = function () {
+        return this.http.get(this.headerURL + "course.author.json")
+            .map(function (res) { return res.json(); });
+    };
+    CourseService.prototype.getCourseDescription = function () {
+        return this.http.get(this.headerURL + "course.description.json")
+            .map(function (res) { return res.json(); });
+    };
+    CourseService.prototype.getCourseDownload = function () {
+        return this.http.get(this.headerURL + "course.download.json")
+            .map(function (res) { return res.json(); });
     };
     CourseService = __decorate([
         core_1.Injectable(), 

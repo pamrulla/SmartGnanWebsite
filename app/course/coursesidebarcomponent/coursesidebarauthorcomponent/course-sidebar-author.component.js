@@ -9,13 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var course_service_1 = require('../../services/course.service');
 var CourseSidebarAuthorComponent = (function () {
-    function CourseSidebarAuthorComponent() {
+    function CourseSidebarAuthorComponent(courseService) {
+        this.courseService = courseService;
+        this.isReady = false;
     }
     CourseSidebarAuthorComponent.prototype.ngOnInit = function () {
-        this.AuthorName = "Patan Amrulla Khan";
-        this.AuthorImage = "https://s-media-cache-ak0.pinimg.com/avatars/amrullakhan5_1418723629_140.jpg";
-        this.AuthorShortDescription = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, doloribus, autem possimus veritatis illo tenetur \n            iste natus ipsam nostrum repudiandae eveniet hic fugit error asperiores odit dolor assumenda. Labore, velit.";
+        var _this = this;
+        this.courseService.getSidebarCourseAuthor()
+            .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
+    };
+    CourseSidebarAuthorComponent.prototype.extractData = function (res) {
+        console.log(res);
+        this.author = res;
     };
     CourseSidebarAuthorComponent = __decorate([
         core_1.Component({
@@ -23,7 +30,7 @@ var CourseSidebarAuthorComponent = (function () {
             selector: 'course-sidebar-author',
             templateUrl: 'course-sidebar-author.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [course_service_1.CourseService])
     ], CourseSidebarAuthorComponent);
     return CourseSidebarAuthorComponent;
 }());
