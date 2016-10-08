@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 import { Overview } from '../shared/header/overview';
 
@@ -21,10 +21,9 @@ export class CourseService {
     //         link: "//www.youtube.com/embed/Q8TXgCzxEnw?rel=0", courseActualPrice: 500, courseDiscount: 0});
     // }
 
-    getHeaderOverview(): Promise<Overview>{
+    getHeaderOverview(){
         return this.http.get(this.headerOverviewURL)
-                .toPromise()
-                .then(value => value.json() as Overview);
+                .map(res => res.json());
     }
 
     getHeaderTitle(): void{

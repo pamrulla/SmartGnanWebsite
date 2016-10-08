@@ -17,24 +17,24 @@ export class CourseOverviewHeaderComponent implements OnInit {
     CourseOverviewVideo: SafeResourceUrl;
 
     isCourseDiscounted: boolean;
+    isReady = false;
 
     constructor(private sanitizer: DomSanitizer, private courseService: CourseService) { }
 
     ngOnInit() {
-        this.overview = this.courseService.getHeaderOverview().then(o => this.extractData(o));
-            //.then(o => {this.overview = o; this.extractData();});
+        this.courseService.getHeaderOverview()
+            .subscribe(o => this.extractData(o),
+            err => console.log("Khan "+err),
+            () => this.isReady = false);
     }
 
-    private extractData(response: Overview) : Overview {
-      console.log(response);
-      return response;
+    private extractData(response: Overview) {
+        this.overview = response;
+        this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.overview.link);
+        this.checkIfCourseisDiscounted();
+        this.getCourseFinalPrice();
     }
-    private extractData1() {
-       this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.overview.link);
-       this.checkIfCourseisDiscounted();
-       this.getCourseFinalPrice();
-    }
-
+ 
     checkIfCourseisDiscounted() {
         if (this.overview.courseDiscount == 0) {
             this.isCourseDiscounted = false;

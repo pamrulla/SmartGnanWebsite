@@ -15,17 +15,15 @@ var CourseOverviewHeaderComponent = (function () {
     function CourseOverviewHeaderComponent(sanitizer, courseService) {
         this.sanitizer = sanitizer;
         this.courseService = courseService;
+        this.isReady = false;
     }
     CourseOverviewHeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.overview = this.courseService.getHeaderOverview().then(function (o) { return _this.extractData(o); });
-        //.then(o => {this.overview = o; this.extractData();});
+        this.courseService.getHeaderOverview()
+            .subscribe(function (o) { return _this.extractData(o); }, function (err) { return console.log("Khan " + err); }, function () { return _this.isReady = false; });
     };
     CourseOverviewHeaderComponent.prototype.extractData = function (response) {
-        console.log(response);
-        return response;
-    };
-    CourseOverviewHeaderComponent.prototype.extractData1 = function () {
+        this.overview = response;
         this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.overview.link);
         this.checkIfCourseisDiscounted();
         this.getCourseFinalPrice();
