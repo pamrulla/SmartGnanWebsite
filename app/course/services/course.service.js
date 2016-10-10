@@ -41,7 +41,7 @@ var CourseService = (function () {
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getSidebarCourseAuthor = function () {
-        return this.http.get(this.headerURL + "course.author.json")
+        return this.http.get("http://localhost/api/test.php") //this.headerURL+"course.author.json")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getCourseDescription = function () {

@@ -14,12 +14,14 @@ var ANS = [
     {
         name: "khan",
         description: "this is test",
-        authorImage: "test1"
+        authorImage: "test1",
+        date: "10/10/2016"
     },
     {
         name: "Patan",
         description: "this is test2",
-        authorImage: "test2"
+        authorImage: "test2",
+        date: "10/10/2016"
     }
 ];
 var CourseSingleQnAComponent = (function () {

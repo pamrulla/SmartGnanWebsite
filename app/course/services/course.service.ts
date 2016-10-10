@@ -41,7 +41,7 @@ export class CourseService {
     }
 
     getSidebarCourseAuthor(){
-        return this.http.get(this.headerURL+"course.author.json")
+        return this.http.get("http://localhost/api/test.php")//this.headerURL+"course.author.json")
                 .map(res => res.json());
     }
 
