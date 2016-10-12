@@ -30,6 +30,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `chapter` WRITE;
 /*!40000 ALTER TABLE `chapter` DISABLE KEYS */;
+INSERT INTO `chapter` VALUES (1,'Chapter 1',1,'1h 3m',1),(2,'Chapter 3',3,'10h 3m',1),(3,'Chapter 2',2,'10h 3m',1),(4,'Chapter 5',5,'10h 3m',1),(5,'Chapter 4',4,'10h 3m',1);
 /*!40000 ALTER TABLE `chapter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,6 +50,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `lesson` WRITE;
 /*!40000 ALTER TABLE `lesson` DISABLE KEYS */;
+INSERT INTO `lesson` VALUES (1,'Lesson 1 1',1,'1m 1s',1,'l1','Video',1),(2,'Lesson 1 2',1,'1m 1s',2,'l1','Video',1),(3,'Lesson 1 3',1,'1m 1s',3,'l1','Video',1),(4,'Lesson 1 4',1,'1m 1s',4,'l1','Video',1),(5,'Lesson 1 5',1,'1m 1s',5,'l1','Video',1),(6,'Lesson 3 1',1,'1m 1s',1,'l3','Video',2),(7,'Lesson 3 2',1,'1m 1s',2,'l3','Video',2),(8,'Lesson 3 3',1,'1m 1s',3,'l3','Video',2),(9,'Lesson 3 4',1,'1m 1s',4,'l3','Video',2),(10,'Lesson 2 4',1,'1m 1s',4,'l2','Video',3),(11,'Lesson 2 3',1,'1m 1s',3,'l2','Video',3),(12,'Lesson 2 2',1,'1m 1s',2,'l2','Video',3),(13,'Lesson 2 1',1,'1m 1s',1,'l2','Video',3),(14,'Lesson 5 1',0,'1m 1s',1,'l5','Video',4),(15,'Lesson 5 2',0,'1m 1s',2,'l5','Video',4),(16,'Lesson 5 4',0,'1m 1s',4,'l5','Video',4),(17,'Lesson 5 3',0,'1m 1s',3,'l5','Video',4),(18,'Lesson 4 1',0,'1m 1s',1,'l4','Video',5),(19,'Lesson 4 2',0,'1m 1s',2,'l4','Video',5),(20,'Lesson 4 4',0,'1m 1s',4,'l4','Video',5),(21,'Lesson 4 3',0,'1m 1s',3,'l4','Video',5);
 /*!40000 ALTER TABLE `lesson` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,6 +88,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_course` WRITE;
 /*!40000 ALTER TABLE `user_course` DISABLE KEYS */;
+INSERT INTO `user_course` VALUES (1,0,0,1,1);
 /*!40000 ALTER TABLE `user_course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,6 +98,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_lesson` WRITE;
 /*!40000 ALTER TABLE `user_lesson` DISABLE KEYS */;
+INSERT INTO `user_lesson` VALUES (1,1,1,2),(2,1,1,1),(3,0,1,3);
 /*!40000 ALTER TABLE `user_lesson` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,4 +120,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-12 15:13:05
+-- Dump completed on 2016-10-12 22:00:53

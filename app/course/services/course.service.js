@@ -14,7 +14,7 @@ require('rxjs/add/operator/map');
 var CourseService = (function () {
     function CourseService(http) {
         this.http = http;
-        this.headerURL = "app/course/services/";
+        this.headerURL = "http://localhost/api/services/course/"; //app/course/services/";
     }
     // getHeaderOverview(): Overview{
     //     return { isBought: true, isCompleted: true, isExamEnabled: true, isUserLoggedIn: true, 
@@ -25,43 +25,43 @@ var CourseService = (function () {
     //         link: "//www.youtube.com/embed/Q8TXgCzxEnw?rel=0", courseActualPrice: 500, courseDiscount: 0});
     // }
     CourseService.prototype.getHeaderOverview = function () {
-        return this.http.get(this.headerURL + "headeroverview.json")
+        return this.http.get(this.headerURL + "getHeaderOverview.php?id=1&uid=1")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getHeaderTitle = function () {
-        return this.http.get(this.headerURL + "header.title.json")
+        return this.http.get(this.headerURL + "getHeaderTitle.php?id=1")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getHeaderCourseProgress = function () {
-        return this.http.get(this.headerURL + "header.progress.json")
+        return this.http.get(this.headerURL + "getHeaderCourseProgress.php?id=1")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getSidebarCourseDetails = function () {
-        return this.http.get(this.headerURL + "course.details.json")
+        return this.http.get(this.headerURL + "getSidebarCourseDetails.php?id=1")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getSidebarCourseAuthor = function () {
-        return this.http.get("http://localhost/api/test.php") //this.headerURL+"course.author.json")
+        return this.http.get(this.headerURL + "getSidebarCourseAuthor.php?id=1")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getCourseDescription = function () {
-        return this.http.get("http://localhost/api/services/course/getCourseAuthor.php") //this.headerURL+"course.description.json")
+        return this.http.get(this.headerURL + "getCourseDescription.php?id=1")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getCourseDownload = function () {
-        return this.http.get(this.headerURL + "course.download.json")
+        return this.http.get(this.headerURL + "getCourseDownload.php?id=1")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getCourseLessons = function () {
-        return this.http.get(this.headerURL + "course.lessons.json")
+        return this.http.get(this.headerURL + "getCourseLessons.php?id=1")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getCourseReviews = function () {
-        return this.http.get(this.headerURL + "course.review.json")
+        return this.http.get(this.headerURL + "getCourseReviews.php?id=1")
             .map(function (res) { return res.json(); });
     };
     CourseService.prototype.getCourseQuestions = function () {
-        return this.http.get(this.headerURL + "course.questions.json")
+        return this.http.get(this.headerURL + "getCourseQuestions.php?id=1")
             .map(function (res) { return res.json(); });
     };
     CourseService = __decorate([

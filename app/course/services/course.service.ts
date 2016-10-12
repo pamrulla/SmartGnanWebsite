@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CourseService {
 
-    private headerURL = "app/course/services/";
+    private headerURL = "http://localhost/api/services/course/";//app/course/services/";
 
     constructor(private http: Http) { }
 
@@ -21,52 +21,52 @@ export class CourseService {
 
     getHeaderOverview(){
 
-        return this.http.get(this.headerURL+"headeroverview.json")
+        return this.http.get(this.headerURL+"getHeaderOverview.php?id=1&uid=1")
                 .map(res => res.json());
     }
 
     getHeaderTitle(){
-        return this.http.get(this.headerURL+"header.title.json")
+        return this.http.get(this.headerURL+"getHeaderTitle.php?id=1")
                 .map(res => res.json());
     }
 
     getHeaderCourseProgress(){
-        return this.http.get(this.headerURL+"header.progress.json")
+        return this.http.get(this.headerURL+"getHeaderCourseProgress.php?id=1")
                 .map(res => res.json());
     }
 
     getSidebarCourseDetails(){
-        return this.http.get(this.headerURL+"course.details.json")
+        return this.http.get(this.headerURL+"getSidebarCourseDetails.php?id=1")
                 .map(res => res.json());
     }
 
     getSidebarCourseAuthor(){
-        return this.http.get("http://localhost/api/test.php")//this.headerURL+"course.author.json")
+        return this.http.get(this.headerURL+"getSidebarCourseAuthor.php?id=1")
                 .map(res => res.json());
     }
 
     getCourseDescription(){
-        return this.http.get("http://localhost/api/services/course/getCourseAuthor.php")//this.headerURL+"course.description.json")
+        return this.http.get(this.headerURL+"getCourseDescription.php?id=1")
                 .map(res => res.json());
     }
 
     getCourseDownload(){
-        return this.http.get(this.headerURL+"course.download.json")
+        return this.http.get(this.headerURL+"getCourseDownload.php?id=1")
                 .map(res => res.json());
     }
 
     getCourseLessons(){
-        return this.http.get(this.headerURL+"course.lessons.json")
+        return this.http.get(this.headerURL+"getCourseLessons.php?id=1")
                 .map(res => res.json());
     }
 
     getCourseReviews(){
-        return this.http.get(this.headerURL+"course.review.json")
+        return this.http.get(this.headerURL+"getCourseReviews.php?id=1")
                 .map(res => res.json());
     }
 
     getCourseQuestions(){
-        return this.http.get(this.headerURL+"course.questions.json")
+        return this.http.get(this.headerURL+"getCourseQuestions.php?id=1")
                 .map(res => res.json());
     }
 }
