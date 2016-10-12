@@ -46,7 +46,7 @@ export class CourseService {
     }
 
     getCourseDescription(){
-        return this.http.get(this.headerURL+"course.description.json")
+        return this.http.get("http://localhost/api/services/course/getCourseAuthor.php")//this.headerURL+"course.description.json")
                 .map(res => res.json());
     }
 
