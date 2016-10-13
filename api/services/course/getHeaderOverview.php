@@ -7,9 +7,10 @@ header('Content-type: application/json');
 if(!isset($_GET['id']) || !isset($_GET['uid']))
 {
 	http_response_code(400);
+	echo 'Invalid request';
 }
 else
 {
 	$courseOverview = CourseRepository::getHeaderOverview($_GET['id'], $_GET['uid']);
+	echo json_encode($courseOverview);
 }
-echo json_encode($courseOverview);

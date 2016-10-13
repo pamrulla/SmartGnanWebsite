@@ -1,4 +1,5 @@
 <?php
+
 require_once '../../classes/course/CourseRepository.php';
 
 header('Content-type: application/json');
@@ -6,10 +7,11 @@ header('Content-type: application/json');
 
 if(!isset($_GET['id']))
 {
-	http_response_code(400);
+	http_response_code(400);	
 	echo 'Invalid request';
 }
-else{
-	$courseDetails = CourseRepository::getSidebarCourseDetails($_GET['id']);
-	echo json_encode($courseDetails);
+else
+{
+	$questionAnswers = CourseRepository::getQuestionAnswers($_GET['id']);
+	echo json_encode($questionAnswers);
 }

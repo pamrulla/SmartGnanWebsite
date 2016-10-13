@@ -5,6 +5,14 @@ require_once 'CourseHeaderOverview.php';
 require_once 'CourseDownload.php';
 require_once 'CourseLessons.php';
 require_once 'CourseTitle.php';
+require_once 'CourseProgress.php';
+require_once 'CourseAuthor.php';
+require_once 'CourseDetails.php';
+require_once 'CourseRating.php';
+require_once 'CourseRatingsList.php';
+require_once 'CourseQuestions.php';
+require_once 'CourseQuestionsList.php';
+require_once 'QuestionAnswers.php';
 
 class CourseRepository{
     public static function getCourseDescription($id){
@@ -59,46 +67,164 @@ class CourseRepository{
         }       
     }
 
-    public static function getCourseLessons($id){
-        //select * from sgdb.chapter cha,sgdb.lesson les where cha.id=les.chapter_id and cha.course_id=1 order by cha.order,les.order;
-        
-        //select * from sgdb.chapter cha,sgdb.lesson les,sgdb.user_lesson ul where cha.id=les.chapter_id and ul.lesson_id=les.id and cha.course_id=1 order by cha.order,les.order;
-
+    public static function getCourseLessons($id, $uid = 0){
         $chapters = array();
 
-        $db_chapters = DBClass::query('select * from chapter where course_id = '. $id .' order by chapter.order');
+        $db_chapters = DBClass::query('select cha.id as chid, cha.name as chname, cha.duration as chduration, les.name as lsname, les.is_free as lsisfree, les.duration as lsduration, les.link as url, ul.is_completed as iscompleted from sgdb.chapter cha,sgdb.lesson les,sgdb.user_lesson ul where cha.id=les.chapter_id and ul.lesson_id=les.id and cha.course_id='.$id.' and ul.user_id = '.$uid.' order by cha.order,les.order;');
+
+        $i = -1;
+        $prg = 0;
+        $ch = new Chapter();
+        $lessons = array();
         foreach ($db_chapters as $db_ch) {
-            $ch = new Chapter();
-            $ch->Name = $db_ch->name;
-            $ch->Duration = $db_ch->duration;
+            if($i != $db_ch->chid){
+                if($i != -1){
+                    $ch->Progress = $prg / count($lessons);
+                    $ch->Lessons = $lessons;
+                    array_push($chapters, $ch);
+                }
+                $i = $db_ch->chid;
+                $ch = new Chapter();
+                
+                $ch->Name = $db_ch->chname;
+                $ch->IsEnabled = false;
+                $ch->Duration = $db_ch->chduration;
 
-            $lessons = array();
-
-            $db_lessons = DBClass::query('select * from lesson where chapter_id = '. $db_ch->id . ' order by lesson.order');
-            
-            foreach ($db_lessons as $db_ls) {
-                $ls = new Lesson($db_ls->name, $db_ls->is_free, $db_ls->duration, $db_ls->link, false);
-
-                array_push($lessons, $ls);
+                $lessons = array();
+                $prg = 0;
             }
-            $ch->Lessons = $lessons;
-            array_push($chapters, $ch);
+            $ls = new Lesson($db_ch->lsname, $db_ch->lsisfree, $db_ch->lsduration, $db_ch->url, $db_ch->iscompleted);
+            $prg = $prg + $db_ch->iscompleted;
+            array_push($lessons, $ls);
         }
+
+        if(count($lessons) > 0){
+            $ch->Progress = $prg / count($lessons);
+        }
+        else{
+            $ch->Progress = 100;
+        }
+        $ch->Lessons = $lessons;
+        array_push($chapters, $ch);
+
         return $chapters;       
     }
 
     public static function getHeaderTitle($id){
-        //select cou.title,cou.desc_short,concat(us.fname,' ',us.lname) as name from sgdb.course cou,sgdb.user us where cou.user_id=us.id and cou.id=1;
-        $db_courseTitle = DBClass::query('select title, desc_short, user_id from course where id = '. $id);
+        $db_courseTitle = DBClass::query('select cou.title, cou.desc_short, us.fname, us.lname from course cou, user us where cou.user_id=us.id and cou.id='.$id);
         if(count($db_courseTitle) == 1){
-            $courseTitle = new Title($db_courseTitle[0]->title, $db_courseTitle[0]->desc_short);
-            $db_author = DBClass::query('select fname, lname from user where id = '. $db_courseTitle[0]->user_id);
-            if(count($db_author) == 1){
-                $courseTitle->author = $db_author[0]->fname . ' ' . $db_author[0]->lname;
-            }
-                return $courseTitle;
+            return new Title($db_courseTitle[0]->title, $db_courseTitle[0]->desc_short, $db_courseTitle[0]->fname . ' ' . $db_courseTitle[0]->lname);
         }
         return new Title();
     }
 
+    public static function getHeaderCourseProgress($id, $uid){
+        $db_progress = DBClass::query('select avg(is_completed) as progress from user_lesson where user_id = ' . $uid . ' and lesson_id in ( select id from lesson where chapter_id in ( select id from chapter where course_id = '. $id . '))');
+        if(count($db_progress) == 1){
+            if($db_progress[0]->progress < 100){
+                return new CourseProgress($db_progress[0]->progress);
+            }
+            else{
+                return new CourseProgress($db_progress[0]->progress, true);
+            }                
+        }
+        else{
+            return new CourseProgress();
+        }
+
+    }
+
+    public static function getSidebarCourseAuthor($id){
+        $db_courseAuthor = DBClass::query('select u.fname, u.lname, u.dp, up.experience_years as years, up.experience_details as details from user u, user_profile up  where u.id in ( select user_id from course where id = '. $id .') and up.user_id = u.id');
+        if(count($db_courseAuthor) == 1){
+            return new CourseAuthor($db_courseAuthor[0]->fname . ' ' . $db_courseAuthor[0]->lname,
+                $db_courseAuthor[0]->dp,
+                'Having ' . $db_courseAuthor[0]->years .' years of experience in ' . $db_courseAuthor[0]->details);
+        }
+        else{
+            return new CourseAuthor();
+        }
+    }
+
+    public static function getSidebarCourseDetails($id){
+        $db_courseDetails = DBClass::query('select cou.level, cou.release_date, cou.duration, avg(r.rating) as rating from course cou, reviews r where cou.id = ' . $id . ' and r.course_id = ' . $id);
+        if(count($db_courseDetails) == 1){
+            $db_students = DBClass::query('select count(*) as students from user_course where course_id = ' . $id);
+            if(count($db_students) == 1){
+                return new CourseDetails($db_courseDetails[0]->level, $db_courseDetails[0]->rating, $db_courseDetails[0]->duration, $db_courseDetails[0]->release_date, $db_students[0]->students);    
+            }
+            else{
+                return new CourseDetails($db_courseDetails[0]->level, $db_courseDetails[0]->rating, $db_courseDetails[0]->duration, $db_courseDetails[0]->release_date);
+            }
+            
+        }
+        else{
+            return new CourseDetails();
+        }
+    }
+
+    public static function getCourseReviews($id, $start, $count){
+        $reviews = array();
+
+        $db_reviews = DBClass::query('select r.rating, r.review, r.date, u.dp from reviews r, user u where r.is_approved = 1 and r.course_id = ' . $id .' and u.id = r.user_id');
+
+        for($i = $start-1; $i < count($db_reviews) && $i < ($start+$count-1); $i++){
+            $rt = new CourseRating($db_reviews[$i]->review, $db_reviews[$i]->dp, $db_reviews[$i]->rating, $db_reviews[$i]->date);
+            array_push($reviews, $rt);
+        }
+        
+        return new CourseRatingsList(count($db_reviews), $reviews);
+    }
+
+    public static function getCourseQuestions($id, $start, $count, $sort = 0, $mine = 0, $nores = 0, $uid){
+        $questions = array();
+
+        if($sort == 0){
+            if($mine == 0 && $nores == 0){
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id order by qn.date desc');
+            }
+            else if($mine == 1 && $nores == 0){
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' order by qn.date desc');
+            }
+            else if($mine == 0 && $nores == 1){
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.answers = 0 order by qn.date desc');
+            }
+            else{
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' and qn.answers = 0 order by qn.date desc');
+            }
+        }
+        else{
+
+            if($mine == 0 && $nores == 0){
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id order by qn.answers desc');
+            }
+            else if($mine == 1 && $nores == 0){
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' order by qn.answers desc');
+            }
+            else if($mine == 0 && $nores == 1){
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.answers = 0 order by qn.answers desc');
+            }
+            else{
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' and qn.answers = 0 order by qn.answers desc');
+            }
+            
+        }
+        for($i = $start-1; $i < count($db_questions) && $i < ($start+$count-1); $i++){
+            $qn = new QuestionInfo($db_questions[$i]->title,$db_questions[$i]->description,$db_questions[$i]->dp,$db_questions[$i]->answers,$db_questions[$i]->id,$db_questions[$i]->date);
+            array_push($questions, $qn);
+        }
+        
+        return new CourseQuestionsList(count($db_questions), $questions);
+    }
+
+    public static function getQuestionAnswers($id){
+        $answers = array();
+
+        $db_answers = DBClass::query('select us.fname, us.lname, us.dp, an.answer, an.date FROM sgdb.answer an, sgdb.user us where an.question_id = '.$id.' and an.user_id = us.id order by an.date');
+        foreach ($db_answers as $db_an) {
+            $an = new QuestionAnswers($db_an->fname . ' ' . $db_an->lname, $db_an->dp, $db_an->answer, $db_an->date);
+            array_push($answers, $an);
+        }
+        return $answers;
+    }
 }

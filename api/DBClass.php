@@ -2,7 +2,7 @@
 class DBClass{
     private static $DB_CONNECTION_STRING = "mysql:host=127.0.0.1:3306;dbname=sgdb";
     private static $DB_USER_NAME = "root";
-    private static $DB_PASSWORD = "root";
+    private static $DB_PASSWORD = "";
 
     private static $db = null;
 

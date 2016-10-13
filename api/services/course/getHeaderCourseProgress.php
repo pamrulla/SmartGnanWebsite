@@ -1,4 +1,15 @@
 <?php
+require_once '../../classes/course/CourseRepository.php';
 
-/*SELECT avg(is_completed) FROM sgdb.user_lesson where 
-lesson_id in (select id from sgdb.lesson where chapter_id in( select id from sgdb.chapter where course_id in(select id from sgdb.course where id=1)));*/
+header('Content-type: application/json');
+//echo ")]}'\n'";
+
+if(!isset($_GET['id']) || !isset($_GET['uid']) )
+{
+	http_response_code(400);
+	echo 'Invalid request';
+}
+else{
+	$courseProgress = CourseRepository::getHeaderCourseProgress($_GET['id'], $_GET['uid']);
+	echo json_encode($courseProgress);
+}
