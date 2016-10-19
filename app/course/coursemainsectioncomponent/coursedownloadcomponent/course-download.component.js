@@ -17,12 +17,16 @@ var CourseDownloadComponent = (function () {
     }
     CourseDownloadComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.courseService.getCourseDownload()
+        this.courseService.getCourseDownload(this.courseId)
             .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseDownloadComponent.prototype.extractData = function (res) {
         this.download = res;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseDownloadComponent.prototype, "courseId", void 0);
     CourseDownloadComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

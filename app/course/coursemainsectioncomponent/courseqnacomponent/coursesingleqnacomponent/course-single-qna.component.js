@@ -35,6 +35,10 @@ var CourseSingleQnAComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseSingleQnAComponent.prototype, "courseId", void 0);
+    __decorate([
+        core_1.Input(), 
         __metadata('design:type', QuestionInfo_1.QuestionInfo)
     ], CourseSingleQnAComponent.prototype, "question", void 0);
     __decorate([

@@ -1,25 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { CourseRating } from "../../shared/CourseRatings";
+import { CourseRatingList } from "../../shared/CourseRatingList";
 import { CourseService } from '../../services/course.service';
-
-// const RATINGS: CourseRating[] = [
-//     {
-//         authorImage: "img1",
-//         feedback: "Awesome",
-//         rating: 5
-//     },
-//     {
-//         authorImage: "img2",
-//         feedback: "Ok",
-//         rating: 3
-//     },
-//     {
-//         authorImage: "img3",
-//         feedback: "Worst",
-//         rating: 1
-//     }
-// ]
 
 @Component({
     moduleId: module.id,
@@ -27,13 +10,14 @@ import { CourseService } from '../../services/course.service';
     templateUrl: 'course-feedback-render.component.html'
 })
 export class CourseFeedbackRenderComponent implements OnInit {
+    @Input() courseId;
     ratings : CourseRating[];
     isReady = false;
     
     constructor(private courseService: CourseService) { }
 
     ngOnInit() {
-        this.courseService.getCourseReviews()
+        this.courseService.getCourseReviews(this.courseId)
             .subscribe(
                 res => this.extractData(res),
                 err => console.log(err),
@@ -41,7 +25,7 @@ export class CourseFeedbackRenderComponent implements OnInit {
             )
      }
 
-    extractData(res: CourseRating[]){
-        this.ratings = res;
+    extractData(res: CourseRatingList){
+        this.ratings = res.reviews;
     }
 }

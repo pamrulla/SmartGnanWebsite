@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { CourseService } from '../../services/course.service';
 import { CourseDescription } from '../../shared/mainsection/description';
@@ -9,14 +9,14 @@ import { CourseDescription } from '../../shared/mainsection/description';
     templateUrl: 'course-description.component.html'
 })
 export class CourseDescriptionComponent implements OnInit {
-    
+    @Input() courseId;
     isReady = false;
     courseDescription: CourseDescription;
 
     constructor( private courseService: CourseService) { }
 
     ngOnInit() {
-        this.courseService.getCourseDescription()
+        this.courseService.getCourseDescription(this.courseId)
                 .subscribe(
                     res => this.extractData(res),
                     err => console.log(err),

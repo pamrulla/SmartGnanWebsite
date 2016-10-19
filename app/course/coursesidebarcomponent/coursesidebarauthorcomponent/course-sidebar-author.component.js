@@ -17,12 +17,16 @@ var CourseSidebarAuthorComponent = (function () {
     }
     CourseSidebarAuthorComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.courseService.getSidebarCourseAuthor()
+        this.courseService.getSidebarCourseAuthor(this.courseId)
             .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseSidebarAuthorComponent.prototype.extractData = function (res) {
         this.author = res;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseSidebarAuthorComponent.prototype, "courseId", void 0);
     CourseSidebarAuthorComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

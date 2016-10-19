@@ -24,7 +24,7 @@ const ANS: Answer[] = [
     templateUrl: 'course-single-qna.component.html'
 })
 export class CourseSingleQnAComponent implements OnInit {
-
+    @Input() courseId;
     @Input() question : QuestionInfo;
     answers = ANS;
 

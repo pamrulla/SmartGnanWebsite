@@ -1,5 +1,6 @@
 <div class="card-panel">
-    <course-qna-form *ngIf="!isShowQuestion"></course-qna-form>
-    <course-qna-render (onShowQuestion)="showQuestion($event)"  *ngIf="!isShowQuestion"></course-qna-render>
-    <course-single-qna (goBack)="onGoBack()" *ngIf="isShowQuestion" [question]="question"></course-single-qna>
+    <course-qna-form [courseId]="courseId" *ngIf="!isShowQuestion" (onFilterChange)="filterChanged($event)"></course-qna-form>
+    <course-qna-render [courseId]="courseId" (onShowQuestion)="showQuestion($event)"  *ngIf="!isShowQuestion" [searchText]="searchText" 
+        [sort]="sortingOptions" [mine]="myQuestions" [nores]="noResponseQtns"></course-qna-render>
+    <course-single-qna [courseId]="courseId" (goBack)="onGoBack()" *ngIf="isShowQuestion" [question]="question"></course-single-qna>
 </div>

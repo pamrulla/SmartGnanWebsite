@@ -1,13 +1,13 @@
 <div class="card-panel">
     <div class="row">
-        <div class="valign-wrapper">
+        <div>
             <div class="row" id="overview">
                 <div class="col s12 m4 center-align">
-                    <course-overview></course-overview>
+                    <course-overview [courseId]="courseId"></course-overview>
                 </div>
                 <div class="col s12 m8">
-                    <course-header-info></course-header-info>
-                    <course-progressbar></course-progressbar>
+                    <course-header-info [courseId]="courseId"></course-header-info>
+                    <course-progressbar [courseId]="courseId"></course-progressbar>
                 </div>
             </div>
         </div>

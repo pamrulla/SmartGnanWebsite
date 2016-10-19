@@ -11,6 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var CourseQnAComponent = (function () {
     function CourseQnAComponent() {
+        this.searchText = "";
+        this.sortingOptions = 0;
+        this.myQuestions = 0;
+        this.noResponseQtns = 0;
         this.isShowQuestion = false;
     }
     CourseQnAComponent.prototype.ngOnInit = function () { };
@@ -19,9 +23,19 @@ var CourseQnAComponent = (function () {
         this.question = qtn;
         this.isShowQuestion = true;
     };
+    CourseQnAComponent.prototype.filterChanged = function (event) {
+        this.searchText = event.searchText;
+        this.sortingOptions = event.sortingOptions;
+        this.myQuestions = event.myQuestions ? 1 : 0;
+        this.noResponseQtns = event.noResponseQtns ? 1 : 0;
+    };
     CourseQnAComponent.prototype.onGoBack = function () {
         this.isShowQuestion = false;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseQnAComponent.prototype, "courseId", void 0);
     CourseQnAComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

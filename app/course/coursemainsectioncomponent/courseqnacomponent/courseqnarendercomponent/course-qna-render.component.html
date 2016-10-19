@@ -27,11 +27,26 @@
             </div>
         </div>
     </div>
-    <div class="center-align">
+    <div *ngIf="max!=0" class="center-align">
         <ul class="pagination">
-            <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
-            <li class="active"><a>1</a></li>
-            <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+            <li [class.active]="isLeftActive" [class.disabled]="!isLeftActive"><a (click)="onClickQuestions(false)"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a>{{ pageLabel }}</a></li>
+            <li [class.active]="isRightActive" [class.disabled]="!isRightActive"><a (click)="onClickQuestions(true)"><i class="material-icons">chevron_right</i></a></li>
         </ul>
+    </div>
+</div>
+<div *ngIf="!isReady" class="center-align">
+    <div class="preloader-wrapper active">
+        <div class="spinner-layer spinner-red-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
     </div>
 </div>

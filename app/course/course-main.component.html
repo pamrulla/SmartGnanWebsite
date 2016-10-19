@@ -2,24 +2,24 @@
     <div class="row">
         <div class="col s12 m9">
             <div class="row">
-                <course-header></course-header>
+                <course-header [courseId]="courseId"></course-header>
             </div>
         </div>
         <div class="col s12 m3">
-            <course-sidebar-details></course-sidebar-details>
+            <course-sidebar-details [courseId]="courseId"></course-sidebar-details>
         </div>
     </div>
     <div class="row">
         <div class="col s12 m9">
             <div class="row">
-                <course-main-section></course-main-section>
+                <course-main-section [courseId]="courseId"></course-main-section>
             </div>
             <div class="row">
-                <course-feedback></course-feedback>
+                <course-feedback [courseId]="courseId"></course-feedback>
             </div>
         </div>
         <div class="col s12 m3">
-            <course-sidebar-author></course-sidebar-author>
+            <course-sidebar-author [courseId]="courseId"></course-sidebar-author>
         </div>
     </div>
 </div>

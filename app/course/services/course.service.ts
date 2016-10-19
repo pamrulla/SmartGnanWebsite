@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CourseService {
 
-    private headerURL = "http://localhost/api/services/course/";//app/course/services/";
+    private headerURL = "http://localhost:8012/api/services/course/";//app/course/services/";
 
     constructor(private http: Http) { }
 
@@ -19,54 +19,59 @@ export class CourseService {
     //         link: "//www.youtube.com/embed/Q8TXgCzxEnw?rel=0", courseActualPrice: 500, courseDiscount: 0});
     // }
 
-    getHeaderOverview(){
+    getHeaderOverview(id, uid=0){
 
-        return this.http.get(this.headerURL+"getHeaderOverview.php?id=1&uid=1")
+        return this.http.get(this.headerURL+"getHeaderOverview.php?id="+id+"&uid="+uid)
                 .map(res => res.json());
     }
 
-    getHeaderTitle(){
-        return this.http.get(this.headerURL+"getHeaderTitle.php?id=1")
+    getHeaderTitle(id){
+        return this.http.get(this.headerURL+"getHeaderTitle.php?id="+id+"")
                 .map(res => res.json());
     }
 
-    getHeaderCourseProgress(){
-        return this.http.get(this.headerURL+"getHeaderCourseProgress.php?id=1")
+    getHeaderCourseProgress(id, uid = 0){
+        return this.http.get(this.headerURL+"getHeaderCourseProgress.php?id="+id+"&uid=" + uid)
                 .map(res => res.json());
     }
 
-    getSidebarCourseDetails(){
-        return this.http.get(this.headerURL+"getSidebarCourseDetails.php?id=1")
+    getSidebarCourseDetails(id){
+        return this.http.get(this.headerURL+"getSidebarCourseDetails.php?id="+id+"")
                 .map(res => res.json());
     }
 
-    getSidebarCourseAuthor(){
-        return this.http.get(this.headerURL+"getSidebarCourseAuthor.php?id=1")
+    getSidebarCourseAuthor(id){
+        return this.http.get(this.headerURL+"getSidebarCourseAuthor.php?id="+id+"")
                 .map(res => res.json());
     }
 
-    getCourseDescription(){
-        return this.http.get(this.headerURL+"getCourseDescription.php?id=1")
+    getCourseDescription(id){
+        return this.http.get(this.headerURL+"getCourseDescription.php?id="+id+"")
                 .map(res => res.json());
     }
 
-    getCourseDownload(){
-        return this.http.get(this.headerURL+"getCourseDownload.php?id=1")
+    getCourseDownload(id){
+        return this.http.get(this.headerURL+"getCourseDownload.php?id="+id+"")
                 .map(res => res.json());
     }
 
-    getCourseLessons(){
-        return this.http.get(this.headerURL+"getCourseLessons.php?id=1")
+    getCourseLessons(id, uid = 0){
+        return this.http.get(this.headerURL+"getCourseLessons.php?id="+id+"&uid="+uid)
                 .map(res => res.json());
     }
 
-    getCourseReviews(){
-        return this.http.get(this.headerURL+"getCourseReviews.php?id=1")
+    getCourseReviews(id){
+        return this.http.get(this.headerURL+"getCourseReviews.php?id="+id+"&start=1&count=5")
                 .map(res => res.json());
     }
 
-    getCourseQuestions(){
-        return this.http.get(this.headerURL+"getCourseQuestions.php?id=1")
+    getCourseQuestions(id, start, count, sort, mine, nores, uid){
+        return this.http.get(this.headerURL+"getCourseQuestions.php?id="+ id +"&start="+ start +"&count="+ count +"&sort="+ sort +"&mine="+ mine +"&nores="+ nores +"&uid="+ uid +"")
+                .map(res => res.json());
+    }
+
+    getCourseList(sortType){
+        return this.http.get(this.headerURL+"getCourseList.php?type="+sortType)
                 .map(res => res.json());
     }
 }

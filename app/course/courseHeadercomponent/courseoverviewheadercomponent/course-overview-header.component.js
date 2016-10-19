@@ -15,11 +15,12 @@ var CourseOverviewHeaderComponent = (function () {
     function CourseOverviewHeaderComponent(sanitizer, courseService) {
         this.sanitizer = sanitizer;
         this.courseService = courseService;
+        this.uid = 0;
         this.isReady = false;
     }
     CourseOverviewHeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.courseService.getHeaderOverview()
+        this.courseService.getHeaderOverview(this.courseId)
             .subscribe(function (o) { return _this.extractData(o); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseOverviewHeaderComponent.prototype.extractData = function (response) {
@@ -39,6 +40,10 @@ var CourseOverviewHeaderComponent = (function () {
     CourseOverviewHeaderComponent.prototype.getCourseFinalPrice = function () {
         this.CoursePrice = this.overview.courseActualPrice - (this.overview.courseActualPrice * this.overview.courseDiscount / 100);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseOverviewHeaderComponent.prototype, "courseId", void 0);
     CourseOverviewHeaderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

@@ -14,6 +14,10 @@ var CourseHeaderComponent = (function () {
     }
     CourseHeaderComponent.prototype.ngOnInit = function () {
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseHeaderComponent.prototype, "courseId", void 0);
     CourseHeaderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

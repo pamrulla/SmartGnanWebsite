@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterializeDirective } from 'angular2-materialize';
+import { FormsModule } from '@angular/forms';
 
 import { RatingsStartModule } from '../shared/ratingsstars/ratingstar.module';
 
@@ -28,12 +29,15 @@ import { CourseFeedbackComponent } from './coursefeedbackcomponent/course-feedba
 import { CourseFeedbackFormComponent } from './coursefeedbackcomponent/coursefeedbackformcomponent/course-feedback-form.component';
 import { CourseFeedbackRenderComponent } from './coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component';
 
+import { CourseListComponent } from './courselistcomponent/course-list.component';
+
 import { CourseService } from './services/course.service';
 
 
 import { routing } from './course-routing';
 @NgModule({
     imports: [
+        FormsModule,
         CommonModule,
         RatingsStartModule,
         routing
@@ -59,6 +63,7 @@ import { routing } from './course-routing';
         CourseFeedbackComponent,
         CourseFeedbackFormComponent,
         CourseFeedbackRenderComponent,
+        CourseListComponent,
         MaterializeDirective
         ],
     providers: [CourseService],

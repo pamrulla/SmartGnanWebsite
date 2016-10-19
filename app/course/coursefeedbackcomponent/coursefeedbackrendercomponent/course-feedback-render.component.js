@@ -10,23 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var course_service_1 = require('../../services/course.service');
-// const RATINGS: CourseRating[] = [
-//     {
-//         authorImage: "img1",
-//         feedback: "Awesome",
-//         rating: 5
-//     },
-//     {
-//         authorImage: "img2",
-//         feedback: "Ok",
-//         rating: 3
-//     },
-//     {
-//         authorImage: "img3",
-//         feedback: "Worst",
-//         rating: 1
-//     }
-// ]
 var CourseFeedbackRenderComponent = (function () {
     function CourseFeedbackRenderComponent(courseService) {
         this.courseService = courseService;
@@ -34,12 +17,16 @@ var CourseFeedbackRenderComponent = (function () {
     }
     CourseFeedbackRenderComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.courseService.getCourseReviews()
+        this.courseService.getCourseReviews(this.courseId)
             .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseFeedbackRenderComponent.prototype.extractData = function (res) {
-        this.ratings = res;
+        this.ratings = res.reviews;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseFeedbackRenderComponent.prototype, "courseId", void 0);
     CourseFeedbackRenderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

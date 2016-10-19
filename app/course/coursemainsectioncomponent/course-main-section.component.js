@@ -13,6 +13,10 @@ var CourseMainSectionComponent = (function () {
     function CourseMainSectionComponent() {
     }
     CourseMainSectionComponent.prototype.ngOnInit = function () { };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseMainSectionComponent.prototype, "courseId", void 0);
     CourseMainSectionComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

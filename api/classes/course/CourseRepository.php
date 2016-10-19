@@ -13,6 +13,7 @@ require_once 'CourseRatingsList.php';
 require_once 'CourseQuestions.php';
 require_once 'CourseQuestionsList.php';
 require_once 'QuestionAnswers.php';
+require_once 'CourseList.php';
 
 class CourseRepository{
     public static function getCourseDescription($id){
@@ -29,7 +30,7 @@ class CourseRepository{
         $db_course_price = DBClass::query('select cou.id,cou.price,cou.discount,les.link from course cou, chapter cha, lesson les where cou.id=cha.course_id and cha.id=les.chapter_id and cha.order=1 and les.order=1 and cou.id=' . $id);
     	if(count($db_course_price) == 1){
 
-    		//get course price and completoion details
+    		//get course price and completion details
     		if($uid > 0){
             	$db_course_user = DBClass::query('select * from user_course where user_id = ' . $uid . ' and course_id = ' . $id);
             	if(count($db_course_user) == 1)
@@ -69,8 +70,14 @@ class CourseRepository{
 
     public static function getCourseLessons($id, $uid = 0){
         $chapters = array();
-
-        $db_chapters = DBClass::query('select cha.id as chid, cha.name as chname, cha.duration as chduration, les.name as lsname, les.is_free as lsisfree, les.duration as lsduration, les.link as url, ul.is_completed as iscompleted from sgdb.chapter cha,sgdb.lesson les,sgdb.user_lesson ul where cha.id=les.chapter_id and ul.lesson_id=les.id and cha.course_id='.$id.' and ul.user_id = '.$uid.' order by cha.order,les.order;');
+        $sql = '';
+        if($uid == 0){
+            $sql = 'select cha.id as chid, cha.name as chname, cha.duration as chduration, les.name as lsname, les.is_free as lsisfree, les.duration as lsduration, les.link as url from sgdb.chapter cha,sgdb.lesson les where cha.id=les.chapter_id and cha.course_id='.$id.' order by cha.order,les.order';
+        }
+        else{
+            $sql = 'select cha.id as chid, cha.name as chname, cha.duration as chduration, les.name as lsname, les.is_free as lsisfree, les.duration as lsduration, les.link as url, ul.is_completed as iscompleted from sgdb.chapter cha,sgdb.lesson les,sgdb.user_lesson ul where cha.id=les.chapter_id and ul.lesson_id=les.id and cha.course_id='.$id.' and ul.user_id = '.$uid.' order by cha.order,les.order';
+        }
+        $db_chapters = DBClass::query($sql);
 
         $i = -1;
         $prg = 0;
@@ -93,8 +100,13 @@ class CourseRepository{
                 $lessons = array();
                 $prg = 0;
             }
-            $ls = new Lesson($db_ch->lsname, $db_ch->lsisfree, $db_ch->lsduration, $db_ch->url, $db_ch->iscompleted);
-            $prg = $prg + $db_ch->iscompleted;
+            $ls = new Lesson($db_ch->lsname, $db_ch->lsisfree, $db_ch->lsduration, $db_ch->url, false);
+            if($uid != 0){
+                $prg = $prg + $db_ch->iscompleted;
+            }
+            else{
+                $prg = 0;
+            }
             array_push($lessons, $ls);
         }
 
@@ -181,31 +193,31 @@ class CourseRepository{
 
         if($sort == 0){
             if($mine == 0 && $nores == 0){
-                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id order by qn.date desc');
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = '.$id.' and qn.is_approved = 1 and us.id = qn.user_id order by qn.date desc');
             }
             else if($mine == 1 && $nores == 0){
-                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' order by qn.date desc');
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = '.$id.' and qn.is_approved = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' order by qn.date desc');
             }
             else if($mine == 0 && $nores == 1){
-                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.answers = 0 order by qn.date desc');
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = '.$id.' and qn.is_approved = 1 and us.id = qn.user_id and qn.answers = 0 order by qn.date desc');
             }
             else{
-                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' and qn.answers = 0 order by qn.date desc');
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = '.$id.' and qn.is_approved = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' and qn.answers = 0 order by qn.date desc');
             }
         }
         else{
 
             if($mine == 0 && $nores == 0){
-                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id order by qn.answers desc');
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = '.$id.' and qn.is_approved = 1 and us.id = qn.user_id order by qn.answers desc');
             }
             else if($mine == 1 && $nores == 0){
-                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' order by qn.answers desc');
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = '.$id.' and qn.is_approved = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' order by qn.answers desc');
             }
             else if($mine == 0 && $nores == 1){
-                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.answers = 0 order by qn.answers desc');
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = '.$id.' and qn.is_approved = 1 and us.id = qn.user_id and qn.answers = 0 order by qn.answers desc');
             }
             else{
-                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' and qn.answers = 0 order by qn.answers desc');
+                $db_questions = DBClass::query('select qn.id, qn.title, qn.description, qn.answers, qn.date, us.dp FROM sgdb.question qn, sgdb.user us where course_id = '.$id.' and qn.is_approved = 1 and us.id = qn.user_id and qn.user_id = '.$uid.' and qn.answers = 0 order by qn.answers desc');
             }
             
         }
@@ -220,11 +232,36 @@ class CourseRepository{
     public static function getQuestionAnswers($id){
         $answers = array();
 
-        $db_answers = DBClass::query('select us.fname, us.lname, us.dp, an.answer, an.date FROM sgdb.answer an, sgdb.user us where an.question_id = '.$id.' and an.user_id = us.id order by an.date');
+        $db_answers = DBClass::query('select us.fname, us.lname, us.dp, an.answer, an.date FROM sgdb.answer an, sgdb.user us where an.question_id = '.$id.' and an.is_approved = 1 and an.user_id = us.id order by an.date');
         foreach ($db_answers as $db_an) {
             $an = new QuestionAnswers($db_an->fname . ' ' . $db_an->lname, $db_an->dp, $db_an->answer, $db_an->date);
             array_push($answers, $an);
         }
         return $answers;
+    }
+
+    public static function getCourseList($type){
+        $courses = array();
+        $sql = 'select cr.id, cr.title, cr.desc_short, cr.release_date, us.fname, us.lname, cr.duration, cr.price, cr.discount, cr.level FROM course cr, user us WHERE cr.user_id = us.id';
+        if($type == 1){
+            $sql = $sql . " and cr.level = 'Beginner'";
+        }
+        else if($type == 2){
+            $sql = $sql . " and cr.level = 'Intermediate'";
+        }
+        else if($type == 3){
+            $sql = $sql . " and cr.level = 'Advanced'";
+        }
+        
+        $db_courses = DBClass::query($sql);
+        foreach ($db_courses as $db_an) {
+            $db_rating = DBClass::query('select avg(rv.rating) as rating from reviews rv where rv.course_id = '.$db_an->id);
+            $db_students = DBClass::query('select count(*) as students from user_course uc where uc.course_id = '.$db_an->id);
+            $an = new CourseList($db_an->id, $db_an->title, $db_an->desc_short, $db_an->release_date, $db_rating[0]->rating,
+                $db_students[0]->students, $db_an->fname . ' ' . $db_an->lname, $db_an->duration, $db_an->price, $db_an->discount, $db_an->level);
+            array_push($courses, $an);
+        }
+        
+        return $courses;
     }
 }

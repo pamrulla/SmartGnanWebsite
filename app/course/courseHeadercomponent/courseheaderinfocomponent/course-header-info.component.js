@@ -17,12 +17,16 @@ var CourseHeaderInfoComponent = (function () {
     }
     CourseHeaderInfoComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.courseService.getHeaderTitle()
+        this.courseService.getHeaderTitle(this.courseId)
             .subscribe(function (o) { return _this.extractData(o); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseHeaderInfoComponent.prototype.extractData = function (response) {
         this.title = response;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseHeaderInfoComponent.prototype, "courseId", void 0);
     CourseHeaderInfoComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

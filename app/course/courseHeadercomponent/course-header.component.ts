@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: 'course-header.component.html'
 })
 export class CourseHeaderComponent implements OnInit {
-
     
+    @Input() courseId;
 
     constructor() { }
 

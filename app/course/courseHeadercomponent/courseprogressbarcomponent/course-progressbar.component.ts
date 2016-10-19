@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { CourseService } from '../../services/course.service';
 import { CourseProgress } from '../../shared/header/progress';
@@ -10,6 +10,8 @@ import { CourseProgress } from '../../shared/header/progress';
 })
 export class CourseProgressbarComponent implements OnInit {
     
+    @Input() courseId;
+    
     courseProgress: CourseProgress;
     isReady = false;
     Progress: String = "0%";
@@ -17,7 +19,7 @@ export class CourseProgressbarComponent implements OnInit {
     constructor(private courseService: CourseService) { }
 
     ngOnInit() { 
-        this.courseService.getHeaderCourseProgress()
+        this.courseService.getHeaderCourseProgress(this.courseId)
             .subscribe(
                 res => this.extractData(res),
                 err => console.log(err),

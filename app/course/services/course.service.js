@@ -14,7 +14,7 @@ require('rxjs/add/operator/map');
 var CourseService = (function () {
     function CourseService(http) {
         this.http = http;
-        this.headerURL = "http://localhost/api/services/course/"; //app/course/services/";
+        this.headerURL = "http://localhost:8012/api/services/course/"; //app/course/services/";
     }
     // getHeaderOverview(): Overview{
     //     return { isBought: true, isCompleted: true, isExamEnabled: true, isUserLoggedIn: true, 
@@ -24,44 +24,51 @@ var CourseService = (function () {
     //     return Promise.resolve({ isBought: true, isCompleted: true, isExamEnabled: true, isUserLoggedIn: true, 
     //         link: "//www.youtube.com/embed/Q8TXgCzxEnw?rel=0", courseActualPrice: 500, courseDiscount: 0});
     // }
-    CourseService.prototype.getHeaderOverview = function () {
-        return this.http.get(this.headerURL + "getHeaderOverview.php?id=1&uid=1")
+    CourseService.prototype.getHeaderOverview = function (id, uid) {
+        if (uid === void 0) { uid = 0; }
+        return this.http.get(this.headerURL + "getHeaderOverview.php?id=" + id + "&uid=" + uid)
             .map(function (res) { return res.json(); });
     };
-    CourseService.prototype.getHeaderTitle = function () {
-        return this.http.get(this.headerURL + "getHeaderTitle.php?id=1")
+    CourseService.prototype.getHeaderTitle = function (id) {
+        return this.http.get(this.headerURL + "getHeaderTitle.php?id=" + id + "")
             .map(function (res) { return res.json(); });
     };
-    CourseService.prototype.getHeaderCourseProgress = function () {
-        return this.http.get(this.headerURL + "getHeaderCourseProgress.php?id=1")
+    CourseService.prototype.getHeaderCourseProgress = function (id, uid) {
+        if (uid === void 0) { uid = 0; }
+        return this.http.get(this.headerURL + "getHeaderCourseProgress.php?id=" + id + "&uid=" + uid)
             .map(function (res) { return res.json(); });
     };
-    CourseService.prototype.getSidebarCourseDetails = function () {
-        return this.http.get(this.headerURL + "getSidebarCourseDetails.php?id=1")
+    CourseService.prototype.getSidebarCourseDetails = function (id) {
+        return this.http.get(this.headerURL + "getSidebarCourseDetails.php?id=" + id + "")
             .map(function (res) { return res.json(); });
     };
-    CourseService.prototype.getSidebarCourseAuthor = function () {
-        return this.http.get(this.headerURL + "getSidebarCourseAuthor.php?id=1")
+    CourseService.prototype.getSidebarCourseAuthor = function (id) {
+        return this.http.get(this.headerURL + "getSidebarCourseAuthor.php?id=" + id + "")
             .map(function (res) { return res.json(); });
     };
-    CourseService.prototype.getCourseDescription = function () {
-        return this.http.get(this.headerURL + "getCourseDescription.php?id=1")
+    CourseService.prototype.getCourseDescription = function (id) {
+        return this.http.get(this.headerURL + "getCourseDescription.php?id=" + id + "")
             .map(function (res) { return res.json(); });
     };
-    CourseService.prototype.getCourseDownload = function () {
-        return this.http.get(this.headerURL + "getCourseDownload.php?id=1")
+    CourseService.prototype.getCourseDownload = function (id) {
+        return this.http.get(this.headerURL + "getCourseDownload.php?id=" + id + "")
             .map(function (res) { return res.json(); });
     };
-    CourseService.prototype.getCourseLessons = function () {
-        return this.http.get(this.headerURL + "getCourseLessons.php?id=1")
+    CourseService.prototype.getCourseLessons = function (id, uid) {
+        if (uid === void 0) { uid = 0; }
+        return this.http.get(this.headerURL + "getCourseLessons.php?id=" + id + "&uid=" + uid)
             .map(function (res) { return res.json(); });
     };
-    CourseService.prototype.getCourseReviews = function () {
-        return this.http.get(this.headerURL + "getCourseReviews.php?id=1")
+    CourseService.prototype.getCourseReviews = function (id) {
+        return this.http.get(this.headerURL + "getCourseReviews.php?id=" + id + "&start=1&count=5")
             .map(function (res) { return res.json(); });
     };
-    CourseService.prototype.getCourseQuestions = function () {
-        return this.http.get(this.headerURL + "getCourseQuestions.php?id=1")
+    CourseService.prototype.getCourseQuestions = function (id, start, count, sort, mine, nores, uid) {
+        return this.http.get(this.headerURL + "getCourseQuestions.php?id=" + id + "&start=" + start + "&count=" + count + "&sort=" + sort + "&mine=" + mine + "&nores=" + nores + "&uid=" + uid + "")
+            .map(function (res) { return res.json(); });
+    };
+    CourseService.prototype.getCourseList = function (sortType) {
+        return this.http.get(this.headerURL + "getCourseList.php?type=" + sortType)
             .map(function (res) { return res.json(); });
     };
     CourseService = __decorate([

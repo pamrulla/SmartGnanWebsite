@@ -18,13 +18,17 @@ var CourseProgressbarComponent = (function () {
     }
     CourseProgressbarComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.courseService.getHeaderCourseProgress()
+        this.courseService.getHeaderCourseProgress(this.courseId)
             .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseProgressbarComponent.prototype.extractData = function (res) {
         this.courseProgress = res;
         this.Progress = res.progress + "%";
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseProgressbarComponent.prototype, "courseId", void 0);
     CourseProgressbarComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

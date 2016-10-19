@@ -3,40 +3,62 @@
         <div class="col s12">
             <ul class="tabs" materialize="tabs">
                 <li class="tab col s3">
-                    <a class="active" href="#lessons">
-                        <!--<i class="material-icons">view_list</i>-->Contents</a>
+                    <a class="tooltipped active" href="#lessons" materialize="tooltip" data-position="bottom" data-delay="10" data-tooltip="Course Contents">
+                        <div class="hide-on-med-and-down">
+                            Contents
+                        </div>
+                        <div class="hide-on-large-only">
+                            <i class="material-icons">view_list</i>
+                        </div>
+                    </a>                   
                 </li>
+                
                 <li class="tab col s3">
-                    <a href="#description">
-                        <!--<i class="material-icons left">info_outline</i>-->
-                        Description
+                    <a class="tooltipped" href="#description" materialize="tooltip" data-position="bottom" data-delay="10" data-tooltip="Course Description">
+                        <div class="hide-on-med-and-down">
+                            Description
+                        </div>
+                        <div class="hide-on-large-only">
+                            <i class="material-icons">info_outline</i>
+                        </div>
                     </a>
                 </li>
+                
                 <li class="tab col s3">
-                    <a href="#download">
-                        <!--<i class="material-icons left">play_for_work</i>-->
-                        Downloads
+                    <a class="tooltipped" href="#download" materialize="tooltip" data-position="bottom" data-delay="10" data-tooltip="Course Downloads">
+                        <div class="hide-on-med-and-down">
+                            Downloads
+                        </div>
+                        <div class="hide-on-large-only">
+                            <i class="material-icons">play_for_work</i>
+                        </div>
                     </a>
                 </li>
+               
                 <li class="tab col s3">
-                    <a href="#qna">
-                        <!--<i class="material-icons left">question_answer</i>-->
-                        Q&A
+                    <a class="tooltipped" href="#qna" materialize="tooltip" data-position="bottom" data-delay="10" data-tooltip="Course Questions and Answers">
+                        <div class="hide-on-med-and-down">
+                            Q&A
+                        </div>
+                        <div class="hide-on-large-only">
+                            <i class="material-icons">question_answer</i>
+                        </div>
                     </a>
                 </li>
+                
             </ul>
         </div>
         <div id="lessons" class="col s12">
-            <course-contents></course-contents>
+            <course-contents  [courseId]="courseId"></course-contents>
         </div>
         <div id="description" class="col s12">
-            <course-description></course-description>
+            <course-description  [courseId]="courseId"></course-description>
         </div>
         <div id="download" class="col s12">
-            <course-download></course-download>
+            <course-download  [courseId]="courseId"></course-download>
         </div>
         <div id="qna" class="col s12">
-            <course-qna></course-qna>
+            <course-qna  [courseId]="courseId"></course-qna>
         </div>
     </div>
 </div>

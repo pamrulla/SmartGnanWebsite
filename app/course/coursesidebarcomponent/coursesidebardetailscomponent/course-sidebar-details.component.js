@@ -17,12 +17,16 @@ var CourseSidebarDetailsComponent = (function () {
     }
     CourseSidebarDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.courseService.getSidebarCourseDetails()
+        this.courseService.getSidebarCourseDetails(this.courseId)
             .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseSidebarDetailsComponent.prototype.extractData = function (res) {
         this.courseDetails = res;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseSidebarDetailsComponent.prototype, "courseId", void 0);
     CourseSidebarDetailsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

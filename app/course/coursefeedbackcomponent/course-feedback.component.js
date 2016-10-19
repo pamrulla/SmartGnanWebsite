@@ -13,6 +13,10 @@ var CourseFeedbackComponent = (function () {
     function CourseFeedbackComponent() {
     }
     CourseFeedbackComponent.prototype.ngOnInit = function () { };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseFeedbackComponent.prototype, "courseId", void 0);
     CourseFeedbackComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

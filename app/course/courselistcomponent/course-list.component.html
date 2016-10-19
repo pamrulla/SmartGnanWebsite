@@ -1,0 +1,108 @@
+<div class="container">
+    <div *ngIf="isReady">
+        <div class="row center-align">
+            <a class="waves-effect waves-light btn" (click)="showOnly(0)">
+                <div class="hide-on-med-and-down">
+                    All
+                </div>
+                <div class="hide-on-large-only">
+                    <i class="material-icons">stars</i>
+                </div>
+            </a>
+            <a class="waves-effect waves-light btn" (click)="showOnly(1)">
+                <div class="hide-on-med-and-down">
+                    Beginner
+                </div>
+                <div class="hide-on-large-only">
+                    <i class="material-icons">star</i>
+                </div>
+            </a>
+            <a class="waves-effect waves-light btn" (click)="showOnly(2)">
+                <div class="hide-on-med-and-down">
+                    Intermediate
+                </div>
+                <div class="hide-on-large-only">
+                    <i class="material-icons" style="color:yellow">star</i>
+                    <i class="material-icons" style="color:yellow">star</i>
+                </div>
+            </a>
+            <a class="waves-effect waves-light btn" (click)="showOnly(3)">
+                <div class="hide-on-med-and-down">
+                    Advanced
+                </div>
+                <div class="hide-on-large-only">
+                    <i class="material-icons" style="color:red">star</i>
+                    <i class="material-icons" style="color:red">star</i>
+                    <i class="material-icons" style="color:red">star</i>
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <div *ngFor="let cr of courseList; let idx = index">
+                <div *ngIf="idx%3==0" class="row"></div>
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-content black-text">
+                            <span class="card-title">{{ cr.title }}</span>
+                            <div class="divider"></div>
+                            <div class="row valign-wrapper" style="margin-top:20px">
+                                <div class="col s6">
+                                    Duration {{ cr.duration }}
+                                </div>
+                                <div class="col s6">
+                                    Students {{ cr.students }}
+                                </div>
+                            </div>
+                            <div class="row valign-wrapper">
+                                <div class="col s6">
+                                    Level {{ cr.level }}
+                                </div>
+                                <div class="col s6">
+                                    <stars starCount="5" [rating]="cr.rating" disabled="true"></stars>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row" style="margin:20px">
+                                <p>{{ cr.shortDesc }}</p>
+                            </div>
+
+                            <div class="row">
+                                <div class="col s12">
+                                    <strong>by {{ cr.author }}
+                                on {{ cr.releaseDate | date }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action center-align">
+                            <a *ngIf="cr.discount == 0" class="btn"><i class="material-icons left">shopping_cart</i>{{ cr.finalPrice | currency:'INR':false }}</a>
+                            <a *ngIf="cr.discount != 0" class="btn">
+                                <i class="material-icons left">shopping_cart</i> {{ cr.finalPrice | currency:'INR':false
+                                }}
+                                <small><s>{{ cr.price }}</s></small> {{ cr.discount }}% off
+                            </a>
+                            <p></p>
+                            <a [routerLink]="['/course', cr.id]" class="btn"><i class="material-icons left">info</i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isReady">
+        <div class="row center-align">
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-red-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,52 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var course_service_1 = require('../../services/course.service');
-var CNTS = [
-    {
-        Name: "Ch 1",
-        IsEnabled: true,
-        Duration: "1h 20m",
-        Progress: 10,
-        Lessons: [
-            {
-                Duration: "1m 30s",
-                Name: "Ls 1 1",
-                IsCompleted: true,
-                IsFree: true,
-                VideoURL: "ls11"
-            },
-            {
-                Duration: "1m 30s",
-                Name: "Ls 1 2",
-                IsCompleted: false,
-                IsFree: true,
-                VideoURL: "ls12"
-            }
-        ]
-    },
-    {
-        Name: "Ch 2",
-        IsEnabled: false,
-        Duration: "2h 20m",
-        Progress: 0,
-        Lessons: [
-            {
-                Duration: "1m 30s",
-                Name: "Ls 2 1",
-                IsCompleted: false,
-                IsFree: false,
-                VideoURL: "ls11"
-            },
-            {
-                Duration: "1m 30s",
-                Name: "Ls 2 2",
-                IsCompleted: false,
-                IsFree: false,
-                VideoURL: "ls12"
-            }
-        ]
-    }
-];
 var CourseContentsComponent = (function () {
     function CourseContentsComponent(courseService) {
         this.courseService = courseService;
@@ -63,7 +17,7 @@ var CourseContentsComponent = (function () {
     }
     CourseContentsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.courseService.getCourseLessons()
+        this.courseService.getCourseLessons(this.courseId)
             .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseContentsComponent.prototype.extractData = function (res) {
@@ -72,6 +26,10 @@ var CourseContentsComponent = (function () {
     CourseContentsComponent.prototype.onLessonsClick = function () {
         console.log("Clicked");
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseContentsComponent.prototype, "courseId", void 0);
     CourseContentsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
