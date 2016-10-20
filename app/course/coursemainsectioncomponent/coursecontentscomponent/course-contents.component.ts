@@ -13,6 +13,7 @@ import { Chapter } from '../../shared/Chapter';
 })
 export class CourseContentsComponent implements OnInit {
     @Input() courseId;
+    @Input() isMainCoursePage;
     Chapters : Chapter[];
     isReady = false;
 

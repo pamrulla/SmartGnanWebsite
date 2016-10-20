@@ -13,6 +13,7 @@ var common_1 = require('@angular/common');
 var angular2_materialize_1 = require('angular2-materialize');
 var forms_1 = require('@angular/forms');
 var ratingstar_module_1 = require('../shared/ratingsstars/ratingstar.module');
+var course_content_module_1 = require('../shared/course-content.module');
 var course_main_component_1 = require('./course-main.component');
 var course_progressbar_component_1 = require('./courseheadercomponent/courseprogressbarcomponent/course-progressbar.component');
 var course_overview_header_component_1 = require('./courseheadercomponent/courseoverviewheadercomponent/course-overview-header.component');
@@ -23,7 +24,7 @@ var course_sidebar_author_component_1 = require('./coursesidebarcomponent/course
 var course_main_section_component_1 = require('./coursemainsectioncomponent/course-main-section.component');
 var course_download_component_1 = require('./coursemainsectioncomponent/coursedownloadcomponent/course-download.component');
 var course_description_component_1 = require('./coursemainsectioncomponent/coursedescriptioncomponent/course-description.component');
-var course_contents_component_1 = require('./coursemainsectioncomponent/coursecontentscomponent/course-contents.component');
+// import { CourseContentsComponent } from './coursemainsectioncomponent/coursecontentscomponent/course-contents.component';
 var course_qna_component_1 = require('./coursemainsectioncomponent/courseqnacomponent/course-qna.component');
 var course_qna_form_component_1 = require('./coursemainsectioncomponent/courseqnacomponent/courseqnaformcomponent/course-qna-form.component');
 var course_qna_render_component_1 = require('./coursemainsectioncomponent/courseqnacomponent/courseqnarendercomponent/course-qna-render.component');
@@ -43,6 +44,8 @@ var CourseModule = (function () {
                 forms_1.FormsModule,
                 common_1.CommonModule,
                 ratingstar_module_1.RatingsStartModule,
+                course_content_module_1.CourseContentModule,
+                angular2_materialize_1.MaterializeModule,
                 course_routing_1.routing
             ],
             exports: [],
@@ -57,7 +60,7 @@ var CourseModule = (function () {
                 course_main_section_component_1.CourseMainSectionComponent,
                 course_download_component_1.CourseDownloadComponent,
                 course_description_component_1.CourseDescriptionComponent,
-                course_contents_component_1.CourseContentsComponent,
+                // CourseContentsComponent,
                 course_qna_component_1.CourseQnAComponent,
                 course_qna_form_component_1.CourseQnAFormComponent,
                 course_qna_render_component_1.CourseQnARenderComponent,
@@ -65,8 +68,7 @@ var CourseModule = (function () {
                 course_feedback_component_1.CourseFeedbackComponent,
                 course_feedback_form_component_1.CourseFeedbackFormComponent,
                 course_feedback_render_component_1.CourseFeedbackRenderComponent,
-                course_list_component_1.CourseListComponent,
-                angular2_materialize_1.MaterializeDirective
+                course_list_component_1.CourseListComponent
             ],
             providers: [course_service_1.CourseService],
         }), 

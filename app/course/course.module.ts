@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterializeDirective } from 'angular2-materialize';
+import { MaterializeModule } from 'angular2-materialize';
 import { FormsModule } from '@angular/forms';
 
 import { RatingsStartModule } from '../shared/ratingsstars/ratingstar.module';
+import { CourseContentModule } from '../shared/course-content.module';
 
 import { CourseMainComponent }   from './course-main.component';
 
@@ -18,7 +19,7 @@ import { CourseSidebarAuthorComponent } from './coursesidebarcomponent/coursesid
 import { CourseMainSectionComponent } from './coursemainsectioncomponent/course-main-section.component';
 import { CourseDownloadComponent } from './coursemainsectioncomponent/coursedownloadcomponent/course-download.component';
 import { CourseDescriptionComponent } from './coursemainsectioncomponent/coursedescriptioncomponent/course-description.component';
-import { CourseContentsComponent } from './coursemainsectioncomponent/coursecontentscomponent/course-contents.component';
+// import { CourseContentsComponent } from './coursemainsectioncomponent/coursecontentscomponent/course-contents.component';
 
 import { CourseQnAComponent } from './coursemainsectioncomponent/courseqnacomponent/course-qna.component';
 import { CourseQnAFormComponent } from './coursemainsectioncomponent/courseqnacomponent/courseqnaformcomponent/course-qna-form.component';
@@ -40,6 +41,8 @@ import { routing } from './course-routing';
         FormsModule,
         CommonModule,
         RatingsStartModule,
+        CourseContentModule,
+        MaterializeModule,
         routing
         ],
 
@@ -55,7 +58,7 @@ import { routing } from './course-routing';
         CourseMainSectionComponent,
         CourseDownloadComponent,
         CourseDescriptionComponent,
-        CourseContentsComponent,
+        // CourseContentsComponent,
         CourseQnAComponent,
         CourseQnAFormComponent,
         CourseQnARenderComponent,
@@ -63,8 +66,7 @@ import { routing } from './course-routing';
         CourseFeedbackComponent,
         CourseFeedbackFormComponent,
         CourseFeedbackRenderComponent,
-        CourseListComponent,
-        MaterializeDirective
+        CourseListComponent
         ],
     providers: [CourseService],
 })

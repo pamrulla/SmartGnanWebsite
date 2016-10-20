@@ -43,7 +43,7 @@
         defaultExtension: 'js'
       },
      'materialize-css': {
-        'main': "dist/js/materialize/",
+        'main': "dist/js/materialize",
         defaultExtension: 'js'
       },
       'angular2-materialize': {

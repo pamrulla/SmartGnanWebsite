@@ -30,6 +30,10 @@ var CourseContentsComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], CourseContentsComponent.prototype, "courseId", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseContentsComponent.prototype, "isMainCoursePage", void 0);
     CourseContentsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
