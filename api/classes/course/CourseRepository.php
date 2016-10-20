@@ -252,7 +252,7 @@ class CourseRepository{
         else if($type == 3){
             $sql = $sql . " and cr.level = 'Advanced'";
         }
-        
+        $sql = $sql . " order by cr.release_date desc";
         $db_courses = DBClass::query($sql);
         foreach ($db_courses as $db_an) {
             $db_rating = DBClass::query('select avg(rv.rating) as rating from reviews rv where rv.course_id = '.$db_an->id);
