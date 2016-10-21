@@ -5,6 +5,7 @@ import { MaterializeModule } from 'angular2-materialize';
 import { AppComponent } from './app.component';
 import { CourseModule } from './course/course.module';
 import { PlayerModule } from './player/player.module';
+import { HomeModule } from './home/home.module';
 
 import { routing } from './app.router';
 
@@ -13,7 +14,8 @@ import { routing } from './app.router';
         BrowserModule, 
         HttpModule, 
         CourseModule,
-        PlayerModule, 
+        PlayerModule,
+        HomeModule, 
         MaterializeModule,
         routing 
     ],

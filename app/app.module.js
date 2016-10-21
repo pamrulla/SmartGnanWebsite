@@ -15,6 +15,7 @@ var angular2_materialize_1 = require('angular2-materialize');
 var app_component_1 = require('./app.component');
 var course_module_1 = require('./course/course.module');
 var player_module_1 = require('./player/player.module');
+var home_module_1 = require('./home/home.module');
 var app_router_1 = require('./app.router');
 var AppModule = (function () {
     function AppModule() {
@@ -26,6 +27,7 @@ var AppModule = (function () {
                 http_1.HttpModule,
                 course_module_1.CourseModule,
                 player_module_1.PlayerModule,
+                home_module_1.HomeModule,
                 angular2_materialize_1.MaterializeModule,
                 app_router_1.routing
             ],
