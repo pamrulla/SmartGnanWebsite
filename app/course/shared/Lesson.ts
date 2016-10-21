@@ -4,7 +4,7 @@ export class Lesson{
     Duration: string;
     VideoURL: string;
     IsCompleted: boolean;
-
+    Id: number;
     constructor(){
         
     }

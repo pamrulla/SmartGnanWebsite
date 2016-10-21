@@ -14,7 +14,7 @@ export class CourseOverviewHeaderComponent implements OnInit {
 
     @Input() courseId;
 
-    uid = 0;
+    uid = 1;
     overview: Overview;
     CoursePrice: number;
     CourseOverviewVideo: SafeResourceUrl;
@@ -25,7 +25,7 @@ export class CourseOverviewHeaderComponent implements OnInit {
     constructor(private sanitizer: DomSanitizer, private courseService: CourseService) { }
 
     ngOnInit() {
-        this.courseService.getHeaderOverview(this.courseId)
+        this.courseService.getHeaderOverview(this.courseId, this.uid)
             .subscribe(
                 o => this.extractData(o),
                 err => console.log(err),
@@ -35,7 +35,7 @@ export class CourseOverviewHeaderComponent implements OnInit {
 
     private extractData(response: Overview) {
         this.overview = response;
-        this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.overview.link);
+        this.CourseOverviewVideo = this.sanitizer.bypassSecurityTrustResourceUrl('https://player.vimeo.com/video/'+this.overview.link);
         this.checkIfCourseisDiscounted();
         this.getCourseFinalPrice();
     }

@@ -35,9 +35,17 @@ class CourseRepository{
             	$db_course_user = DBClass::query('select * from user_course where user_id = ' . $uid . ' and course_id = ' . $id);
             	if(count($db_course_user) == 1)
             	{
+                    $db_resume = DBClass::query('select ul.lesson_id, ls.chapter_id from user_lesson ul, lesson ls, chapter ch where ul.user_id = ' . $uid . ' and ul.is_completed = 1 and ul.lesson_id = ls.id and ls.chapter_id = ch.id and ch.course_id = ' . $id . ' order by ul.id desc');
             		//user buys course-
             		$db_course_overview = new CourseHeaderOverview($db_course_price[0]->link, true, $db_course_user[0]->is_exam_enabled==1, 
             			$db_course_user[0]->is_course_completed == 1, $db_course_price[0]->price, $db_course_price[0]->discount);
+
+                    if(count($db_resume) != 0)
+                    {
+                        $db_course_overview->chId = $db_resume[0]->chapter_id;
+                        $db_course_overview->lsId = $db_resume[0]->lesson_id;
+                    }
+                    
             		return $db_course_overview;
             	}
             	else
@@ -72,10 +80,10 @@ class CourseRepository{
         $chapters = array();
         $sql = '';
         if($uid == 0){
-            $sql = 'select cha.id as chid, cha.name as chname, cha.duration as chduration, les.name as lsname, les.is_free as lsisfree, les.duration as lsduration, les.link as url from sgdb.chapter cha,sgdb.lesson les where cha.id=les.chapter_id and cha.course_id='.$id.' order by cha.order,les.order';
+            $sql = 'select cha.id as chid, cha.name as chname, cha.duration as chduration, les.id as lsid, les.name as lsname, les.is_free as lsisfree, les.duration as lsduration, les.link as url from sgdb.chapter cha,sgdb.lesson les where cha.id=les.chapter_id and cha.course_id='.$id.' order by cha.order,les.order';
         }
         else{
-            $sql = 'select cha.id as chid, cha.name as chname, cha.duration as chduration, les.name as lsname, les.is_free as lsisfree, les.duration as lsduration, les.link as url, ul.is_completed as iscompleted from sgdb.chapter cha,sgdb.lesson les,sgdb.user_lesson ul where cha.id=les.chapter_id and ul.lesson_id=les.id and cha.course_id='.$id.' and ul.user_id = '.$uid.' order by cha.order,les.order';
+            $sql = 'select cha.id as chid, cha.name as chname, cha.duration as chduration, les.id as lsid, les.name as lsname, les.is_free as lsisfree, les.duration as lsduration, les.link as url, ul.is_completed as iscompleted from sgdb.chapter cha,sgdb.lesson les,sgdb.user_lesson ul where cha.id=les.chapter_id and ul.lesson_id=les.id and cha.course_id='.$id.' and ul.user_id = '.$uid.' order by cha.order,les.order';
         }
         $db_chapters = DBClass::query($sql);
 
@@ -94,19 +102,23 @@ class CourseRepository{
                 $ch = new Chapter();
                 
                 $ch->Name = $db_ch->chname;
-                $ch->IsEnabled = false;
+                $ch->IsEnabled = true;
                 $ch->Duration = $db_ch->chduration;
+                $ch->Id = $i;
 
                 $lessons = array();
                 $prg = 0;
             }
-            $ls = new Lesson($db_ch->lsname, $db_ch->lsisfree, $db_ch->lsduration, $db_ch->url, false);
+            $ls = new Lesson($db_ch->lsname, $db_ch->lsisfree, $db_ch->lsduration, $db_ch->url);
             if($uid != 0){
                 $prg = $prg + $db_ch->iscompleted;
             }
             else{
                 $prg = 0;
             }
+
+            $ls->IsCompleted = $db_ch->iscompleted == 0 ? false : true;
+            $ls->Id = $db_ch->lsid;
             array_push($lessons, $ls);
         }
 

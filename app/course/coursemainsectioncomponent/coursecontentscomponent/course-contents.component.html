@@ -1,7 +1,7 @@
 <div *ngIf="isReady" class="card-panel">
     <div class="row">
         <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
-            <li *ngFor="let ch of Chapters">
+            <li *ngFor="let ch of Chapters; let idx = chIdx">
                 <div class="collapsible-header">
                     <div class="row valign-wrapper">
                         <div *ngIf="isMainCoursePage == 1" class="col s12 m6 left-align">
@@ -22,17 +22,17 @@
                     </div>
                 </div>
                 <div class="collapsible-body">
-                    <div *ngFor="let ls of ch.Lessons">
-                        <div class="card-panel lessons-card grey lighten-4" (click)="onLessonsClick()">
+                    <div *ngFor="let ls of ch.Lessons; let idx = lsIdx">
+                        <div class="card-panel lessons-card grey lighten-4" (click)="onLessonsClick(chIdx, lsIdx)">
                             <div class="row lessons-row valign-wrapper">
                                 <div *ngIf="isMainCoursePage == 1" class="col s12 m8">
-                                    <h6 style="padding: 0.5rem;">{{ ls.Name }}</h6>
+                                    <h6 style="padding: 0.5rem;">{{ ls.Id }}</h6>
                                 </div>
                                 <div *ngIf="isMainCoursePage == 0" class="col s11 m11">
                                     <h6 style="padding: 0.5rem;">{{ ls.Name }}</h6>
                                 </div>
                                 <div *ngIf="isMainCoursePage == 1" class="col s4 m1">
-                                    <i *ngIf="!ls.IsCompleted" class="material-icons" style="color:green">done</i>
+                                    <i *ngIf="ls.IsCompleted" class="material-icons" style="color:green">done</i>
                                 </div>
                                 <div *ngIf="isMainCoursePage == 0" class="col s4 m4">
                                     <i *ngIf="ls.IsCompleted" class="material-icons" style="color:green">done</i>

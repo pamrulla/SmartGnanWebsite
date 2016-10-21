@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { Router, ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 
 import { Lesson } from '../../shared/Lesson';
@@ -16,11 +16,12 @@ export class CourseContentsComponent implements OnInit {
     @Input() isMainCoursePage;
     Chapters : Chapter[];
     isReady = false;
+    uid = 1;
 
-    constructor(private courseService: CourseService) { }
+    constructor(private courseService: CourseService, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() { 
-        this.courseService.getCourseLessons(this.courseId)
+        this.courseService.getCourseLessons(this.courseId, this.uid)
             .subscribe(
                 res => this.extractData(res),
                 err => console.log(err),
@@ -30,9 +31,11 @@ export class CourseContentsComponent implements OnInit {
 
     extractData(res: Chapter[]){
         this.Chapters = res;
+        console.log(res);
     }
 
-    onLessonsClick(){
-        console.log("Clicked");
+    onLessonsClick(chIdx: number, lsIdx: number){
+        if(this.Chapters[chIdx].IsEnabled)
+            this.router.navigate(['player', this.courseId, this.Chapters[chIdx].Id, this.Chapters[chIdx].Lessons[lsIdx].Id], { relativeTo: this.route.parent});
     }
 }

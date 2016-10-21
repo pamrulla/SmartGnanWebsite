@@ -9,22 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var course_service_1 = require('../../services/course.service');
 var CourseContentsComponent = (function () {
-    function CourseContentsComponent(courseService) {
+    function CourseContentsComponent(courseService, router, route) {
         this.courseService = courseService;
+        this.router = router;
+        this.route = route;
         this.isReady = false;
+        this.uid = 1;
     }
     CourseContentsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.courseService.getCourseLessons(this.courseId)
+        this.courseService.getCourseLessons(this.courseId, this.uid)
             .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
     CourseContentsComponent.prototype.extractData = function (res) {
         this.Chapters = res;
+        console.log(res);
     };
-    CourseContentsComponent.prototype.onLessonsClick = function () {
-        console.log("Clicked");
+    CourseContentsComponent.prototype.onLessonsClick = function (chIdx, lsIdx) {
+        if (this.Chapters[chIdx].IsEnabled)
+            this.router.navigate(['player', this.courseId, this.Chapters[chIdx].Id, this.Chapters[chIdx].Lessons[lsIdx].Id], { relativeTo: this.route.parent });
     };
     __decorate([
         core_1.Input(), 
@@ -40,7 +46,7 @@ var CourseContentsComponent = (function () {
             selector: 'course-contents',
             templateUrl: 'course-contents.component.html'
         }), 
-        __metadata('design:paramtypes', [course_service_1.CourseService])
+        __metadata('design:paramtypes', [course_service_1.CourseService, router_1.Router, router_1.ActivatedRoute])
     ], CourseContentsComponent);
     return CourseContentsComponent;
 }());

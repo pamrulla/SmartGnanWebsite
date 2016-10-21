@@ -6,4 +6,6 @@ export class Overview{
     isCompleted: boolean;
     courseActualPrice: number;
     courseDiscount: number;
+    chId: number;
+    lsId: number;
 }

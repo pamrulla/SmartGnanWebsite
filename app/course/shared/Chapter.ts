@@ -6,7 +6,7 @@ export class Chapter{
     Progress: number;
     Duration: string;
     Lessons: Lesson[];
-
+    Id: number;
     constructor(){
 
     }
