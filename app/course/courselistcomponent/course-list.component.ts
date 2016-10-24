@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CourseList } from '../shared/CourseList';
 import { CourseService } from '../services/course.service';
 
@@ -8,7 +8,7 @@ import { CourseService } from '../services/course.service';
     templateUrl: 'course-list.component.html'
 })
 export class CourseListComponent implements OnInit {
-
+    @Input() isOnHome = false;
     isReady = false;
     courseList: CourseList[];
 

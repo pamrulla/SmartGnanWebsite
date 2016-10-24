@@ -13,6 +13,7 @@ var course_service_1 = require('../services/course.service');
 var CourseListComponent = (function () {
     function CourseListComponent(courseService) {
         this.courseService = courseService;
+        this.isOnHome = false;
         this.isReady = false;
     }
     CourseListComponent.prototype.ngOnInit = function () {
@@ -28,6 +29,10 @@ var CourseListComponent = (function () {
         this.courseService.getCourseList(sortType)
             .subscribe(function (res) { return _this.extractData(res); }, function (err) { return console.log(err); }, function () { return _this.isReady = true; });
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CourseListComponent.prototype, "isOnHome", void 0);
     CourseListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
