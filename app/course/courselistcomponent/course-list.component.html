@@ -115,18 +115,18 @@
     <div *ngIf="isReady">
         <div class="row">
             <div *ngFor="let cr of courseList; let idx = index">
-                <div *ngIf="idx%4==0" class="row"></div>
-                <div class="col s12 m3">
+                <div *ngIf="idx%6==0" class="row"></div>
+                <div class="col s12 m2">
                     <div class="card">
-                        <div class="card-content black-text" style="padding: 5px;">
-                            <span class="card-title">{{ cr.title }}</span>
-                            <div class="row" style="margin:0px">
-                                    <strong>by {{ cr.author }}
-                                on {{ cr.releaseDate | date }}</strong>
+                        <div class="card-content black-text">
+                            <span class="card-title"><strong>{{ cr.title }}</strong></span>
+                            <div class="row">
+                                    by {{ cr.author }}
+                                on {{ cr.releaseDate | date }}
                             </div>
-                            <div class="row valign-wrapper" style="margin-bottom:0px">
+                            <div class="row valign-wrapper">
                                 <div class="col s6 left-align">
-                                    Students {{ cr.students }}
+                                    <i class="material-icons left">assignment_ind</i>{{ cr.students }}
                                 </div>
                                 <div class="col s6 right-align">
                                     <a [routerLink]="['/course', cr.id]" *ngIf="cr.discount == 0">{{ cr.finalPrice | currency:'INR':false }}</a>

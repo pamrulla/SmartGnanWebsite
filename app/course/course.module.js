@@ -32,7 +32,7 @@ var course_single_qna_component_1 = require('./coursemainsectioncomponent/course
 var course_feedback_component_1 = require('./coursefeedbackcomponent/course-feedback.component');
 var course_feedback_form_component_1 = require('./coursefeedbackcomponent/coursefeedbackformcomponent/course-feedback-form.component');
 var course_feedback_render_component_1 = require('./coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component');
-var course_list_component_1 = require('./courselistcomponent/course-list.component');
+var course_list_module_1 = require('../shared/course-list.module');
 var course_service_1 = require('./services/course.service');
 var course_routing_1 = require('./course-routing');
 var CourseModule = (function () {
@@ -46,6 +46,7 @@ var CourseModule = (function () {
                 ratingstar_module_1.RatingsStartModule,
                 course_content_module_1.CourseContentModule,
                 angular2_materialize_1.MaterializeModule,
+                course_list_module_1.CourseListModule,
                 course_routing_1.routing
             ],
             exports: [],
@@ -67,8 +68,7 @@ var CourseModule = (function () {
                 course_single_qna_component_1.CourseSingleQnAComponent,
                 course_feedback_component_1.CourseFeedbackComponent,
                 course_feedback_form_component_1.CourseFeedbackFormComponent,
-                course_feedback_render_component_1.CourseFeedbackRenderComponent,
-                course_list_component_1.CourseListComponent
+                course_feedback_render_component_1.CourseFeedbackRenderComponent
             ],
             providers: [course_service_1.CourseService],
         }), 

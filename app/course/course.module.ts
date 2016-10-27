@@ -30,7 +30,7 @@ import { CourseFeedbackComponent } from './coursefeedbackcomponent/course-feedba
 import { CourseFeedbackFormComponent } from './coursefeedbackcomponent/coursefeedbackformcomponent/course-feedback-form.component';
 import { CourseFeedbackRenderComponent } from './coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component';
 
-import { CourseListComponent } from './courselistcomponent/course-list.component';
+import { CourseListModule } from '../shared/course-list.module';
 
 import { CourseService } from './services/course.service';
 
@@ -43,6 +43,7 @@ import { routing } from './course-routing';
         RatingsStartModule,
         CourseContentModule,
         MaterializeModule,
+        CourseListModule,
         routing
         ],
 
@@ -65,8 +66,7 @@ import { routing } from './course-routing';
         CourseSingleQnAComponent,
         CourseFeedbackComponent,
         CourseFeedbackFormComponent,
-        CourseFeedbackRenderComponent,
-        CourseListComponent
+        CourseFeedbackRenderComponent
         ],
     providers: [CourseService],
 })

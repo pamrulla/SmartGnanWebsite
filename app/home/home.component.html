@@ -2,36 +2,97 @@
     <header-bar></header-bar>
 </header>
 <main>
-    <div style="width:100%; height:94%; background-color:yellow;">
-
-    </div>
-    <div class="container">
-        <div class="row center-align">
-            <div class="col s12 m4">
-                <p><i class="material-icons">menu</i><p>
-                <p>one</p>
-            </div>
-            <div class="col s12 m4">
-                <p><i class="material-icons">menu</i><p>
-                <p>two</p>
-            </div>
-            <div class="col s12 m4">
-                <p><i class="material-icons">menu</i><p>
-                <p>three</p>
+    <div class="row  hide-on-small-only">
+        <div class="cover valign-wrapper">
+            <div class="row" style="width:50%;">
+                <div class="col s12 center-align">
+                    <div class="card-panel black white-text">
+                        <h3>Want to be the winner?</h3>
+                        <h6>Learn new courses in fun and engaging way</h6>
+                        <br/>
+                        <a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger" href="#WebSiteIntro"><i class="large material-icons">play_circle_outline</i></a>
+                        <br>
+                        <a class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Join Us Now</a>
+                        <!-- Modal Structure -->
+                        <div id="WebSiteIntro" class="modal">
+                            <div class="modal-content">
+                                <div class="video-container">
+                                    <iframe width="853" height="480" src="https://www.youtube.com/embed/7cxlX6B3vs0?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row white-text" style="background-color:blue;">
-        <h3 class="center-align">Latest Course</h3>
+    <div class="row hide-on-small-only"></div>
+    <div class="row hide-on-small-only"></div>
+    <div class="container">
+        <div class="row center-align">
+            <div class="col s12 m3">
+                <p><i class="medium material-icons" style="color:red">supervisor_account</i></p>
+                <p>Courses are delivered by IT professionals</p>
+            </div>
+            <div class="col s12 m3">
+                <p><i class="medium material-icons" style="color:purple">contact_phone</i></p>
+                <p>We provide life time support for your queries</p>
+            </div>
+            <div class="col s12 m3">
+                <p><i class="medium material-icons" style="color:brown">stay_current_portrait</i></p>
+                <p>Learn at any time, any place and any device</p>
+            </div>
+            <div class="col s12 m3">
+                <p><i class="medium material-icons" style="color:blue">shopping_cart</i></p>
+                <p>At very low prices than any one with more quality</p>
+            </div>
+        </div>
+    </div>
+    <div class="row hide-on-small-only"></div>
+    <div class="row center-align">
+        <a class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Join Us Now</a>
+    </div>
+    <div class="row hide-on-small-only"></div>
+    <div class="row">
+        <div class="card green darken-3">
+            <div class="card-content white-text">
+                <div class="row center-align">
+                    <span class="card-title"><strong>Latest Courses</strong></span>
+                </div>
+                <div class="row">
+                    <course-list isOnHome=1></course-list>
+                </div>                
+            </div>
+        </div>
     </div>
     <div class="row">
-        <h3 class="center-align">Latest Challenges</h3>
+       <div class="card white">
+            <div class="card-content blue-grey-text lighten-5-text">
+                <div class="row center-align">
+                    <span class="card-title"><strong>Latest Challenges</strong></span>
+                </div>
+                <div class="row">
+                    <course-list isOnHome=1></course-list>
+                </div>                
+            </div>
+        </div>
     </div>
-    <div class="row white-text" style="background-color:orange;">
-        <h3 class="center-align">Latest Posts</h3>
+    <div class="row">
+       <div class="card light-blue darken-4">
+            <div class="card-content white-text">
+                <div class="row center-align">
+                    <span class="card-title"><strong>Latest Posts</strong></span>
+                </div>
+                <div class="row">
+                    <course-list isOnHome=1></course-list>
+                </div>                
+            </div>
+        </div>
     </div>
     <div class="row center-align">
-        <a class="btn btn-large">Join Us</a>
+        <a class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Join Us Now</a>
     </div>
 </main>
 <footer class="page-footer" style="margin-top: 0px;">

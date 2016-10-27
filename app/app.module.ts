@@ -17,7 +17,7 @@ import { routing } from './app.router';
         PlayerModule,
         HomeModule, 
         MaterializeModule,
-        routing 
+        routing
     ],
     declarations: [AppComponent ],
     bootstrap: [AppComponent]

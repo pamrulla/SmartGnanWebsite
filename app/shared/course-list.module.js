@@ -11,23 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var angular2_materialize_1 = require('angular2-materialize');
-var home_routing_1 = require('./home.routing');
-var course_list_module_1 = require('../shared/course-list.module');
-var header_module_1 = require('../shared/header/header.module');
-var footer_module_1 = require('../shared/footer/footer.module');
-var home_component_1 = require('./home.component');
-var HomeModule = (function () {
-    function HomeModule() {
+var course_list_component_1 = require('../course/courselistcomponent/course-list.component');
+var ratingstar_module_1 = require('./ratingsstars/ratingstar.module');
+var router_1 = require('@angular/router');
+var CourseListModule = (function () {
+    function CourseListModule() {
     }
-    HomeModule = __decorate([
+    CourseListModule = __decorate([
         core_1.NgModule({
-            imports: [common_1.CommonModule, angular2_materialize_1.MaterializeModule, header_module_1.HeaderModule, footer_module_1.FooterModule, home_routing_1.routing, course_list_module_1.CourseListModule],
-            exports: [],
-            declarations: [home_component_1.HomeComponent]
+            imports: [common_1.CommonModule, angular2_materialize_1.MaterializeModule, ratingstar_module_1.RatingsStartModule, router_1.RouterModule],
+            exports: [course_list_component_1.CourseListComponent],
+            declarations: [course_list_component_1.CourseListComponent],
+            providers: [],
         }), 
         __metadata('design:paramtypes', [])
-    ], HomeModule);
-    return HomeModule;
+    ], CourseListModule);
+    return CourseListModule;
 }());
-exports.HomeModule = HomeModule;
-//# sourceMappingURL=home.module.js.map
+exports.CourseListModule = CourseListModule;
+//# sourceMappingURL=course-list.module.js.map
