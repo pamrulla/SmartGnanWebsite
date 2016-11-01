@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CourseService } from '../../services/course.service';
+import { CourseService } from '../../../course/services/course.service';
 
-import { Lesson } from '../../shared/Lesson';
-import { Chapter } from '../../shared/Chapter';
+import { Lesson } from '../../../course/shared/Lesson';
+import { Chapter } from '../../../course/shared/Chapter';
 
 
 @Component({

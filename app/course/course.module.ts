@@ -4,7 +4,7 @@ import { MaterializeModule } from 'angular2-materialize';
 import { FormsModule } from '@angular/forms';
 
 import { RatingsStartModule } from '../shared/ratingsstars/ratingstar.module';
-import { CourseContentModule } from '../shared/course-content.module';
+import { CourseContentModule } from '../shared/course-content/course-content.module';
 
 import { CourseMainComponent }   from './course-main.component';
 
@@ -19,7 +19,6 @@ import { CourseSidebarAuthorComponent } from './coursesidebarcomponent/coursesid
 import { CourseMainSectionComponent } from './coursemainsectioncomponent/course-main-section.component';
 import { CourseDownloadComponent } from './coursemainsectioncomponent/coursedownloadcomponent/course-download.component';
 import { CourseDescriptionComponent } from './coursemainsectioncomponent/coursedescriptioncomponent/course-description.component';
-// import { CourseContentsComponent } from './coursemainsectioncomponent/coursecontentscomponent/course-contents.component';
 
 import { CourseQnAComponent } from './coursemainsectioncomponent/courseqnacomponent/course-qna.component';
 import { CourseQnAFormComponent } from './coursemainsectioncomponent/courseqnacomponent/courseqnaformcomponent/course-qna-form.component';
@@ -30,7 +29,7 @@ import { CourseFeedbackComponent } from './coursefeedbackcomponent/course-feedba
 import { CourseFeedbackFormComponent } from './coursefeedbackcomponent/coursefeedbackformcomponent/course-feedback-form.component';
 import { CourseFeedbackRenderComponent } from './coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component';
 
-import { CourseListModule } from '../shared/course-list.module';
+import { CourseListModule } from '../shared/course-list/course-list.module';
 
 import { CourseService } from './services/course.service';
 

@@ -4,7 +4,7 @@ import { MaterializeModule } from 'angular2-materialize';
 
 import { routing } from './player.routing';
 
-import { CourseContentModule } from '../shared/course-content.module';
+import { CourseContentModule } from '../shared/course-content/course-content.module';
 
 import { PlayerComponent } from './player.component';
 import { MainComponent } from './maincomponent/main.component';

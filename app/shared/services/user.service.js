@@ -9,23 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var router_1 = require('@angular/router');
-var forms_1 = require('@angular/forms');
-var angular2_materialize_1 = require('angular2-materialize');
-var header_component_1 = require('./header.component');
-var HeaderModule = (function () {
-    function HeaderModule() {
+var UserService = (function () {
+    function UserService() {
+        this.isLoggedIn = true;
     }
-    HeaderModule = __decorate([
-        core_1.NgModule({
-            imports: [forms_1.FormsModule, router_1.RouterModule, common_1.CommonModule, angular2_materialize_1.MaterializeModule],
-            exports: [header_component_1.HeaderComponent],
-            declarations: [header_component_1.HeaderComponent]
-        }), 
+    UserService.prototype.isUserLoggedIn = function () {
+        return this.isLoggedIn;
+    };
+    UserService = __decorate([
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], HeaderModule);
-    return HeaderModule;
+    ], UserService);
+    return UserService;
 }());
-exports.HeaderModule = HeaderModule;
-//# sourceMappingURL=header.module.js.map
+exports.UserService = UserService;
+//# sourceMappingURL=user.service.js.map

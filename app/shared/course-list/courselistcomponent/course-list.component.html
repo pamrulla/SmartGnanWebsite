@@ -116,8 +116,8 @@
         <div class="row">
             <div *ngFor="let cr of courseList; let idx = index">
                 <div *ngIf="idx%6==0" class="row"></div>
-                <div class="col s12 m2">
-                    <div class="card">
+                <div class="col s12 m4 l2">
+                    <div class="card" style="min-height: 275px;">
                         <div class="card-content black-text">
                             <span class="card-title"><strong>{{ cr.title }}</strong></span>
                             <div class="row">

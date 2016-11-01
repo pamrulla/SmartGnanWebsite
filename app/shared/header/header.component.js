@@ -9,17 +9,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var user_service_1 = require('../services/user.service');
 var HeaderComponent = (function () {
-    function HeaderComponent() {
+    function HeaderComponent(userService) {
+        this.userService = userService;
+        this.isUserLoggedIn = false;
+        this.userName = "";
+        this.userDP = "";
+        this.email = "";
+        this.password = "";
+        this.password_confirm = "";
+        this.error = "";
     }
-    HeaderComponent.prototype.ngOnInit = function () { };
+    HeaderComponent.prototype.ngOnInit = function () {
+        this.isUserLoggedIn = this.userService.isUserLoggedIn();
+        if (this.isUserLoggedIn) {
+            this.userName = "Patan Amrulla Khan";
+            this.userDP = "images/yuna.jpg";
+        }
+    };
+    HeaderComponent.prototype.onLogin = function () {
+        this.error = "";
+        if (this.email == "" || this.password == "") {
+            this.error = "Invalid Email and password.";
+        }
+    };
+    HeaderComponent.prototype.onRegistration = function () {
+        this.error = "";
+        if (this.email == "") {
+            this.error = "Invalid Email.";
+            return;
+        }
+        if (this.password == "") {
+            this.error = "Invalid password.";
+            return;
+        }
+        if (this.password_confirm == "") {
+            this.error = "Invalid confirmation of password.";
+            return;
+        }
+        if (this.password != this.password_confirm) {
+            this.error = "Passwords do not match.";
+            return;
+        }
+    };
     HeaderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'header-bar',
             templateUrl: 'header.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [user_service_1.UserService])
     ], HeaderComponent);
     return HeaderComponent;
 }());

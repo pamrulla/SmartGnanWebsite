@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CourseList } from '../shared/CourseList';
-import { CourseService } from '../services/course.service';
+import { CourseList } from '../../../course/shared/CourseList';
+import { CourseService } from '../../../course/services/course.service';
 
 @Component({
     moduleId: module.id,

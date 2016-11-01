@@ -11,22 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var angular2_materialize_1 = require('angular2-materialize');
-var course_list_component_1 = require('../course/courselistcomponent/course-list.component');
-var ratingstar_module_1 = require('./ratingsstars/ratingstar.module');
-var router_1 = require('@angular/router');
-var CourseListModule = (function () {
-    function CourseListModule() {
+var course_contents_component_1 = require('./coursecontentscomponent/course-contents.component');
+var CourseContentModule = (function () {
+    function CourseContentModule() {
     }
-    CourseListModule = __decorate([
+    CourseContentModule = __decorate([
         core_1.NgModule({
-            imports: [common_1.CommonModule, angular2_materialize_1.MaterializeModule, ratingstar_module_1.RatingsStartModule, router_1.RouterModule],
-            exports: [course_list_component_1.CourseListComponent],
-            declarations: [course_list_component_1.CourseListComponent],
+            imports: [common_1.CommonModule, angular2_materialize_1.MaterializeModule],
+            exports: [course_contents_component_1.CourseContentsComponent],
+            declarations: [course_contents_component_1.CourseContentsComponent],
             providers: [],
         }), 
         __metadata('design:paramtypes', [])
-    ], CourseListModule);
-    return CourseListModule;
+    ], CourseContentModule);
+    return CourseContentModule;
 }());
-exports.CourseListModule = CourseListModule;
-//# sourceMappingURL=course-list.module.js.map
+exports.CourseContentModule = CourseContentModule;
+//# sourceMappingURL=course-content.module.js.map

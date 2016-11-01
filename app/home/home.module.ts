@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterializeModule } from 'angular2-materialize';
 
 import { routing } from './home.routing';
-import { CourseListModule } from '../shared/course-list.module';
+import { CourseListModule } from '../shared/course-list/course-list.module';
 
 
 import { HeaderModule } from '../shared/header/header.module';

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
@@ -7,11 +8,14 @@ import { CourseModule } from './course/course.module';
 import { PlayerModule } from './player/player.module';
 import { HomeModule } from './home/home.module';
 
+import { UserService } from './shared/services/user.service';
+
 import { routing } from './app.router';
 
 @NgModule({
     imports: [
         BrowserModule, 
+        RouterModule,
         HttpModule, 
         CourseModule,
         PlayerModule,
@@ -20,7 +24,8 @@ import { routing } from './app.router';
         routing
     ],
     declarations: [AppComponent ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [UserService]
 })
 
 export class AppModule{
