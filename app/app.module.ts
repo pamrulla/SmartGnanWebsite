@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { CourseModule } from './course/course.module';
 import { PlayerModule } from './player/player.module';
 import { HomeModule } from './home/home.module';
+import { ExtraPagesModule } from './extra-pages/extra-pages.module';
+import { ChallengesModule } from './challenges/challenges.module';
+import { BlogModule } from './blog/blog.module';
 
 import { UserService } from './shared/services/user.service';
 
@@ -21,6 +24,9 @@ import { routing } from './app.router';
         PlayerModule,
         HomeModule, 
         MaterializeModule,
+        ExtraPagesModule,
+        ChallengesModule,
+        BlogModule,
         routing
     ],
     declarations: [AppComponent ],

@@ -9,22 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var angular2_materialize_1 = require('angular2-materialize');
-var router_1 = require('@angular/router');
-var footer_component_1 = require('./footer.component');
-var FooterModule = (function () {
-    function FooterModule() {
+var TnCComponent = (function () {
+    function TnCComponent() {
     }
-    FooterModule = __decorate([
-        core_1.NgModule({
-            imports: [router_1.RouterModule, common_1.CommonModule, angular2_materialize_1.MaterializeModule],
-            exports: [footer_component_1.FooterComponent],
-            declarations: [footer_component_1.FooterComponent]
+    TnCComponent.prototype.ngOnInit = function () { };
+    TnCComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'tnc',
+            templateUrl: 'tnc.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], FooterModule);
-    return FooterModule;
+    ], TnCComponent);
+    return TnCComponent;
 }());
-exports.FooterModule = FooterModule;
-//# sourceMappingURL=footer.module.js.map
+exports.TnCComponent = TnCComponent;
+//# sourceMappingURL=tnc.component.js.map

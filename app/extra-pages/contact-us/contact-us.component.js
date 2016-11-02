@@ -9,22 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var angular2_materialize_1 = require('angular2-materialize');
-var router_1 = require('@angular/router');
-var footer_component_1 = require('./footer.component');
-var FooterModule = (function () {
-    function FooterModule() {
+var ContactUsComponent = (function () {
+    function ContactUsComponent() {
     }
-    FooterModule = __decorate([
-        core_1.NgModule({
-            imports: [router_1.RouterModule, common_1.CommonModule, angular2_materialize_1.MaterializeModule],
-            exports: [footer_component_1.FooterComponent],
-            declarations: [footer_component_1.FooterComponent]
+    ContactUsComponent.prototype.ngOnInit = function () { };
+    ContactUsComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'contact-us',
+            templateUrl: 'contact-us.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], FooterModule);
-    return FooterModule;
+    ], ContactUsComponent);
+    return ContactUsComponent;
 }());
-exports.FooterModule = FooterModule;
-//# sourceMappingURL=footer.module.js.map
+exports.ContactUsComponent = ContactUsComponent;
+//# sourceMappingURL=contact-us.component.js.map

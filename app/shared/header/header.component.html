@@ -90,11 +90,11 @@
             </div>
           </form>
         </li>
-        <li><a  [routerLink]="['/course']">Course Library</a></li>
-        <li><a href="badges.html">Challenges</a></li>
-        <li><a href="collapsible.html">Blog</a></li>
-        <li><a href="collapsible.html">Plans</a></li>
-        <li><a href="collapsible.html">Contact Us</a></li>
+        <li><a [routerLink]="['/course']">Course Library</a></li>
+        <li><a [routerLink]="['/challenges']">Challenges</a></li>
+        <li><a [routerLink]="['/blog']">Blog</a></li>
+        <li><a [routerLink]="['/plans']">Plans</a></li>
+        <li><a [routerLink]="['/contact-us']">Contact Us</a></li>
         <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
             href="#LoginModal">Sign In</a></li>
         <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
@@ -106,10 +106,10 @@
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li><a [routerLink]="['/course']">Course Library</a></li>
-        <li><a href="badges.html">Challenges</a></li>
-        <li><a href="collapsible.html">Blog</a></li>
-        <li><a href="collapsible.html">Plans</a></li>
-        <li><a href="collapsible.html">Contact Us</a></li>
+        <li><a [routerLink]="['/challenges']">Challenges</a></li>
+        <li><a [routerLink]="['/blog']">Blog</a></li>
+        <li><a [routerLink]="['/plans']">Plans</a></li>
+        <li><a [routerLink]="['/contact-us']">Contact Us</a></li>
         <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
             href="#LoginModal">Sign In</a></li>
         <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"

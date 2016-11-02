@@ -17,6 +17,9 @@ var app_component_1 = require('./app.component');
 var course_module_1 = require('./course/course.module');
 var player_module_1 = require('./player/player.module');
 var home_module_1 = require('./home/home.module');
+var extra_pages_module_1 = require('./extra-pages/extra-pages.module');
+var challenges_module_1 = require('./challenges/challenges.module');
+var blog_module_1 = require('./blog/blog.module');
 var user_service_1 = require('./shared/services/user.service');
 var app_router_1 = require('./app.router');
 var AppModule = (function () {
@@ -32,6 +35,9 @@ var AppModule = (function () {
                 player_module_1.PlayerModule,
                 home_module_1.HomeModule,
                 angular2_materialize_1.MaterializeModule,
+                extra_pages_module_1.ExtraPagesModule,
+                challenges_module_1.ChallengesModule,
+                blog_module_1.BlogModule,
                 app_router_1.routing
             ],
             declarations: [app_component_1.AppComponent],

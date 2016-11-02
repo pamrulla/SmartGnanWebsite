@@ -9,22 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var angular2_materialize_1 = require('angular2-materialize');
-var router_1 = require('@angular/router');
-var footer_component_1 = require('./footer.component');
-var FooterModule = (function () {
-    function FooterModule() {
+var PlansComponent = (function () {
+    function PlansComponent() {
     }
-    FooterModule = __decorate([
-        core_1.NgModule({
-            imports: [router_1.RouterModule, common_1.CommonModule, angular2_materialize_1.MaterializeModule],
-            exports: [footer_component_1.FooterComponent],
-            declarations: [footer_component_1.FooterComponent]
+    PlansComponent.prototype.ngOnInit = function () { };
+    PlansComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'plans',
+            templateUrl: 'plans.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], FooterModule);
-    return FooterModule;
+    ], PlansComponent);
+    return PlansComponent;
 }());
-exports.FooterModule = FooterModule;
-//# sourceMappingURL=footer.module.js.map
+exports.PlansComponent = PlansComponent;
+//# sourceMappingURL=plans.component.js.map

@@ -33,7 +33,6 @@ import { CourseListModule } from '../shared/course-list/course-list.module';
 
 import { CourseService } from './services/course.service';
 
-
 import { routing } from './course-routing';
 @NgModule({
     imports: [
