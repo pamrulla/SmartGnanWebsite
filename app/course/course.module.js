@@ -33,6 +33,8 @@ var course_feedback_form_component_1 = require('./coursefeedbackcomponent/course
 var course_feedback_render_component_1 = require('./coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component');
 var course_list_module_1 = require('../shared/course-list/course-list.module');
 var course_service_1 = require('./services/course.service');
+var header_module_1 = require('../shared/header/header.module');
+var footer_module_1 = require('../shared/footer/footer.module');
 var course_routing_1 = require('./course-routing');
 var CourseModule = (function () {
     function CourseModule() {
@@ -46,6 +48,8 @@ var CourseModule = (function () {
                 course_content_module_1.CourseContentModule,
                 angular2_materialize_1.MaterializeModule,
                 course_list_module_1.CourseListModule,
+                header_module_1.HeaderModule,
+                footer_module_1.FooterModule,
                 course_routing_1.routing
             ],
             exports: [],

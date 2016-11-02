@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
     isUserLoggedIn = false;
     userName = "";
     userDP = "";
+    userID = 0;
 
     email = "";
     password = "";
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
         if(this.isUserLoggedIn){
             this.userName = "Patan Amrulla Khan";
             this.userDP = "images/yuna.jpg";
+            this.userID = 1;
         }
      }
 

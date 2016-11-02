@@ -12,9 +12,6 @@ import { PlansComponent }   from './extra-pages/plans/plans.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "/home", pathMatch: 'full' },
-  // { path: 'challenges', redirectTo: "/challenges", pathMatch: 'full' },
-  // { path: 'blog', redirectTo: "/blog", pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
   { path: 'faqs', component: FaqsComponent },
   { path: 'tnc', component: TnCComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },

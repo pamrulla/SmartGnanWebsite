@@ -10,7 +10,7 @@ import { HomeModule } from './home/home.module';
 import { ExtraPagesModule } from './extra-pages/extra-pages.module';
 import { ChallengesModule } from './challenges/challenges.module';
 import { BlogModule } from './blog/blog.module';
-
+import { UserProfileModule } from './user-profile/user-profile.module';
 import { UserService } from './shared/services/user.service';
 
 import { routing } from './app.router';
@@ -27,6 +27,7 @@ import { routing } from './app.router';
         ExtraPagesModule,
         ChallengesModule,
         BlogModule,
+        UserProfileModule,
         routing
     ],
     declarations: [AppComponent ],

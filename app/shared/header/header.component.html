@@ -77,8 +77,8 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo hide-on-med-and-down" style="margin-left:20px"><img class="responsive-img" src="\images\sg-logo.png" alt="Smart Gnan" style="height:90%"></a>
-      <a href="#" class="brand-logo hide-on-large-only"><img class="responsive-img" src="\images\sg-logo.png" alt="Smart Gnan" style="height:90%"></a>
+      <a href="/" class="brand-logo hide-on-med-and-down" style="margin-left:20px"><img class="responsive-img" src="\images\sg-logo.png" alt="Smart Gnan" style="height:90%"></a>
+      <a href="/" class="brand-logo hide-on-large-only"><img class="responsive-img" src="\images\sg-logo.png" alt="Smart Gnan" style="height:90%"></a>
       <a href="#" materialize="sideNav" [materializeParams]="[{edge:'left'}]" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down valign-wrapper">
         <li>
@@ -100,8 +100,8 @@
         <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
             href="#RegisterModal">Sign Up</a></li>
          <li *ngIf="isUserLoggedIn">
-          <a *ngIf="userDP != ''"> <img [src]="userDP" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
-          <a *ngIf="userDP == ''"> {{ userName }} </a>
+          <a *ngIf="userDP != ''" [routerLink]="['/user', userID]"> <img [src]="userDP" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
+          <a *ngIf="userDP == ''" [routerLink]="['/user', userID]"> {{ userName }} </a>
         </li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
@@ -115,8 +115,8 @@
         <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
             href="#RegisterModal">Sign Up</a></li>
         <li *ngIf="isUserLoggedIn">
-          <a *ngIf="userDP != ''"> <img [src]="userDP" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
-          <a *ngIf="userDP == ''"> {{ userName }} </a>
+          <a *ngIf="userDP != ''" [routerLink]="['/user', userID]"> <img [src]="userDP" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
+          <a *ngIf="userDP == ''" [routerLink]="['/user', userID]"> {{ userName }} </a>
         </li>
       </ul>
     </div>

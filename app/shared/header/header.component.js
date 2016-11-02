@@ -16,6 +16,7 @@ var HeaderComponent = (function () {
         this.isUserLoggedIn = false;
         this.userName = "";
         this.userDP = "";
+        this.userID = 0;
         this.email = "";
         this.password = "";
         this.password_confirm = "";
@@ -26,6 +27,7 @@ var HeaderComponent = (function () {
         if (this.isUserLoggedIn) {
             this.userName = "Patan Amrulla Khan";
             this.userDP = "images/yuna.jpg";
+            this.userID = 1;
         }
     };
     HeaderComponent.prototype.onLogin = function () {

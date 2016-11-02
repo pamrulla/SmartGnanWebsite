@@ -9,23 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var blog_component_1 = require('./blog.component');
-var header_module_1 = require('../shared/header/header.module');
-var footer_module_1 = require('../shared/footer/footer.module');
-var blog_routing_1 = require('./blog.routing');
-var BlogModule = (function () {
-    function BlogModule() {
+var UserProfileComponent = (function () {
+    function UserProfileComponent() {
     }
-    BlogModule = __decorate([
-        core_1.NgModule({
-            imports: [blog_routing_1.routing, header_module_1.HeaderModule, footer_module_1.FooterModule],
-            exports: [],
-            declarations: [blog_component_1.BlogComponent],
-            providers: [],
+    UserProfileComponent.prototype.ngOnInit = function () { };
+    UserProfileComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'user-profile',
+            templateUrl: 'user-profile.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], BlogModule);
-    return BlogModule;
+    ], UserProfileComponent);
+    return UserProfileComponent;
 }());
-exports.BlogModule = BlogModule;
-//# sourceMappingURL=blog.module.js.map
+exports.UserProfileComponent = UserProfileComponent;
+//# sourceMappingURL=user-profile.component.js.map

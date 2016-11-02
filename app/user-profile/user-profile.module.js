@@ -9,23 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var blog_component_1 = require('./blog.component');
+var user_profile_component_1 = require('./user-profile.component');
 var header_module_1 = require('../shared/header/header.module');
 var footer_module_1 = require('../shared/footer/footer.module');
-var blog_routing_1 = require('./blog.routing');
-var BlogModule = (function () {
-    function BlogModule() {
+var user_profile_routing_1 = require('./user-profile.routing');
+var UserProfileModule = (function () {
+    function UserProfileModule() {
     }
-    BlogModule = __decorate([
+    UserProfileModule = __decorate([
         core_1.NgModule({
-            imports: [blog_routing_1.routing, header_module_1.HeaderModule, footer_module_1.FooterModule],
+            imports: [header_module_1.HeaderModule, footer_module_1.FooterModule, user_profile_routing_1.routing],
             exports: [],
-            declarations: [blog_component_1.BlogComponent],
+            declarations: [user_profile_component_1.UserProfileComponent],
             providers: [],
         }), 
         __metadata('design:paramtypes', [])
-    ], BlogModule);
-    return BlogModule;
+    ], UserProfileModule);
+    return UserProfileModule;
 }());
-exports.BlogModule = BlogModule;
-//# sourceMappingURL=blog.module.js.map
+exports.UserProfileModule = UserProfileModule;
+//# sourceMappingURL=user-profile.module.js.map

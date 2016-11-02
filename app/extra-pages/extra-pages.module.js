@@ -16,11 +16,14 @@ var disclaimers_component_1 = require('./disclaimers/disclaimers.component');
 var about_component_1 = require('./about/about.component');
 var contact_us_component_1 = require('./contact-us/contact-us.component');
 var plans_component_1 = require('./plans/plans.component');
+var header_module_1 = require('../shared/header/header.module');
+var footer_module_1 = require('../shared/footer/footer.module');
 var ExtraPagesModule = (function () {
     function ExtraPagesModule() {
     }
     ExtraPagesModule = __decorate([
         core_1.NgModule({
+            imports: [header_module_1.HeaderModule, footer_module_1.FooterModule],
             exports: [],
             declarations: [faqs_component_1.FaqsComponent,
                 tnc_component_1.TnCComponent,

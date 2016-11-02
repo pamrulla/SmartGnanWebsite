@@ -11,12 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var challenges_component_1 = require('./challenges.component');
 var challenges_routing_1 = require('./challenges.routing');
+var header_module_1 = require('../shared/header/header.module');
+var footer_module_1 = require('../shared/footer/footer.module');
 var ChallengesModule = (function () {
     function ChallengesModule() {
     }
     ChallengesModule = __decorate([
         core_1.NgModule({
-            imports: [challenges_routing_1.routing],
+            imports: [challenges_routing_1.routing, header_module_1.HeaderModule, footer_module_1.FooterModule],
             exports: [],
             declarations: [challenges_component_1.ChallengesComponent],
             providers: [],

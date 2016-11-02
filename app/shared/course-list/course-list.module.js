@@ -14,12 +14,14 @@ var angular2_materialize_1 = require('angular2-materialize');
 var course_list_component_1 = require('./courselistcomponent/course-list.component');
 var ratingstar_module_1 = require('../ratingsstars/ratingstar.module');
 var router_1 = require('@angular/router');
+var header_module_1 = require('../header/header.module');
+var footer_module_1 = require('../footer/footer.module');
 var CourseListModule = (function () {
     function CourseListModule() {
     }
     CourseListModule = __decorate([
         core_1.NgModule({
-            imports: [common_1.CommonModule, angular2_materialize_1.MaterializeModule, ratingstar_module_1.RatingsStartModule, router_1.RouterModule],
+            imports: [common_1.CommonModule, angular2_materialize_1.MaterializeModule, ratingstar_module_1.RatingsStartModule, router_1.RouterModule, header_module_1.HeaderModule, footer_module_1.FooterModule],
             exports: [course_list_component_1.CourseListComponent],
             declarations: [course_list_component_1.CourseListComponent],
             providers: [],

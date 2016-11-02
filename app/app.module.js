@@ -20,6 +20,7 @@ var home_module_1 = require('./home/home.module');
 var extra_pages_module_1 = require('./extra-pages/extra-pages.module');
 var challenges_module_1 = require('./challenges/challenges.module');
 var blog_module_1 = require('./blog/blog.module');
+var user_profile_module_1 = require('./user-profile/user-profile.module');
 var user_service_1 = require('./shared/services/user.service');
 var app_router_1 = require('./app.router');
 var AppModule = (function () {
@@ -38,6 +39,7 @@ var AppModule = (function () {
                 extra_pages_module_1.ExtraPagesModule,
                 challenges_module_1.ChallengesModule,
                 blog_module_1.BlogModule,
+                user_profile_module_1.UserProfileModule,
                 app_router_1.routing
             ],
             declarations: [app_component_1.AppComponent],

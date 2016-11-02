@@ -8,7 +8,11 @@ import { AboutComponent }   from './about/about.component';
 import { ContactUsComponent }   from './contact-us/contact-us.component';
 import { PlansComponent }   from './plans/plans.component';
 
+import { HeaderModule } from '../shared/header/header.module';
+import { FooterModule } from '../shared/footer/footer.module';
+
 @NgModule({
+    imports: [HeaderModule, FooterModule],
     exports: [],
     declarations: [FaqsComponent, 
         TnCComponent, 
