@@ -29,6 +29,8 @@ import { CourseFeedbackComponent } from './coursefeedbackcomponent/course-feedba
 import { CourseFeedbackFormComponent } from './coursefeedbackcomponent/coursefeedbackformcomponent/course-feedback-form.component';
 import { CourseFeedbackRenderComponent } from './coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component';
 
+import { CourseListsComponent } from './course-lists/course-lists.component';
+
 import { CourseListModule } from '../shared/course-list/course-list.module';
 
 import { CourseService } from './services/course.service';
@@ -62,7 +64,7 @@ import { routing } from './course-routing';
         CourseMainSectionComponent,
         CourseDownloadComponent,
         CourseDescriptionComponent,
-        // CourseContentsComponent,
+        CourseListsComponent,
         CourseQnAComponent,
         CourseQnAFormComponent,
         CourseQnARenderComponent,

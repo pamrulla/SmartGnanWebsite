@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 
+import { MaterializeModule } from 'angular2-materialize';
+
 import { FaqsComponent }   from './faqs/faqs.component';
 import { TnCComponent }   from './tnc/tnc.component';
 import { PrivacyPolicyComponent }   from './privacy-policy/privacy-policy.component';
@@ -12,7 +14,7 @@ import { HeaderModule } from '../shared/header/header.module';
 import { FooterModule } from '../shared/footer/footer.module';
 
 @NgModule({
-    imports: [HeaderModule, FooterModule],
+    imports: [MaterializeModule, HeaderModule, FooterModule],
     exports: [],
     declarations: [FaqsComponent, 
         TnCComponent, 

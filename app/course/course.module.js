@@ -31,6 +31,7 @@ var course_single_qna_component_1 = require('./coursemainsectioncomponent/course
 var course_feedback_component_1 = require('./coursefeedbackcomponent/course-feedback.component');
 var course_feedback_form_component_1 = require('./coursefeedbackcomponent/coursefeedbackformcomponent/course-feedback-form.component');
 var course_feedback_render_component_1 = require('./coursefeedbackcomponent/coursefeedbackrendercomponent/course-feedback-render.component');
+var course_lists_component_1 = require('./course-lists/course-lists.component');
 var course_list_module_1 = require('../shared/course-list/course-list.module');
 var course_service_1 = require('./services/course.service');
 var header_module_1 = require('../shared/header/header.module');
@@ -64,7 +65,7 @@ var CourseModule = (function () {
                 course_main_section_component_1.CourseMainSectionComponent,
                 course_download_component_1.CourseDownloadComponent,
                 course_description_component_1.CourseDescriptionComponent,
-                // CourseContentsComponent,
+                course_lists_component_1.CourseListsComponent,
                 course_qna_component_1.CourseQnAComponent,
                 course_qna_form_component_1.CourseQnAFormComponent,
                 course_qna_render_component_1.CourseQnARenderComponent,

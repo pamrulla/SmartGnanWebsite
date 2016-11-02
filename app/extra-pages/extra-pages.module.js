@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var angular2_materialize_1 = require('angular2-materialize');
 var faqs_component_1 = require('./faqs/faqs.component');
 var tnc_component_1 = require('./tnc/tnc.component');
 var privacy_policy_component_1 = require('./privacy-policy/privacy-policy.component');
@@ -23,7 +24,7 @@ var ExtraPagesModule = (function () {
     }
     ExtraPagesModule = __decorate([
         core_1.NgModule({
-            imports: [header_module_1.HeaderModule, footer_module_1.FooterModule],
+            imports: [angular2_materialize_1.MaterializeModule, header_module_1.HeaderModule, footer_module_1.FooterModule],
             exports: [],
             declarations: [faqs_component_1.FaqsComponent,
                 tnc_component_1.TnCComponent,

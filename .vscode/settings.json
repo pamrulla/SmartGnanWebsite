@@ -1,6 +1,5 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "editor.fontSize": 18,
-    "http.proxy": "https://amrulla.khan-patan:nov%402016@proxy.ha.arup.com:80",
-    "http:sslCAinfo": "/bin/curl-ca-bundle.crt"
+    "git.enabled": false
 }
