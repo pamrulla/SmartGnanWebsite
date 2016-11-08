@@ -9,16 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
 var UserService = (function () {
-    function UserService() {
-        this.isLoggedIn = true;
+    function UserService(http) {
+        this.http = http;
+        this.headerURL = "http://localhost:8012/api/services/user/";
+        this.isLoggedIn = false;
     }
     UserService.prototype.isUserLoggedIn = function () {
         return this.isLoggedIn;
     };
+    UserService.prototype.RegisterUser = function (email, password) {
+        var body = { email: email, password: password };
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
+        var response;
+        return this.http.post(this.headerURL + "registerUser.php", body, options)
+            .map(function (res) { return res.json(); });
+    };
     UserService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], UserService);
     return UserService;
 }());

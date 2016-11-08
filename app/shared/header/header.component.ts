@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 import { UserService } from '../services/user.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -16,7 +18,8 @@ export class HeaderComponent implements OnInit {
     password = "";
     password_confirm = "";
     error = "";
-    constructor(private userService: UserService) { }
+    acceptance = 0;
+    constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private location: Location) { }
 
     ngOnInit() {
         this.isUserLoggedIn = this.userService.isUserLoggedIn();
@@ -35,6 +38,9 @@ export class HeaderComponent implements OnInit {
     }
 
     onRegistration(){
+        console.log(this.router.url);
+        this.router.navigateByUrl(this.router.url);
+
         this.error = "";
         if(this.email == ""){
             this.error = "Invalid Email.";
@@ -52,5 +58,28 @@ export class HeaderComponent implements OnInit {
             this.error = "Passwords do not match.";
             return;
         }
+        if(this.acceptance == 0){
+            this.error = "Please accept our policy and terms and coditions.";
+            return;
+        }
+
+        var response;
+        
+        // this.userService.RegisterUser(this.email, this.password)            
+        //         .subscribe(
+        //         o => response = o,
+        //         err => console.log(err),
+        //         () => { 
+        //         if(response.isSuccess){
+        //             this.router.navigate([''], { relativeTo: this.route.parent});
+        //         }
+        //         else{
+        //             this.error = response.error;
+        //             return;
+        //         } });
+    }
+
+    private extractData(response: string) {
+       
     }
 }

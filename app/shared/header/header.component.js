@@ -9,10 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var common_1 = require('@angular/common');
 var user_service_1 = require('../services/user.service');
+var router_1 = require('@angular/router');
 var HeaderComponent = (function () {
-    function HeaderComponent(userService) {
+    function HeaderComponent(userService, router, route, location) {
         this.userService = userService;
+        this.router = router;
+        this.route = route;
+        this.location = location;
         this.isUserLoggedIn = false;
         this.userName = "";
         this.userDP = "";
@@ -21,6 +26,7 @@ var HeaderComponent = (function () {
         this.password = "";
         this.password_confirm = "";
         this.error = "";
+        this.acceptance = 0;
     }
     HeaderComponent.prototype.ngOnInit = function () {
         this.isUserLoggedIn = this.userService.isUserLoggedIn();
@@ -37,6 +43,8 @@ var HeaderComponent = (function () {
         }
     };
     HeaderComponent.prototype.onRegistration = function () {
+        console.log(this.router.url);
+        this.router.navigateByUrl(this.router.url);
         this.error = "";
         if (this.email == "") {
             this.error = "Invalid Email.";
@@ -54,6 +62,25 @@ var HeaderComponent = (function () {
             this.error = "Passwords do not match.";
             return;
         }
+        if (this.acceptance == 0) {
+            this.error = "Please accept our policy and terms and coditions.";
+            return;
+        }
+        var response;
+        // this.userService.RegisterUser(this.email, this.password)            
+        //         .subscribe(
+        //         o => response = o,
+        //         err => console.log(err),
+        //         () => { 
+        //         if(response.isSuccess){
+        //             this.router.navigate([''], { relativeTo: this.route.parent});
+        //         }
+        //         else{
+        //             this.error = response.error;
+        //             return;
+        //         } });
+    };
+    HeaderComponent.prototype.extractData = function (response) {
     };
     HeaderComponent = __decorate([
         core_1.Component({
@@ -61,7 +88,7 @@ var HeaderComponent = (function () {
             selector: 'header-bar',
             templateUrl: 'header.component.html'
         }), 
-        __metadata('design:paramtypes', [user_service_1.UserService])
+        __metadata('design:paramtypes', [user_service_1.UserService, router_1.Router, router_1.ActivatedRoute, common_1.Location])
     ], HeaderComponent);
     return HeaderComponent;
 }());

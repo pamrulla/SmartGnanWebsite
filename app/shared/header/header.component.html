@@ -51,74 +51,89 @@
             </div>
           </div>
         </div>
-        <div class="row1">
-          <div class="input-field col s12">
+        <div class="row">
+          <div class="input-field col s6">
             <input id="password" name="password" type="password" class="validate" required [(ngModel)]="password">
             <label for="password">Password</label>
           </div>
-        </div>
-        <div class="row1">
-          <div class="input-field col s12">
+        <!--</div>
+        <div class="row1">-->
+          <div class="input-field col s6">
             <input id="password1" name="password_confirm" type="password" class="validate" required [(ngModel)]="password_confirm">
             <label for="password1">Confirm Password</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 switch center-align">
+            <label>
+               <input type="checkbox" name="acceptance" [(ngModel)]="acceptance">
+                <span class="lever"></span>
+                Accept our <a href="/privacy-policy" target="_blank" >Policy</a> and <a href="/tnc" target="_blank">Terms & Conditions</a>
+              </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 center-align">
+            <div class="g-recaptcha" data-sitekey="6Le_dBsTAAAAAPETzwqtS6UAgb1P9iQqk3IX4Dp5"></div>
           </div>
         </div>
       </form>
       <div class="row1 center-align">
         <p class="red-text">{{ error }}</p>
       </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a (click)="onRegistration()" class=" waves-effect waves-green btn">Register</a>
     </div>
   </div>
-  <div class="modal-footer">
-    <a (click)="onRegistration()" class=" waves-effect waves-green btn">Register</a>
-  </div>
-</div>
 
-<div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo hide-on-med-and-down" style="margin-left:20px"><img class="responsive-img" src="\images\sg-logo.png" alt="Smart Gnan" style="height:90%"></a>
-      <a href="/" class="brand-logo hide-on-large-only"><img class="responsive-img" src="\images\sg-logo.png" alt="Smart Gnan" style="height:90%"></a>
-      <a href="#" materialize="sideNav" [materializeParams]="[{edge:'left'}]" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down valign-wrapper">
-        <li>
-          <form>
-            <div class="input-field">
-              <input id="search" type="search" required>
-              <label for="search"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
-            </div>
-          </form>
-        </li>
-        <li><a [routerLink]="['/course']">Course Library</a></li>
-        <li><a [routerLink]="['/challenges']">Challenges</a></li>
-        <li><a [routerLink]="['/blog']">Blog</a></li>
-        <li><a [routerLink]="['/plans']">Plans</a></li>
-        <li><a [routerLink]="['/contact-us']">Contact Us</a></li>
-        <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
-            href="#LoginModal">Sign In</a></li>
-        <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
-            href="#RegisterModal">Sign Up</a></li>
-         <li *ngIf="isUserLoggedIn">
-          <a *ngIf="userDP != ''" [routerLink]="['/user', userID]"> <img [src]="userDP" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
-          <a *ngIf="userDP == ''" [routerLink]="['/user', userID]"> {{ userName }} </a>
-        </li>
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <li><a [routerLink]="['/course']">Course Library</a></li>
-        <li><a [routerLink]="['/challenges']">Challenges</a></li>
-        <li><a [routerLink]="['/blog']">Blog</a></li>
-        <li><a [routerLink]="['/plans']">Plans</a></li>
-        <li><a [routerLink]="['/contact-us']">Contact Us</a></li>
-        <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
-            href="#LoginModal">Sign In</a></li>
-        <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
-            href="#RegisterModal">Sign Up</a></li>
-        <li *ngIf="isUserLoggedIn">
-          <a *ngIf="userDP != ''" [routerLink]="['/user', userID]"> <img [src]="userDP" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
-          <a *ngIf="userDP == ''" [routerLink]="['/user', userID]"> {{ userName }} </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo hide-on-med-and-down" style="margin-left:20px"><img class="responsive-img" src="\images\sg-logo.png" alt="Smart Gnan" style="height:90%"></a>
+        <a href="/" class="brand-logo hide-on-large-only"><img class="responsive-img" src="\images\sg-logo.png" alt="Smart Gnan" style="height:90%"></a>
+        <a href="#" materialize="sideNav" [materializeParams]="[{edge:'left'}]" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down valign-wrapper">
+          <li>
+            <form>
+              <div class="input-field">
+                <input id="search" type="search" required>
+                <label for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </li>
+          <li><a [routerLink]="['/course']">Course Library</a></li>
+          <li><a [routerLink]="['/challenges']">Challenges</a></li>
+          <li><a [routerLink]="['/blog']">Blog</a></li>
+          <li><a [routerLink]="['/plans']">Plans</a></li>
+          <li><a [routerLink]="['/contact-us']">Contact Us</a></li>
+          <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
+              href="#LoginModal">Sign In</a></li>
+          <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
+              href="#RegisterModal">Sign Up</a></li>
+          <li *ngIf="isUserLoggedIn">
+            <a *ngIf="userDP != ''" [routerLink]="['/user', userID]"> <img [src]="userDP" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
+            <a *ngIf="userDP == ''" [routerLink]="['/user', userID]"> {{ userName }} </a>
+          </li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a [routerLink]="['/course']">Course Library</a></li>
+          <li><a [routerLink]="['/challenges']">Challenges</a></li>
+          <li><a [routerLink]="['/blog']">Blog</a></li>
+          <li><a [routerLink]="['/plans']">Plans</a></li>
+          <li><a [routerLink]="['/contact-us']">Contact Us</a></li>
+          <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
+              href="#LoginModal">Sign In</a></li>
+          <li *ngIf="!isUserLoggedIn"><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger waves-effect waves-light btn"
+              href="#RegisterModal">Sign Up</a></li>
+          <li *ngIf="isUserLoggedIn">
+            <a *ngIf="userDP != ''" [routerLink]="['/user', userID]"> <img [src]="userDP" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
+            <a *ngIf="userDP == ''" [routerLink]="['/user', userID]"> {{ userName }} </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
