@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Headers, Http, RequestOptions, RequestMethod } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class UserService {
 
         var response;
 
-        return this.http.post(this.headerURL+"registerUser.php", body, options)
+        return this.http.post(this.headerURL+"postUserRegistration.php", body, options)
                 .map(res => res.json());
     }
 }

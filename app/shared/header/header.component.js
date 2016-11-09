@@ -43,8 +43,7 @@ var HeaderComponent = (function () {
         }
     };
     HeaderComponent.prototype.onRegistration = function () {
-        console.log(this.router.url);
-        this.router.navigateByUrl(this.router.url);
+        var _this = this;
         this.error = "";
         if (this.email == "") {
             this.error = "Invalid Email.";
@@ -67,18 +66,16 @@ var HeaderComponent = (function () {
             return;
         }
         var response;
-        // this.userService.RegisterUser(this.email, this.password)            
-        //         .subscribe(
-        //         o => response = o,
-        //         err => console.log(err),
-        //         () => { 
-        //         if(response.isSuccess){
-        //             this.router.navigate([''], { relativeTo: this.route.parent});
-        //         }
-        //         else{
-        //             this.error = response.error;
-        //             return;
-        //         } });
+        this.userService.RegisterUser(this.email, this.password)
+            .subscribe(function (o) { return response = o; }, function (err) { return console.log(err); }, function () {
+            if (response.isSuccess) {
+                _this.router.navigate([''], { relativeTo: _this.route.parent });
+            }
+            else {
+                _this.error = response.errorMessage;
+                return;
+            }
+        });
     };
     HeaderComponent.prototype.extractData = function (response) {
     };

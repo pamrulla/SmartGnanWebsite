@@ -25,7 +25,7 @@ var UserService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
         var response;
-        return this.http.post(this.headerURL + "registerUser.php", body, options)
+        return this.http.post(this.headerURL + "postUserRegistration.php", body, options)
             .map(function (res) { return res.json(); });
     };
     UserService = __decorate([

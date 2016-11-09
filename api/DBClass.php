@@ -25,4 +25,9 @@ class DBClass{
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
 
+    public static function query_insert($sql, $values = array()){
+        $statement = self::execute($sql, $values);
+        return $statement->errorCode() == 0;
+    }
+
 }

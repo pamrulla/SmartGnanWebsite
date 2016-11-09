@@ -38,9 +38,6 @@ export class HeaderComponent implements OnInit {
     }
 
     onRegistration(){
-        console.log(this.router.url);
-        this.router.navigateByUrl(this.router.url);
-
         this.error = "";
         if(this.email == ""){
             this.error = "Invalid Email.";
@@ -65,21 +62,21 @@ export class HeaderComponent implements OnInit {
 
         var response;
         
-        // this.userService.RegisterUser(this.email, this.password)            
-        //         .subscribe(
-        //         o => response = o,
-        //         err => console.log(err),
-        //         () => { 
-        //         if(response.isSuccess){
-        //             this.router.navigate([''], { relativeTo: this.route.parent});
-        //         }
-        //         else{
-        //             this.error = response.error;
-        //             return;
-        //         } });
+        this.userService.RegisterUser(this.email, this.password)            
+                .subscribe(
+                o => response = o,
+                err => console.log(err),
+                () => { 
+                if(response.isSuccess){
+                    this.router.navigate([''], { relativeTo: this.route.parent});
+                }
+                else{
+                    this.error = response.errorMessage;
+                    return;
+                } });
     }
 
-    private extractData(response: string) {
+    private extractData(response: any) {
        
     }
 }
