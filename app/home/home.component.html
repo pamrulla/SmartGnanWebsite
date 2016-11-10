@@ -11,11 +11,11 @@
                         <h6>Learn new courses in fun and engaging way</h6>
                         <p>Not only listen, but also practice</p>
                         <br/>
-                        <a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger" href="#WebSiteIntro"><i class="large material-icons">play_circle_outline</i></a>
+                        <a class="modal-trigger" href="#WebSiteIntro" (click)="openModal()"><i class="large material-icons">play_circle_outline</i></a>
                         <br>
                         <a class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>Join Us Now</a>
                         <!-- Modal Structure -->
-                        <div id="WebSiteIntro" class="modal">
+                        <div id="WebSiteIntro" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
                             <div class="modal-content">
                                 <div class="video-container">
                                     <iframe width="853" height="480" src="https://www.youtube.com/embed/7cxlX6B3vs0?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>

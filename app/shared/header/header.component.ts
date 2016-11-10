@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import {Location} from '@angular/common';
 import { UserService } from '../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
     moduleId: module.id,
@@ -9,6 +10,10 @@ import { Router, ActivatedRoute } from '@angular/router';
     templateUrl: 'header.component.html'
 })
 export class HeaderComponent implements OnInit {
+
+    modalRegisterActions = new EventEmitter<string | MaterializeAction>();
+    modalLoginActions = new EventEmitter<string | MaterializeAction>();
+
     isUserLoggedIn = false;
     userName = "";
     userDP = "";
@@ -27,9 +32,9 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.isUserLoggedIn = this.userService.isUserLoggedIn();
         if (this.isUserLoggedIn) {
-            this.userName = this.userService.getUserName();
+            //this.userName = this.userService.getUserName();
             this.userDP = this.userService.getUserDP();//"images/yuna.jpg";
-            this.userID = this.userService.id;
+            this.userID = this.userService.getUserID();
         }
     }
 
@@ -50,12 +55,12 @@ export class HeaderComponent implements OnInit {
                     this.isUserLoggedIn = this.userService.isUserLoggedIn();
                     this.userID = this.userService.id;
                     this.userDP = this.userService.getUserDP();
-                    this.userName = this.userService.getUserName();
+                    //this.userName = this.userService.getUserName();
                     this.email = "";
                     this.password = "";
                     this.password_confirm = "";
                     this.error = "";
-                    
+                    this.closeLoginModal();
                     // $("#LoginModal").removeClass("open");
                     // $(".lean-overlay").remove();
                 }
@@ -100,8 +105,7 @@ export class HeaderComponent implements OnInit {
                     this.password = "";
                     this.password_confirm = "";
                     this.error = "";
-                    // $("#RegisterModal").removeClass("open");
-                    // $(".lean-overlay").remove();
+                    this.closeRegisterModal();
                     this.router.navigate(['user', this.response.uid], { relativeTo: this.route.parent });
                 }
                 else {
@@ -109,5 +113,24 @@ export class HeaderComponent implements OnInit {
                     return;
                 }
             });
+    }
+
+    openRegisterModal() {
+        this.modalRegisterActions.emit({ action: "modal", params: ['open'] });
+    }
+    closeRegisterModal() {
+        this.modalRegisterActions.emit({ action: "modal", params: ['close'] });
+    }
+
+    openLoginModal() {
+        this.modalLoginActions.emit({ action: "modal", params: ['open'] });
+    }
+    closeLoginModal() {
+        this.modalLoginActions.emit({ action: "modal", params: ['close'] });
+    }
+
+    onLogout(){
+        this.userService.logoutUser();
+        this.isUserLoggedIn = false;
     }
 }

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, RequestMethod } from '@angular/http';
+import { Cookie } from './cookie';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
@@ -16,15 +18,35 @@ export class UserService {
     constructor(private http: Http) { }
 
     public isUserLoggedIn(): boolean{
+        if(Cookie.check('user')){
+            this.isLoggedIn  = true;
+            if(Cookie.check('user-details')){
+                this.userDetails = JSON.parse(Cookie.get('user-details'));
+            }
+        }
+        else{
+            this.isLoggedIn = false;
+        }
         return this.isLoggedIn;
     }
 
+    public getUserID(): number{
+        if(Cookie.check('user')){
+            return Number.parseInt(Cookie.get('user'));
+        }
+        else{
+           return 0;
+        }
+    }
+
     public setUserLoggedIn(id: number){
+        Cookie.set('user', id.toString(), 7);
         this.id = id;
         this.isLoggedIn = true;
     }
 
     public setUserDetails(ud: any){
+        Cookie.set('user-details', JSON.stringify(ud), 7);
         this.userDetails = ud;
         this.isLoggedIn = true;
     }
@@ -45,6 +67,13 @@ export class UserService {
         else{
             return '';
         }
+    }
+
+    public logoutUser(){
+        Cookie.delete('user');
+        Cookie.delete('user-details');
+        this.id = 0;
+        this.userDetails = null;
     }
 
     public RegisterUser(email: string, password: string){
