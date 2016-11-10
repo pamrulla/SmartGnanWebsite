@@ -1,7 +1,7 @@
 <?php
 
 class UserDetails{
-	public $isSuccessFul;
+	public $isSuccess;
 	public $errorMessage;
     public $id;
     public $fname;
@@ -27,7 +27,7 @@ class UserDetails{
 			$this->role = $db[0]->role;
 			$this->joined_date = $db[0]->joined_date;
 		}
-		$this->isSuccessFul = $iss;
+		$this->isSuccess = $iss;
 		$this->errorMessage = $em;
     }
 }

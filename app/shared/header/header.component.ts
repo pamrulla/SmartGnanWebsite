@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import {Location} from '@angular/common';
 import { UserService } from '../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,64 +19,95 @@ export class HeaderComponent implements OnInit {
     password_confirm = "";
     error = "";
     acceptance = 0;
+
+    response = null;
+
     constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private location: Location) { }
 
     ngOnInit() {
         this.isUserLoggedIn = this.userService.isUserLoggedIn();
-        if(this.isUserLoggedIn){
-            this.userName = "Patan Amrulla Khan";
-            this.userDP = "images/yuna.jpg";
-            this.userID = 1;
-        }
-     }
-
-    onLogin(){
-        this.error = "";
-        if(this.email == "" || this.password == ""){
-            this.error = "Invalid Email and password.";
+        if (this.isUserLoggedIn) {
+            this.userName = this.userService.getUserName();
+            this.userDP = this.userService.getUserDP();//"images/yuna.jpg";
+            this.userID = this.userService.id;
         }
     }
 
-    onRegistration(){
+    onLogin() {
         this.error = "";
-        if(this.email == ""){
+        if (this.email == "" || this.password == "") {
+            this.error = "Invalid Email and password.";
+        }
+
+        this.userService.LoginUser(this.email, this.password)
+            .subscribe(
+            o => this.response = o,
+            err => console.log(err),
+            () => {
+                if (this.response.isSuccess) {
+                    this.userService.setUserDetails(this.response);
+                    this.userService.setUserLoggedIn(this.response.id);
+                    this.isUserLoggedIn = this.userService.isUserLoggedIn();
+                    this.userID = this.userService.id;
+                    this.userDP = this.userService.getUserDP();
+                    this.userName = this.userService.getUserName();
+                    this.email = "";
+                    this.password = "";
+                    this.password_confirm = "";
+                    this.error = "";
+                    
+                    // $("#LoginModal").removeClass("open");
+                    // $(".lean-overlay").remove();
+                }
+                else {
+                    this.error = this.response.errorMessage;
+                    return;
+                }
+            });
+    }
+
+    onRegistration() {
+        this.error = "";
+        if (this.email == "") {
             this.error = "Invalid Email.";
             return;
         }
-        if(this.password == ""){
+        if (this.password == "") {
             this.error = "Invalid password.";
             return;
         }
-        if(this.password_confirm == ""){
+        if (this.password_confirm == "") {
             this.error = "Invalid confirmation of password.";
             return;
         }
-        if(this.password != this.password_confirm){
+        if (this.password != this.password_confirm) {
             this.error = "Passwords do not match.";
             return;
         }
-        if(this.acceptance == 0){
+        if (this.acceptance == 0) {
             this.error = "Please accept our policy and terms and coditions.";
             return;
         }
 
-        var response;
-        
-        this.userService.RegisterUser(this.email, this.password)            
-                .subscribe(
-                o => response = o,
-                err => console.log(err),
-                () => { 
-                if(response.isSuccess){
-                    this.router.navigate([''], { relativeTo: this.route.parent});
+        this.userService.RegisterUser(this.email, this.password)
+            .subscribe(
+            o => this.response = o,
+            err => console.log(err),
+            () => {
+                if (this.response.isSuccess) {
+                    this.userService.setUserLoggedIn(this.response.uid);
+                    this.email = "";
+                    this.password = "";
+                    this.password_confirm = "";
+                    this.error = "";
+                    // $("#RegisterModal").removeClass("open");
+                    // $(".lean-overlay").remove();
+                    this.router.navigate(['user', this.response.uid], { relativeTo: this.route.parent });
                 }
-                else{
-                    this.error = response.errorMessage;
+                else {
+                    this.error = this.response.errorMessage;
                     return;
-                } });
-    }
-
-    private extractData(response: any) {
-       
+                }
+            });
     }
 }

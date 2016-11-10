@@ -116,7 +116,7 @@
               href="#RegisterModal">Sign Up</a></li>
           <li *ngIf="isUserLoggedIn">
             <a *ngIf="userDP != ''" [routerLink]="['/user', userID]"> <img [src]="userDP" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
-            <a *ngIf="userDP == ''" [routerLink]="['/user', userID]"> {{ userName }} </a>
+            <a *ngIf="userDP == ''" [routerLink]="['/user', userID]"> <img src="/images/icon-user.png" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
           </li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
@@ -131,7 +131,7 @@
               href="#RegisterModal">Sign Up</a></li>
           <li *ngIf="isUserLoggedIn">
             <a *ngIf="userDP != ''" [routerLink]="['/user', userID]"> <img [src]="userDP" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
-            <a *ngIf="userDP == ''" [routerLink]="['/user', userID]"> {{ userName }} </a>
+            <a *ngIf="userDP == ''" [routerLink]="['/user', userID]"> <img src="/images/icon-user.png" alt="" class="circle responsive-img" width="45px" height="45px"> </a>
           </li>
         </ul>
       </div>
