@@ -1,7 +1,4 @@
-<!--<header>
-    <header-bar></header-bar>
-</header>-->
-<div class="container" *ngIf="!isOnHome">
+<!--<div class="container" *ngIf="!isOnHome">
     <div *ngIf="isReady">
         <div class="row center-align">
             <a class="waves-effect waves-light btn" (click)="showOnly(0)">
@@ -112,34 +109,33 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
-<div *ngIf="isOnHome">
+<div > 
+    <!--*ngIf="isOnHome">-->
     <div *ngIf="isReady">
         <div class="row">
             <div *ngFor="let cr of courseList; let idx = index">
                 <div *ngIf="idx%6==0" class="row"></div>
                 <div class="col s12 m4 l2">
-                    <div class="card" style="min-height: 275px;">
-                        <div class="card-content black-text">
-                            <span class="card-title"><strong>{{ cr.title }}</strong></span>
-                            <div class="row">
-                                    by {{ cr.author }}
-                                on {{ cr.releaseDate | date }}
+                    <div class="card">
+                        <a [routerLink]="['/course', cr.id]" style="color: inherit;">
+                            <div class="card-content {{ getColor(idx%6) }} white-text center-align">
+                                <p class="card-stats-title"><strong>{{ cr.title }}</strong></p>
+                                <br>
+                                <h4 *ngIf="cr.discount == 0" class="card-stats-number">{{ cr.finalPrice | currency:'INR':false }}</h4>
+                                <h4 *ngIf="cr.discount != 0" class="card-stats-number">{{ cr.finalPrice | currency:'INR':false}}
+                                    <small><s>{{ cr.price }}</s></small>
+                                </h4>
+                                <p class="card-stats-compare">by {{ cr.author }} <span class="green-text text-lighten-5">on {{ cr.releaseDate | date }}</span></p>
                             </div>
-                            <div class="row valign-wrapper">
-                                <div class="col s6 left-align">
-                                    <i class="material-icons left">assignment_ind</i>{{ cr.students }}
-                                </div>
-                                <div class="col s6 right-align">
-                                    <a [routerLink]="['/course', cr.id]" *ngIf="cr.discount == 0">{{ cr.finalPrice | currency:'INR':false }}</a>
-                                    <a [routerLink]="['/course', cr.id]" *ngIf="cr.discount != 0">
-                                        {{ cr.finalPrice | currency:'INR':false}}
-                                        <small><s>{{ cr.price }}</s></small>
-                                    </a>
-                                </div>
+                            <div class="card-action {{ getColor(idx%6) }} darken-2">
+                                <p>
+                                    <span style="display: inline-block; color:inherit; margin-right: 10px;"><i class="material-icons left" style="margin-right: 0px;">assignment_ind</i>{{ cr.students }} </span>
+                                    <span style="display: inline-block"><stars starCount="5" [rating]="cr.rating" disabled="true"></stars></span>
+                                </p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -163,6 +159,3 @@
         </div>
     </div>
 </div>
-<!--<footer class="page-footer" style="margin-top: 0px;">
-    <footer-bar></footer-bar>
-</footer>-->

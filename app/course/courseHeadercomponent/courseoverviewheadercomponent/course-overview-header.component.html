@@ -1,8 +1,8 @@
 <div *ngIf="isReady">
     <!-- Modal Trigger -->
-    <a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="modal-trigger" href="#OverviewVideoModal"><i class="Large material-icons">play_circle_outline</i></a>
+    <a class="modal-trigger" (click)="openModal()" ><i class="Large material-icons">play_circle_outline</i></a>
     <!-- Modal Structure -->
-    <div id="OverviewVideoModal" class="modal">
+    <div id="OverviewVideoModal" class="modal"  materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
         <div class="modal-content">
             <div class="video-container">
                 <iframe width="853" height="480" [src]="CourseOverviewVideo" frameborder="0"></iframe>

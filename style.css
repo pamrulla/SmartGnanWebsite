@@ -108,3 +108,19 @@
 .collection-item.features{
     padding: 14px;
 }
+
+/* Courses cards */
+.card-stats-title{
+    font-size: 1.2rem;
+}
+
+.card-stats-number {
+    font-size: 1.8rem;
+    line-height: 2.0rem;
+    margin: 0.2rem 0 0.2rem 0;
+    font-weight: 500;
+}
+
+.card-stats-compare {
+    font-size: 0.8rem;
+}

@@ -1,32 +1,40 @@
 <div class="hover-me">
-	<div class="hover-content" style="position: fixed; width:100%; height: 100%; z-index: 1;
+    <div class="hover-content" style="position: fixed; width:100%; height: 100%; z-index: 1;
         pointer-events:none">
-		<div class="card horizontal teal lighten-2">
-			<div class="card-stacked">
-				<div class="card-content white-text">
-					<p>Course Name</p>
-                    <small>Chapter Name: Lesson Name</small>
-				</div>
-			</div>
-		</div>
+        <div class="card horizontal red lighten-2">
+            <div class="card-stacked1">
+                <div class="card-content white-text">
+                    <div class="row1">
+                        <div>
+                            <p>Course Name</p>
+                            <small>Chapter Name: Lesson Name</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <a class="hover-content waves-effect waves-light btn hide-on-small-only" 
-        style="position:fixed; left: 20px; top:50%"> 
+    <!--<div class="hover-content" style="position:fixed; left: 20px; top:12%">-->
+        <a [routerLink]="['/challenges']" class="hover-content waves-effect waves-light btn teal lighten-2 teal lighten-2" style="position:fixed; left: 20px; top:12%">
+            To Course
+        </a>
+        <a [routerLink]="['/home']" class="hover-content waves-effect waves-light btn teal lighten-2 teal lighten-2" style="position:fixed; left: 180px; top:12%">
+            To Home
+        </a>    
+    <!--</div>-->
+    <a class="hover-content waves-effect waves-light btn hide-on-small-only red lighten-2" style="position:fixed; left: 20px; top:50%">
         <i class="material-icons left">fast_rewind</i>Prev
     </a>
-    <a class="hover-content waves-effect waves-light btn hide-on-med-and-up" 
-        style="position:fixed; left: 20px; top:50%"> 
+    <a class="hover-content waves-effect waves-light btn hide-on-med-and-up red lighten-2" style="position:fixed; left: 20px; top:50%">
         <i class="material-icons">fast_rewind</i>
     </a>
-    <a class="hover-content waves-effect waves-light btn hide-on-small-only" 
-        style="position:fixed; right: 20px; top:50%"> 
+    <a class="hover-content waves-effect waves-light btn hide-on-small-only red lighten-2" style="position:fixed; right: 20px; top:50%">
         <i class="material-icons right">fast_forward</i>Next
     </a>
-	<a class="hover-content waves-effect waves-light btn hide-on-med-and-up" 
-        style="position:fixed; right: 20px; top:50%"> 
+    <a class="hover-content waves-effect waves-light btn hide-on-med-and-up red lighten-2" style="position:fixed; right: 20px; top:50%">
         <i class="material-icons">fast_forward</i>
     </a>
-	
-	<main-player></main-player>
+
+    <main-player></main-player>
 </div>
 <sidebar-player></sidebar-player>

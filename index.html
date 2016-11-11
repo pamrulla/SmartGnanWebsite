@@ -6,30 +6,73 @@
         Course Page
     </title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.css" media="screen,projection"
+    />
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    
+
     <my-app>
-         <div class="center-align" style="height:100%; background-color:#363636">
+        <!--<div class="center-align" style="height:100%; background-color:#363636">
             <img src="images/gif.gif" alt="Loading..." />
-        </div>    
+        </div>    -->
+        <div class="center-align" style="height:100%; background-color:#222222;">
+            <div class="preloader-wrapper big active" style="position:fixed; top:45%; left:45%; width:100px; height:100px">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="preloader-wrapper active" style="position:fixed; top:46.5%; left:45.75%; width:75px; height:75px">
+                <div class="spinner-layer spinner-red-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preloader-wrapper small active" style="position:fixed;  top:48%; left:46.5%; width:50px; height:50px">
+                <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </my-app>
 
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
-        <script src="node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
 
-        <script src="node_modules/core-js/client/shim.min.js"></script>
-        <script src="node_modules/zone.js/dist/zone.js"></script>
-        <script src="node_modules/reflect-metadata/Reflect.js"></script>
-        <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
 
-        <script src="systemjs.config.js"></script>
-        <script>
+    <script src="systemjs.config.js"></script>
+    <script>
             System.import('app').catch(function(err){ console.error(err); });
         </script>
 </body>

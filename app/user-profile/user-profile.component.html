@@ -1,7 +1,209 @@
 <header>
     <header-bar></header-bar>
 </header>
-user Profile
+<div class="row">
+    <div class="col m8">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <div class="card light-blue accent-2 black-text">
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s2">
+                                    <img src="images/yuna.jpg" alt="" class="circle responsive-img">
+                                </div>
+                                <div class="col s10">
+                                    <h4>Welcome back Khan</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s3">
+                            <a href="#">
+                                <div class="card red white-text">
+                                    <div class="card-content">
+                                        <h5><i class="material-icons left">games</i>Dashboard</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s3">
+                            <a href="#">
+                                <div class="card green white-text">
+                                    <div class="card-content">
+                                        <h5><i class="material-icons left">perm_identity</i>Profile</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h5 class="center-align">Dashboard</h5>
+                        <div class="col s12 m7">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Your Courses</span>
+                                    <table class="bordered highlight">
+                                        <thead>
+                                            <tr>
+                                                <th>Course</th>
+                                                <th>Progress</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Angualr Js</td>
+                                                <td>
+                                                    <div class="progress green lighten-4">
+                                                        <div class="determinate green" style="width: 70%"></div>
+                                                    </div>
+                                                </td>
+                                                <td><a class="btn">Resume</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m5">
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <span class="card-title">Notifications</span>
+                                        <table class="bordered highlight">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Angualr Js</td>
+                                                    <td>
+                                                        <span class="new badge"></span>
+                                                    </td>
+                                                    <td><a href="#" class="secondary-content"><i class="material-icons">send</i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <span class="card-title">Programming Challenges</span>
+                                        <table class="bordered highlight">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Angualr Js</td>
+                                                    <td>
+                                                        <span class="new badge"></span>
+                                                    </td>
+                                                    <td><a href="#" class="secondary-content"><i class="material-icons">send</i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h5 class="center-align">Profile</h5>
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="row">
+                                    <form materialize class="col s12">
+                                        <div class="row center-align">
+                                            <div class="file-field input-field">
+                                                <a><img src="images/yuna.jpg" alt="" class="circle responsive-img"><input type="file" name="dp"></a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field  col s6">
+                                                <input id="first_name" name="first_name" type="text" class="validate" required>
+                                                <label for="first_name">First Name*</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="last_name" name="last_name" type="text" class="validate" required>
+                                                <label for="last_name">Last Name*</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field  col s6">
+                                                <input disabled id="email" type="email" value="pamrulla@gmail.com">
+                                                <label for="email">Email</label>
+                                            </div>
+                                            <div class="input-field  col s6">
+                                                <input disabled id="jod" type="text" value="20-09-2016">
+                                                <label for="jod">Joined Date</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field  col s4">
+                                                <input id="addr1" name="addr1" type="text" class="validate" required>
+                                                <label for="addr1">Address Line 1*</label>
+                                            </div>
+                                            <div class="input-field col s4">
+                                                <input id="addr2" name="addr2" type="text" class="validate">
+                                                <label for="addr2">Address Line 2</label>
+                                            </div>
+                                            <div class="input-field  col s4">
+                                                <input id="addr3" name="addr3" type="text" class="validate">
+                                                <label for="addr3">Address Line 3</label>
+                                            </div>
+                                        </div>
+                                        <div class="row center-align">
+                                            <button class="btn waves-effect waves-light" type="submit" name="action">Reset</button>
+                                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                                <i class="material-icons right">send</i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col m4 hide-on-small-only">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <div class="center-align">
+                        <p>Friday, 15:55:22</p>
+                        <p>November</p>
+                        <h4>11</h4>
+                        <p>2016</p>
+                    </div>
+                    <div class="divider"></div>
+                    <h5 class="center-align">Latest News</h5>
+                    <ul class="collection">
+                        <li class="collection-item">
+                            <span class="title">Title</span>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias harum, esse eos natus, modi,
+                                expedita dolores dolorum accusantium amet a quidem, dolor distinctio quisquam sapiente omnis
+                                aliquam corporis dolore et.<a href="#" class="secondary-content"><i class="material-icons">send</i></a></p>
+                        </li>
+                        <li class="collection-item">
+                            <span class="title">Title</span>
+                            <p>Alvin<a href="#" class="secondary-content"><i class="material-icons">send</i></a></p>
+                        </li>
+                        <li class="collection-item">
+                            <span class="title">Title</span>
+                            <p>Alvin<a href="#" class="secondary-content"><i class="material-icons">send</i></a></p>
+                        </li>
+                        <li class="collection-item">
+                            <span class="title">Title</span>
+                            <p>Alvin<a href="#" class="secondary-content"><i class="material-icons">send</i></a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer class="page-footer" style="margin-top: 0px;">
     <footer-bar></footer-bar>
 </footer>

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, OnChanges, SimpleChange } from '@angular/core';
 import {Location} from '@angular/common';
 import { UserService } from '../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,7 +9,8 @@ import { MaterializeAction } from 'angular2-materialize';
     selector: 'header-bar',
     templateUrl: 'header.component.html'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges {
+    @Input() register : boolean;
 
     modalRegisterActions = new EventEmitter<string | MaterializeAction>();
     modalLoginActions = new EventEmitter<string | MaterializeAction>();
@@ -35,6 +36,13 @@ export class HeaderComponent implements OnInit {
             //this.userName = this.userService.getUserName();
             this.userDP = this.userService.getUserDP();//"images/yuna.jpg";
             this.userID = this.userService.getUserID();
+        }
+    }
+
+    ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+        //console.log(changes["register"].currentValue);
+        if(changes["register"].currentValue != changes["register"].previousValue){
+            this.openRegisterModal();
         }
     }
 

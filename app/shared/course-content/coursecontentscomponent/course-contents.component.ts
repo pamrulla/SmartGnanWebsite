@@ -31,7 +31,7 @@ export class CourseContentsComponent implements OnInit {
 
     extractData(res: Chapter[]){
         this.Chapters = res;
-        console.log(res);
+        //console.log(res);
     }
 
     onLessonsClick(chIdx: number, lsIdx: number){

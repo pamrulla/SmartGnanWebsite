@@ -12,6 +12,8 @@ export class CourseListComponent implements OnInit {
     isReady = false;
     courseList: CourseList[];
 
+    colors = ['green', 'purple', 'blue-grey', 'pink', 'red lighten-1', 'blue'];
+
     constructor(private courseService: CourseService) { }
 
     ngOnInit() {
@@ -34,5 +36,19 @@ export class CourseListComponent implements OnInit {
                 err => console.log(err),
                 () => this.isReady = true
             );
+     }
+
+     private index = -1;
+     getColor(idx: number){
+         return this.colors[idx%6];
+        //  if(this.index == -1){
+        //      this.index = Math.floor(Math.random() * (5 - 0 + 1)) + 0;
+        //     return this.colors[this.index];
+        //  }
+        //  else{
+        //      var clr = this.colors[this.index];
+        //      this.index = -1;
+        //      return clr;
+        //  }
      }
 }

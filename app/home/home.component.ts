@@ -8,14 +8,21 @@ import { MaterializeAction } from 'angular2-materialize';
 })
 export class HomeComponent implements OnInit {
     modalActions = new EventEmitter<string | MaterializeAction>();
+    modalRegisterActions = new EventEmitter<string | MaterializeAction>();
+
+    register = false;
 
     constructor() { }
 
     ngOnInit() {
      }
 
-     openModal() {
+    openModal() {
         this.modalActions.emit({ action: "modal", params: ['open'] });
+    }
+
+    openRegisterModal() {
+        this.register = !this.register;
     }
      
 }

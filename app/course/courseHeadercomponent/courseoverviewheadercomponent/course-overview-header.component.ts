@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MaterializeAction } from 'angular2-materialize';
 
 import { CourseService } from '../../services/course.service';
 
@@ -14,6 +15,8 @@ export class CourseOverviewHeaderComponent implements OnInit {
 
     @Input() courseId;
 
+    modalActions = new EventEmitter<string | MaterializeAction>();
+    
     uid = 1;
     overview: Overview;
     CoursePrice: number;
@@ -51,5 +54,9 @@ export class CourseOverviewHeaderComponent implements OnInit {
 
     getCourseFinalPrice() {
         this.CoursePrice = this.overview.courseActualPrice - (this.overview.courseActualPrice * this.overview.courseDiscount / 100);
+    }
+
+    openModal() {
+        this.modalActions.emit({ action: "modal", params: ['open'] });
     }
 }
