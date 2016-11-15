@@ -25,6 +25,7 @@
       "materialize-css": "npm:materialize-css",
       "angular2-materialize": "npm:angular2-materialize",
       'materialize': 'npm:angular2-materialize',
+      '@vimeo': 'npm:@vimeo/player',
       // 'videogular2': 'npm:videogular2',
       // other libraries
       'rxjs':                      'npm:rxjs',
@@ -51,10 +52,10 @@
         'main': "dist/index",
         defaultExtension: 'js'
       },
-      // 'videogular2':{
-      //   'main': "dist/index",
-      //   defaultExtension: 'js'
-      // }
+      '@vimeo':{
+        'main': "dist/player.min.js",
+        defaultExtension: 'js'
+      }
     }
   });
 })(this);
