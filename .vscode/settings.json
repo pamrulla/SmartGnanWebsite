@@ -1,5 +1,6 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "editor.fontSize": 18,
-    "git.enabled": false
+    "git.enabled": false,
+    "typescript.tsdk": "./node_modules/typescript/lib"
 }

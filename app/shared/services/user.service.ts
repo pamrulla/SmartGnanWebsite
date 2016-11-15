@@ -7,7 +7,7 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class UserService {
-    private headerURL = "http://localhost:8012/api/services/user/";
+    private headerURL = "http://localhost/api/services/user/";
     
     private isLoggedIn = false;
 
@@ -37,6 +37,78 @@ export class UserService {
         else{
            return 0;
         }
+    }
+    
+    public getFirstName(){
+        if(this.userDetails != null){
+            if(this.userDetails.fname != null){
+                return this.userDetails.fname;
+            }
+        }
+        return '';
+    }
+
+    public getLastName(){
+        if(this.userDetails != null){
+            if(this.userDetails.lname != null){
+                return this.userDetails.lname;
+            }
+        }
+        return '';
+    }
+
+    public getEmail(){
+        if(this.userDetails != null){
+            if(this.userDetails.email != null){
+                return this.userDetails.email;
+            }
+        }
+        return '';
+    }
+
+    public getDOJ(){
+        if(this.userDetails != null){
+            if(this.userDetails.joined_date != null){
+                return this.userDetails.joined_date;
+            }
+        }
+        return '';
+    }
+
+    public getAddr1(){
+        if(this.userDetails != null){
+            if(this.userDetails.addr1 != null){
+                return this.userDetails.addr1;
+            }
+        }
+        return '';
+    }
+
+    public getAddr2(){
+        if(this.userDetails != null){
+            if(this.userDetails.addr2 != null){
+                return this.userDetails.addr2;
+            }
+        }
+        return '';
+    }
+
+    public getAddr3(){
+        if(this.userDetails != null){
+            if(this.userDetails.addr3 != null){
+                return this.userDetails.addr3;
+            }
+        }
+        return '';
+    }
+
+    public getDP(){
+        if(this.userDetails != null){
+            if(this.userDetails.dp != null){
+                return this.userDetails.dp;
+            }
+        }
+        return '';
     }
 
     public setUserLoggedIn(id: number){
@@ -91,6 +163,15 @@ export class UserService {
         let options       = new RequestOptions({ headers: headers }); // Create a request option
         
         return this.http.post(this.headerURL+"loggingInUser.php", body, options)
+                .map(res => res.json());
+    }
+
+    public postUserDetails(fname: string, lname: string, dp: string, addr1: string, addr2: string, addr3: string){
+        var body = {fname, lname, dp, addr1, addr2, addr3};
+        let headers = new Headers({'Content-type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        return this.http.post(this.headerURL+"postUserDetails.php", body, options)
                 .map(res => res.json());
     }
 }

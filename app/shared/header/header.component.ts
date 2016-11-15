@@ -114,7 +114,7 @@ export class HeaderComponent implements OnInit, OnChanges {
                     this.password_confirm = "";
                     this.error = "";
                     this.closeRegisterModal();
-                    this.router.navigate(['user', this.response.uid], { relativeTo: this.route.parent });
+                    this.router.navigate(['user', this.response.uid, 'profile'], { relativeTo: this.route.parent });
                 }
                 else {
                     this.error = this.response.errorMessage;

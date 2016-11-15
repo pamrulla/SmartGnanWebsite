@@ -25,6 +25,7 @@
       "materialize-css": "npm:materialize-css",
       "angular2-materialize": "npm:angular2-materialize",
       'materialize': 'npm:angular2-materialize',
+      // 'videogular2': 'npm:videogular2',
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
@@ -49,7 +50,11 @@
       'angular2-materialize': {
         'main': "dist/index",
         defaultExtension: 'js'
-      }
+      },
+      // 'videogular2':{
+      //   'main': "dist/index",
+      //   defaultExtension: 'js'
+      // }
     }
   });
 })(this);

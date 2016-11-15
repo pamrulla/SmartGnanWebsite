@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CourseService {
 
-    private headerURL = "http://localhost:8012/api/services/course/";//app/course/services/";
+    private headerURL = "http://localhost/api/services/course/";//app/course/services/";
 
     constructor(private http: Http) { }
 
