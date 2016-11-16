@@ -23,17 +23,18 @@ export class CourseOverviewHeaderComponent implements OnInit {
     CourseOverviewVideo: SafeResourceUrl;
 
     isCourseDiscounted: boolean;
-    isReady = false;
+    isReady = true;
 
     constructor(private sanitizer: DomSanitizer, private courseService: CourseService) { }
 
     ngOnInit() {
-        this.courseService.getHeaderOverview(this.courseId, this.uid)
-            .subscribe(
-                o => this.extractData(o),
-                err => console.log(err),
-                () => this.isReady = true
-            );
+        // this.courseService.getHeaderOverview(this.courseId, this.uid)
+        //     .subscribe(
+        //         o => this.extractData(o),
+        //         err => console.log(err),
+        //         () => this.isReady = true
+        //     );
+        this.extractData(this.courseService.getHeaderOverview(this.courseId, this.uid));
     }
 
     private extractData(response: Overview) {

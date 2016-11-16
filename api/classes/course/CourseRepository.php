@@ -14,6 +14,7 @@ require_once 'CourseQuestions.php';
 require_once 'CourseQuestionsList.php';
 require_once 'QuestionAnswers.php';
 require_once 'CourseList.php';
+require_once 'CourseBasicDetails.php';
 
 class CourseRepository{
     public static function getCourseDescription($id){
@@ -275,5 +276,108 @@ class CourseRepository{
         }
         
         return $courses;
+    }
+
+    public static function getBasicCourseDetails($id, $uid = 0){
+        $sql = '';
+        if($uid != 0){
+            $sql = 'select cr.*, us.fname, us.lname, us.dp, up.experience_years, up.experience_details, ch.id as chid, ch.name chname, ch.order chorder, ch.duration chduration, ls.id lsid, ls.name lsname, ls.is_free, ls.duration lsduration, ls.order lsorder, ls.link, ls.type, uc.is_exam_enabled, uc.is_course_completed, ul.is_completed FROM course cr, user us, user_profile up, chapter ch, lesson ls, user_course uc, user_lesson ul where cr.id = '. $id .' and us.id = cr.user_id and up.user_id = cr.user_id and ch.course_id = cr.id and ls.chapter_id = ch.id and uc.course_id = cr.id and uc.user_id = '. $uid .' and ul.user_id = '. $uid .' and ul.lesson_id = ls.id order by chorder, lsorder';
+        }
+        else{
+            $sql = 'select cr.*, us.fname, us.lname, us.dp, up.experience_years, up.experience_details, ch.id as chid, ch.name chname, ch.order chorder, ch.duration chduration, ls.id lsid, ls.name lsname, ls.is_free, ls.duration lsduration, ls.order lsorder, ls.link, ls.type FROM course cr, user us, user_profile up, chapter ch, lesson ls where cr.id = '. $id .' and us.id = cr.user_id and up.user_id = cr.user_id and ch.course_id = cr.id and ls.chapter_id = ch.id order by chorder, lsorder';
+        }
+        $db_courses = DBClass::query($sql);
+
+        $isBought = true;
+        $realuid = $uid;
+
+        if(count($db_courses) == 0 && $uid == 0){
+            return new CourseBasicDetails(false, 'Sorry, Can not fetch course details, please try again later.');
+        }
+        else if(count($db_courses) == 0 && $uid != 0){
+            $sql = 'select cr.*, us.fname, us.lname, us.dp, up.experience_years, up.experience_details, ch.id as chid, ch.name chname, ch.order chorder, ch.duration chduration, ls.id lsid, ls.name lsname, ls.is_free, ls.duration lsduration, ls.order lsorder, ls.link, ls.type FROM course cr, user us, user_profile up, chapter ch, lesson ls where cr.id = '. $id .' and us.id = cr.user_id and up.user_id = cr.user_id and ch.course_id = cr.id and ls.chapter_id = ch.id order by chorder, lsorder';
+            
+            $db_courses = DBClass::query($sql);
+
+            if(count($db_courses) == 0 && $uid == 0){
+                return new CourseBasicDetails(false, 'Sorry, Can not fetch course details, please try again later.');
+            }
+
+            $isBought = false;
+            $realuid = 0;
+        }
+
+        $courseInfo = new CourseInfo($db_courses[0]->id,
+           $db_courses[0]->title,
+           $db_courses[0]->desc_short,
+           $db_courses[0]->desc_long,
+           $db_courses[0]->level,
+           $db_courses[0]->release_date,
+           $db_courses[0]->price,
+           $db_courses[0]->discount,
+           $db_courses[0]->download_link,
+           $db_courses[0]->duration,
+           $db_courses[0]->exam_link,
+           $realuid);
+
+        $author = new Author($db_courses[0]->user_id,
+            $db_courses[0]->fname,
+            $db_courses[0]->lname,
+            $db_courses[0]->dp,
+            $db_courses[0]->experience_years,
+            $db_courses[0]->experience_details);
+
+        if($isBought){
+            $user_Specific = new User_Specific(true, $db_courses[0]->is_exam_enabled,
+                $db_courses[0]->is_course_completed);
+        }
+        else{
+            $user_Specific = new User_Specific();
+        }
+
+        $i = -1;
+        $prg = 0;
+        $chapters = array();
+        $ch = new Chapter1();
+        $lessons = array();
+        foreach ($db_courses as $db_ch) {
+            if($i != $db_ch->chid){
+                if($i != -1){
+                    $ch->Progress = $prg / count($lessons);
+                    $ch->Lessons = $lessons;
+                    array_push($chapters, $ch);
+                }
+                $i = $db_ch->chid;
+                $ch = new Chapter1();
+                
+                $ch->Name = $db_ch->chname;
+                //$ch->IsEnabled = true;
+                $ch->Duration = $db_ch->chduration;
+                $ch->Id = $i;
+
+                $lessons = array();
+                $prg = 0;
+            }
+            $ls = new Lesson1($db_ch->lsid, $db_ch->lsname, $db_ch->is_free, $db_ch->lsduration, $db_ch->link, $db_ch->type);
+            if($uid != 0){
+                $prg = $prg + $db_ch->is_completed;
+                $ls->is_completed = $db_ch->is_completed == 0 ? false : true;
+            }
+            else{
+                $prg = 0;
+            }
+            array_push($lessons, $ls);
+        }
+
+        if(count($lessons) > 0){
+            $ch->Progress = $prg / count($lessons);
+        }
+        else{
+            $ch->Progress = 100;
+        }
+        $ch->Lessons = $lessons;
+        array_push($chapters, $ch);
+
+        return new CourseBasicDetails(true, '', $courseInfo, $author, $user_Specific, $chapters);
     }
 }
