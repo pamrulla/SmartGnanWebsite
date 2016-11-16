@@ -5,7 +5,7 @@ export class Chapter{
     IsEnabled: boolean;
     Progress: number;
     Duration: string;
-    Lessons: Lesson[];
+    Lessons = Array();
     Id: number;
     constructor(){
 

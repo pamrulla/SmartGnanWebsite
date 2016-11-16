@@ -11,18 +11,18 @@ import { CourseDetails } from '../../shared/sidebar/details';
 export class CourseSidebarDetailsComponent implements OnInit {
     @Input() courseId;
     courseDetails: CourseDetails;
-    isReady = false;
+    isReady = true;
 
     constructor(private courseService: CourseService) {
      }
 
     ngOnInit() {
-        this.courseService.getSidebarCourseDetails(this.courseId)
-            .subscribe(
-                res => this.extractData(res),
-                err => console.log(err),
-                () => this.isReady = true
-            );
+        this.courseDetails = this.courseService.getSidebarCourseDetails(this.courseId);
+            // .subscribe(
+            //     res => this.extractData(res),
+            //     err => console.log(err),
+            //     () => this.isReady = true
+            // );
      }
 
      extractData(res : CourseDetails){

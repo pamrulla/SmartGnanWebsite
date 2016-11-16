@@ -11,17 +11,17 @@ import { CourseAuthor } from '../../shared/sidebar/author';
 export class CourseSidebarAuthorComponent implements OnInit {
     @Input() courseId;
     author : CourseAuthor;
-    isReady = false;
+    isReady = true;
 
     constructor(private courseService : CourseService) { }
 
     ngOnInit() { 
-        this.courseService.getSidebarCourseAuthor(this.courseId)
-            .subscribe(
-                res => this.extractData(res),
-                err => console.log(err),
-                () => this.isReady = true
-            )
+        this.author = this.courseService.getSidebarCourseAuthor(this.courseId)
+            // .subscribe(
+            //     res => this.extractData(res),
+            //     err => console.log(err),
+            //     () => this.isReady = true
+            // )
     }
 
     extractData(res: CourseAuthor){

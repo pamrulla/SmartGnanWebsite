@@ -13,6 +13,8 @@ class CourseInfo{
 	public $duration;
 	public $exam_link;
 	public $uid;
+	public $rating;
+	public $students;
 
 	public function __construct($id=0, $tt='', $ds = '', $dl = '', $lvl = '', $rd = '', $pr = '', $dis = 0, $dwl = '', $dr = '', $el = '', $uidd = 0){
     	$this->Id = $id;
@@ -42,7 +44,7 @@ class Lesson1{
     public function __construct($id=0, $fn='', $if = false, $d = '', $vu = '', $t = 1, $ic = false){
     	$this->Id = $id;
 		$this->Name = $fn;
-		$this->IsFree = $if;
+		$this->IsFree = $if == 1 ? true : false;
 		$this->Duration = $d;
 		$this->VideoURL = $vu;
 		$this->Type = $t;

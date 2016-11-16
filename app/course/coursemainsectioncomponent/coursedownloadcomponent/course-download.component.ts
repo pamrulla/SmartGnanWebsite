@@ -10,18 +10,18 @@ import { CourseDownload } from '../../shared/mainsection/download';
 })
 export class CourseDownloadComponent implements OnInit {
     @Input() courseId;
-    isReady = false;
+    isReady = true;
     download : CourseDownload;
 
     constructor(private courseService: CourseService) { }
 
     ngOnInit() {
-        this.courseService.getCourseDownload(this.courseId)
-                .subscribe(
-                    res => this.extractData(res),
-                    err => console.log(err),
-                    () => this.isReady = true
-                )
+        this.download = this.courseService.getCourseDownload(this.courseId);
+                // .subscribe(
+                //     res => this.extractData(res),
+                //     err => console.log(err),
+                //     () => this.isReady = true
+                // )
      }
 
      extractData(res: CourseDownload){

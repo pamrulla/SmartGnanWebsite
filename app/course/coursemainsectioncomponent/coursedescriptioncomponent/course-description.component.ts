@@ -10,18 +10,18 @@ import { CourseDescription } from '../../shared/mainsection/description';
 })
 export class CourseDescriptionComponent implements OnInit {
     @Input() courseId;
-    isReady = false;
+    isReady = true;
     courseDescription: CourseDescription;
 
     constructor( private courseService: CourseService) { }
 
     ngOnInit() {
-        this.courseService.getCourseDescription(this.courseId)
-                .subscribe(
-                    res => this.extractData(res),
-                    err => console.log(err),
-                    () => this.isReady = true
-                );
+        this.courseDescription = this.courseService.getCourseDescription(this.courseId);
+                // .subscribe(
+                //     res => this.extractData(res),
+                //     err => console.log(err),
+                //     () => this.isReady = true
+                // );
      }
 
      extractData(res: CourseDescription){

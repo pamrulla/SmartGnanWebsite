@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { CourseService } from '../../services/course.service';
+import { UserService } from '../../../shared/services/user.service';
 import { CourseProgress } from '../../shared/header/progress';
 
 @Component({
@@ -13,18 +14,26 @@ export class CourseProgressbarComponent implements OnInit {
     @Input() courseId;
     
     courseProgress: CourseProgress;
-    isReady = false;
+    isReady = true;
+    isVisible = true;
     Progress: String = "0%";
     
-    constructor(private courseService: CourseService) { }
+    constructor(private courseService: CourseService, private userService: UserService) { }
 
     ngOnInit() { 
-        this.courseService.getHeaderCourseProgress(this.courseId)
-            .subscribe(
-                res => this.extractData(res),
-                err => console.log(err),
-                () => this.isReady = true
-            );
+        if(this.userService.isUserLoggedIn()){
+            this.isVisible = true;
+        }
+        else{
+            this.isVisible = false;
+        }
+        this.courseProgress = this.courseService.getHeaderCourseProgress(this.courseId);
+        this.Progress = this.courseProgress.progress + "%";
+            // .subscribe(
+            //     res => this.extractData(res),
+            //     err => console.log(err),
+            //     () => this.isReady = true
+            // );
         
     }
 

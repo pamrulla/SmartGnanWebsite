@@ -3,11 +3,19 @@ import { Headers, Http } from '@angular/http';
 import { UserService } from '../../shared/services/user.service'
 import 'rxjs/add/operator/map';
 import { Overview } from '../shared/header/overview';
+import { Title } from '../shared/header/title'
+import { CourseProgress } from '../shared/header/progress';
+import { CourseAuthor } from '../shared/sidebar/author';
+import { CourseDetails } from '../shared/sidebar/details';
+import { CourseDescription } from '../shared/mainsection/description';
+import { CourseDownload } from '../shared/mainsection/download';
+import { Lesson } from '../../course/shared/Lesson';
+import { Chapter } from '../../course/shared/Chapter';
 
 @Injectable()
 export class CourseService {
 
-    private headerURL = "http://localhost:8012/api/services/course/";
+    private headerURL = "http://localhost/api/services/course/";
 
     constructor(private http: Http, private userService: UserService) { }
 
@@ -29,38 +37,96 @@ export class CourseService {
     }
 
     getHeaderTitle(id) {
-        return this.http.get(this.headerURL + "getHeaderTitle.php?id=" + id + "")
-            .map(res => res.json());
+        let title = new Title();
+        title.author = this.courseDetails.author.fName + ' ' + this.courseDetails.author.lName;
+        title.shortDescription = this.courseDetails.courseInfo.desc_short;
+        title.title = this.courseDetails.courseInfo.title;
+        return title;
+        // return this.http.get(this.headerURL + "getHeaderTitle.php?id=" + id + "")
+        //     .map(res => res.json());
     }
 
     getHeaderCourseProgress(id, uid = 0) {
-        return this.http.get(this.headerURL + "getHeaderCourseProgress.php?id=" + id + "&uid=" + uid)
-            .map(res => res.json());
+        let courseProgress = new CourseProgress();
+        courseProgress.isCompleted = this.courseDetails.user_specific.is_course_completed;
+        let sum = 0.0;
+        this.courseDetails.chapters.forEach(ch => {
+            sum += Number.parseFloat(ch.Progress);
+        });
+        courseProgress.progress = sum / this.courseDetails.chapters.length;
+
+        return courseProgress;
+        // return this.http.get(this.headerURL + "getHeaderCourseProgress.php?id=" + id + "&uid=" + uid)
+        //     .map(res => res.json());
     }
 
     getSidebarCourseDetails(id) {
-        return this.http.get(this.headerURL + "getSidebarCourseDetails.php?id=" + id + "")
-            .map(res => res.json());
+        let courseDetails =  new CourseDetails();
+        courseDetails.Duration = this.courseDetails.courseInfo.duration;
+        courseDetails.Level = this.courseDetails.courseInfo.level;
+        courseDetails.Rating = this.courseDetails.courseInfo.rating;
+        courseDetails.Released = this.courseDetails.courseInfo.release_date;
+        courseDetails.Students = this.courseDetails.courseInfo.students;
+        return courseDetails;
+        // return this.http.get(this.headerURL + "getSidebarCourseDetails.php?id=" + id + "")
+        //     .map(res => res.json());
     }
 
     getSidebarCourseAuthor(id) {
-        return this.http.get(this.headerURL + "getSidebarCourseAuthor.php?id=" + id + "")
-            .map(res => res.json());
+        let author = new CourseAuthor();
+        author.AuthorImage = this.courseDetails.author.dp;
+        author.AuthorName = this.courseDetails.author.fName + this.courseDetails.author.lName;
+        author.AuthorShortDescription = 'Having ' + this.courseDetails.author.experience_years
+            + " years of experience in software engineering. " + this.courseDetails.author.experience_details;
+        return author;
+        // return this.http.get(this.headerURL + "getSidebarCourseAuthor.php?id=" + id + "")
+        //     .map(res => res.json());
     }
 
     getCourseDescription(id) {
-        return this.http.get(this.headerURL + "getCourseDescription.php?id=" + id + "")
-            .map(res => res.json());
+        let courseDescription = new CourseDescription();
+        courseDescription.courseFullDescription = this.courseDetails.courseInfo.desc_long;
+        return courseDescription;
+        // return this.http.get(this.headerURL + "getCourseDescription.php?id=" + id + "")
+        //     .map(res => res.json());
     }
 
     getCourseDownload(id) {
-        return this.http.get(this.headerURL + "getCourseDownload.php?id=" + id + "")
-            .map(res => res.json());
+        let courseDownload = new CourseDownload();
+        courseDownload.courseMaterial = this.courseDetails.courseInfo.dowload_link;
+        return courseDownload;
+        // return this.http.get(this.headerURL + "getCourseDownload.php?id=" + id + "")
+        //     .map(res => res.json());
     }
 
     getCourseLessons(id, uid = 0) {
-        return this.http.get(this.headerURL + "getCourseLessons.php?id=" + id + "&uid=" + uid)
-            .map(res => res.json());
+        let chapters = new Array();
+        this.courseDetails.chapters.forEach(ch => {
+            let chapter = new Chapter();
+            chapter.Duration = ch.Duration;
+            chapter.Id = ch.Id;
+            chapter.IsEnabled = true;
+            chapter.Name = ch.Name;
+            chapter.Progress = ch.Progress;
+
+            for(let i = 0; i < ch.Lessons.length; i++){
+                let lesson = new Lesson();
+                lesson.Duration = ch.Lessons[i].Duration;
+                lesson.Id = ch.Lessons[i].Id;
+                lesson.IsCompleted = ch.Lessons[i].is_completed;
+                lesson.IsFree = ch.Lessons[i].IsFree;
+                lesson.Name = ch.Lessons[i].Name;
+                lesson.VideoURL = ch.Lessons[i].VideoURL;
+
+                chapter.Lessons.push(lesson);
+            }
+
+            chapters.push(chapter);
+        });
+
+        return chapters;
+        // return this.http.get(this.headerURL + "getCourseLessons.php?id=" + id + "&uid=" + uid)
+        //     .map(res => res.json());
     }
 
     getCourseReviews(id) {

@@ -12,15 +12,16 @@ export class CourseHeaderInfoComponent implements OnInit {
     @Input() courseId;
     
     title: Title;
-    isReady = false;
+    isReady = true;
 
     constructor(private courseService: CourseService) { }
 
     ngOnInit() {
-        this.courseService.getHeaderTitle(this.courseId)
-            .subscribe(o => this.extractData(o),
-            err => console.log(err),
-            () => this.isReady = true);
+        this.title = this.courseService.getHeaderTitle(this.courseId);
+        // this.courseService.getHeaderTitle(this.courseId)
+        //     .subscribe(o => this.extractData(o),
+        //     err => console.log(err),
+        //     () => this.isReady = true);
      }
 
      private extractData(response: Title) {

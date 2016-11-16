@@ -1,6 +1,7 @@
 "use strict";
 var Chapter = (function () {
     function Chapter() {
+        this.Lessons = Array();
     }
     return Chapter;
 }());

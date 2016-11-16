@@ -378,6 +378,22 @@ class CourseRepository{
         $ch->Lessons = $lessons;
         array_push($chapters, $ch);
 
+        $db_courseDetails = DBClass::query('select avg(r.rating) as rating from reviews r where r.course_id = ' . $id);
+        if(count($db_courseDetails) == 1){
+            $courseInfo->rating = $db_courseDetails[0]->rating;
+        }
+        else{
+            $courseInfo->rating = 0;
+        }
+        $db_students = DBClass::query('select count(*) as students from user_course where course_id = ' . $id);
+        if(count($db_students) == 1){
+            $courseInfo->students = $db_students[0]->students;
+        }
+        else{
+            $courseInfo->students = 0;
+        }
+
+
         return new CourseBasicDetails(true, '', $courseInfo, $author, $user_Specific, $chapters);
     }
 }
