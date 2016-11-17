@@ -5,9 +5,11 @@ import { Cookie } from './cookie';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
+import { Config } from '../config';
+
 @Injectable()
 export class UserService {
-    private headerURL = "http://localhost:8012/api/services/user/";
+    private headerURL = Config.api + "user/";
     
     private isLoggedIn = false;
 

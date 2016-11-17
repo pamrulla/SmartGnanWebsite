@@ -11,11 +11,11 @@ import { CourseDescription } from '../shared/mainsection/description';
 import { CourseDownload } from '../shared/mainsection/download';
 import { Lesson } from '../../course/shared/Lesson';
 import { Chapter } from '../../course/shared/Chapter';
-
+import { Config } from '../../shared/config';
 @Injectable()
 export class CourseService {
 
-    private headerURL = "http://localhost:8012/api/services/course/";
+    private headerURL = Config.api + "course/";
 
     constructor(private http: Http, private userService: UserService) { }
 
@@ -24,6 +24,59 @@ export class CourseService {
             return Number.parseInt(this.courseDetails.chapters[chid-1].Lessons[lid-1].VideoURL);
         }
     }
+
+    getChapterId(courseId, chapterId, lessonId, flag){
+        if(this.courseDetails.courseInfo.Id == courseId){
+            if(flag){
+                //next
+                if(lessonId == this.courseDetails.chapters[chapterId-1].Lessons.length){
+                    if(chapterId == this.courseDetails.chapters.length){
+                        return { 'isCourseEnded': true, 'chapterId': -1, 'lessonId': -1};
+                    }
+                    else{
+                        return { 'isCourseEnded': false, 'chapterId': Number.parseInt(chapterId)+1, 'lessonId': 1};
+                    }
+                }
+                else{
+                    return { 'isCourseEnded': false, 'chapterId': chapterId, 'lessonId': Number.parseInt(lessonId)+1};
+                }
+            }
+            else{
+                //prev
+                if(lessonId == 1){
+                    if(chapterId == 1){
+                        return { 'isCourseEnded': false, 'chapterId': -1, 'lessonId': -1};
+                    }
+                    else{
+                        return { 'isCourseEnded': false, 'chapterId': chapterId-1, 
+                        'lessonId': this.courseDetails.chapters[chapterId-2].Lessons.length-1};
+                    }
+                }
+                else{
+                    return { 'isCourseEnded': true, 'chapterId': chapterId, 'lessonId': Number.parseInt(lessonId)-1};
+                }
+            }
+        }
+    }
+
+    getCourseName(courseId){
+        if(this.courseDetails.courseInfo.Id == courseId){
+            return this.courseDetails.courseInfo.title;
+        }
+    }
+
+    getChapterName(courseId, chapterId){
+        if(this.courseDetails.courseInfo.Id == courseId){
+            return this.courseDetails.chapters[chapterId-1].Name;
+        }
+    }
+    
+    getLessonName(courseId, chapterId, lessonId){
+        if(this.courseDetails.courseInfo.Id == courseId){
+            return this.courseDetails.chapters[chapterId-1].Lessons[lessonId-1].Name;
+        }
+    }
+
 
     getHeaderOverview(id, uid = 0) {
         let overview = new Overview();
