@@ -26,7 +26,7 @@
                         <div class="card-panel lessons-card grey lighten-4" (click)="onLessonsClick(chIdx, lsIdx)">
                             <div class="row lessons-row valign-wrapper">
                                 <div *ngIf="isMainCoursePage == 1" class="col s12 m8">
-                                    <h6 style="padding: 0.5rem;">{{ ls.Id }}</h6>
+                                    <h6 style="padding: 0.5rem;">{{ ls.Name }}</h6>
                                 </div>
                                 <div *ngIf="isMainCoursePage == 0" class="col s11 m11">
                                     <h6 style="padding: 0.5rem;">{{ ls.Name }}</h6>

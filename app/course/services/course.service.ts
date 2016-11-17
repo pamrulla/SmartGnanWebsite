@@ -15,9 +15,15 @@ import { Chapter } from '../../course/shared/Chapter';
 @Injectable()
 export class CourseService {
 
-    private headerURL = "http://localhost/api/services/course/";
+    private headerURL = "http://localhost:8012/api/services/course/";
 
     constructor(private http: Http, private userService: UserService) { }
+
+    getVideoLink(cid, chid, lid){
+        if(this.courseDetails.courseInfo.Id == cid){
+            return Number.parseInt(this.courseDetails.chapters[chid-1].Lessons[lid-1].VideoURL);
+        }
+    }
 
     getHeaderOverview(id, uid = 0) {
         let overview = new Overview();

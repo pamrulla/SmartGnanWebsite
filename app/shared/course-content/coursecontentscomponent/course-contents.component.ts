@@ -21,7 +21,6 @@ export class CourseContentsComponent implements OnInit {
 
     ngOnInit() { 
         this.Chapters = this.courseService.getCourseLessons(this.courseId, this.uid);
-        console.log(this.Chapters);
             // .subscribe(
             //     res => this.extractData(res),
             //     err => console.log(err),
@@ -35,7 +34,9 @@ export class CourseContentsComponent implements OnInit {
     }
 
     onLessonsClick(chIdx: number, lsIdx: number){
-        if(this.Chapters[chIdx].IsEnabled && this.Chapters[chIdx].Lessons[lsIdx].IsFree)
-            this.router.navigate(['player', this.courseId, this.Chapters[chIdx].Id, this.Chapters[chIdx].Lessons[lsIdx].Id], { relativeTo: this.route.parent});
+        if(this.Chapters[chIdx].IsEnabled && this.Chapters[chIdx].Lessons[lsIdx].IsFree){
+            console.log(this.courseId);
+            this.router.navigate(['player', this.courseId, chIdx+1, lsIdx+1], { relativeTo: this.route.parent});
+        }
     }
 }
