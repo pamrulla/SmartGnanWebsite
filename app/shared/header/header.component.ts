@@ -69,6 +69,8 @@ export class HeaderComponent implements OnInit, OnChanges {
                     this.password_confirm = "";
                     this.error = "";
                     this.closeLoginModal();
+                    this.router.navigateByUrl('/DummyComponent', true);
+                    this.router.navigateByUrl(this.router.url.toString());
                     // $("#LoginModal").removeClass("open");
                     // $(".lean-overlay").remove();
                 }
@@ -140,5 +142,6 @@ export class HeaderComponent implements OnInit, OnChanges {
     onLogout(){
         this.userService.logoutUser();
         this.isUserLoggedIn = false;
+        this.router.navigateByUrl("/");
     }
 }

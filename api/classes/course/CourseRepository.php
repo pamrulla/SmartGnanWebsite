@@ -396,4 +396,12 @@ class CourseRepository{
 
         return new CourseBasicDetails(true, '', $courseInfo, $author, $user_Specific, $chapters);
     }
+
+    public static function updateLessonCompletion($lid, $uid){
+        echo DBClass::query('update user_lesson SET is_completed=1 WHERE user_id= '. $uid .' and lesson_id= ' . $lid);
+        /*if(DBClass::query('update user_lesson SET is_completed=1 WHERE user_id= '. $uid .' and lesson_id= ' . $lid)){
+            return true;
+        } */  
+        return false;
+    }
 }

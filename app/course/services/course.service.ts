@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import { UserService } from '../../shared/services/user.service'
 import 'rxjs/add/operator/map';
 import { Overview } from '../shared/header/overview';
@@ -19,61 +19,78 @@ export class CourseService {
 
     constructor(private http: Http, private userService: UserService) { }
 
-    getVideoLink(cid, chid, lid){
-        if(this.courseDetails.courseInfo.Id == cid){
-            return Number.parseInt(this.courseDetails.chapters[chid-1].Lessons[lid-1].VideoURL);
+    getVideoLink(cid, chid, lid) {
+        if (this.courseDetails.courseInfo.Id == cid) {
+            return Number.parseInt(this.courseDetails.chapters[chid - 1].Lessons[lid - 1].VideoURL);
         }
     }
 
-    getChapterId(courseId, chapterId, lessonId, flag){
-        if(this.courseDetails.courseInfo.Id == courseId){
-            if(flag){
+    getChapterId(courseId, chapterId, lessonId, flag) {
+        if (this.courseDetails.courseInfo.Id == courseId) {
+            if (flag) {
                 //next
-                if(lessonId == this.courseDetails.chapters[chapterId-1].Lessons.length){
-                    if(chapterId == this.courseDetails.chapters.length){
-                        return { 'isCourseEnded': true, 'chapterId': -1, 'lessonId': -1};
+                if (lessonId == this.courseDetails.chapters[chapterId - 1].Lessons.length) {
+                    if (chapterId == this.courseDetails.chapters.length) {
+                        return { 'isCourseEnded': true, 'chapterId': -1, 'lessonId': -1 };
                     }
-                    else{
-                        return { 'isCourseEnded': false, 'chapterId': Number.parseInt(chapterId)+1, 'lessonId': 1};
+                    else {
+                        return { 'isCourseEnded': false, 'chapterId': Number.parseInt(chapterId) + 1, 'lessonId': 1 };
                     }
                 }
-                else{
-                    return { 'isCourseEnded': false, 'chapterId': chapterId, 'lessonId': Number.parseInt(lessonId)+1};
+                else {
+                    return { 'isCourseEnded': false, 'chapterId': chapterId, 'lessonId': Number.parseInt(lessonId) + 1 };
                 }
             }
-            else{
+            else {
                 //prev
-                if(lessonId == 1){
-                    if(chapterId == 1){
-                        return { 'isCourseEnded': false, 'chapterId': -1, 'lessonId': -1};
+                if (lessonId == 1) {
+                    if (chapterId == 1) {
+                        return { 'isCourseEnded': false, 'chapterId': -1, 'lessonId': -1 };
                     }
-                    else{
-                        return { 'isCourseEnded': false, 'chapterId': chapterId-1, 
-                        'lessonId': this.courseDetails.chapters[chapterId-2].Lessons.length-1};
+                    else {
+                        return {
+                            'isCourseEnded': false, 'chapterId': chapterId - 1,
+                            'lessonId': this.courseDetails.chapters[chapterId - 2].Lessons.length - 1
+                        };
                     }
                 }
-                else{
-                    return { 'isCourseEnded': true, 'chapterId': chapterId, 'lessonId': Number.parseInt(lessonId)-1};
+                else {
+                    return { 'isCourseEnded': true, 'chapterId': chapterId, 'lessonId': Number.parseInt(lessonId) - 1 };
                 }
             }
         }
     }
 
-    getCourseName(courseId){
-        if(this.courseDetails.courseInfo.Id == courseId){
+    updateLessonCompletion(courseId, chapterId, lessonId) {
+        let aChId = this.courseDetails.chapters[chapterId - 1].Id;
+        let lsId: Number = this.courseDetails.chapters[chapterId - 1].Lessons[lessonId - 1].Id;
+
+        this.courseDetails.chapters[chapterId - 1].Lessons[lessonId - 1].is_completed = true;
+        this.courseDetails.chapters[chapterId - 1].Progress += (100 / this.courseDetails.chapters[chapterId - 1].Lessons.Length);
+        let uid: Number = this.userService.getUserID();
+        
+        var body = { lsId, uid };
+        let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        let options = new RequestOptions({ headers: headers }); // Create a request option
+        console.log(body);
+        this.http.post(this.headerURL + "updateLessonCompletion.php", body, options);
+    }
+
+    getCourseName(courseId) {
+        if (this.courseDetails.courseInfo.Id == courseId) {
             return this.courseDetails.courseInfo.title;
         }
     }
 
-    getChapterName(courseId, chapterId){
-        if(this.courseDetails.courseInfo.Id == courseId){
-            return this.courseDetails.chapters[chapterId-1].Name;
+    getChapterName(courseId, chapterId) {
+        if (this.courseDetails.courseInfo.Id == courseId) {
+            return this.courseDetails.chapters[chapterId - 1].Name;
         }
     }
-    
-    getLessonName(courseId, chapterId, lessonId){
-        if(this.courseDetails.courseInfo.Id == courseId){
-            return this.courseDetails.chapters[chapterId-1].Lessons[lessonId-1].Name;
+
+    getLessonName(courseId, chapterId, lessonId) {
+        if (this.courseDetails.courseInfo.Id == courseId) {
+            return this.courseDetails.chapters[chapterId - 1].Lessons[lessonId - 1].Name;
         }
     }
 
@@ -120,7 +137,7 @@ export class CourseService {
     }
 
     getSidebarCourseDetails(id) {
-        let courseDetails =  new CourseDetails();
+        let courseDetails = new CourseDetails();
         courseDetails.Duration = this.courseDetails.courseInfo.duration;
         courseDetails.Level = this.courseDetails.courseInfo.level;
         courseDetails.Rating = this.courseDetails.courseInfo.rating;
@@ -168,7 +185,7 @@ export class CourseService {
             chapter.Name = ch.Name;
             chapter.Progress = ch.Progress;
 
-            for(let i = 0; i < ch.Lessons.length; i++){
+            for (let i = 0; i < ch.Lessons.length; i++) {
                 let lesson = new Lesson();
                 lesson.Duration = ch.Lessons[i].Duration;
                 lesson.Id = ch.Lessons[i].Id;
