@@ -141,6 +141,7 @@ export class PlayerComponent implements OnInit {
     next() {
         let nextIds = this.courseService.getChapterId(this.courseId, this.chapterId, this.lessonId, true);
         if (nextIds.isCourseEnded) {
+            this.courseService.updateCourseCompletion(this.courseId);
             this.router.navigate(['course', this.courseId], { relativeTo: this.route.parent });
         }
         else {

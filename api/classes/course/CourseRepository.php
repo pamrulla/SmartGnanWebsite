@@ -398,10 +398,16 @@ class CourseRepository{
     }
 
     public static function updateLessonCompletion($lid, $uid){
-        echo DBClass::query('update user_lesson SET is_completed=1 WHERE user_id= '. $uid .' and lesson_id= ' . $lid);
-        /*if(DBClass::query('update user_lesson SET is_completed=1 WHERE user_id= '. $uid .' and lesson_id= ' . $lid)){
-            return true;
-        } */  
-        return false;
+        if(DBClass::query_insert('update user_lesson SET is_completed=1 WHERE user_id= '. $uid .' and lesson_id= ' . $lid)){
+            return "{isSuccess: true}";
+        }  
+        return "{isSuccess: false}";
+    }
+
+    public static function updateCourseCompletion($id, $uid){
+        if(DBClass::query_insert('update user_course SET is_exam_enabled=1 WHERE user_id= '. $uid .' and course_id= ' . $id)){
+            return "{isSuccess: true}";
+        }  
+        return "{isSuccess: false}";
     }
 }

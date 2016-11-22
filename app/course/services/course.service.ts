@@ -69,11 +69,20 @@ export class CourseService {
         this.courseDetails.chapters[chapterId - 1].Progress += (100 / this.courseDetails.chapters[chapterId - 1].Lessons.Length);
         let uid: Number = this.userService.getUserID();
         
-        var body = { lsId, uid };
-        let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        var body = 'lsId='+lsId+'&uid='+ uid ;
+        let headers = new Headers({ 'Content-Type': 'x-www-form-urlencoded' }); // ... Set content type to JSON
         let options = new RequestOptions({ headers: headers }); // Create a request option
-        console.log(body);
-        this.http.post(this.headerURL + "updateLessonCompletion.php", body, options);
+        this.http.post(this.headerURL + "updateLessonCompletion.php", body, options)
+            .subscribe(res => console.log(res));
+    }
+
+    updateCourseCompletion(courseId){
+        let uid: Number = this.userService.getUserID();
+        var body = 'id='+courseId+'&uid='+ uid ;
+        let headers = new Headers({ 'Content-Type': 'x-www-form-urlencoded' }); // ... Set content type to JSON
+        let options = new RequestOptions({ headers: headers }); // Create a request option
+        this.http.post(this.headerURL + "updateCourseCompletion.php", body, options)
+            .subscribe(res => console.log(res));
     }
 
     getCourseName(courseId) {

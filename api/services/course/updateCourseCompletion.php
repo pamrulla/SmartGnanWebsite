@@ -1,6 +1,5 @@
 <?php
 require_once '../../classes/course/CourseRepository.php';
-require_once '../../classes/user/UserDetails.php';
 
 header('Content-type: application/json');
 //echo ")]}'\n'";
@@ -12,9 +11,9 @@ $lsId_are = explode ("=", $values_are[0]);
 $uId_are = explode ("=", $values_are[1]);
 //print_r($lsId_are);
 //print_r($uId_are);
-if($lsId_are[0] != 'lsId' || $uId_are[0] != 'uid' ){// !isset($lsId_are['lsId']) || !isset($post_data['uid'])){	
+if($lsId_are[0] != 'id' || $uId_are[0] != 'uid' ){// !isset($lsId_are['lsId']) || !isset($post_data['uid'])){	
 	echo json_encode("{isSuccess: false}");
 }
 else{
-	echo json_encode(CourseRepository::updateLessonCompletion($lsId_are[1], $uId_are[1]));
+	echo json_encode(CourseRepository::updateCourseCompletion($lsId_are[1], $uId_are[1]));
 }
