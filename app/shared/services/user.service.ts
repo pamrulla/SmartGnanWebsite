@@ -126,8 +126,8 @@ export class UserService {
     }
 
     public getUserName(){
-        if(this.userDetails != null && this.userDetails.fname != null || this.userDetails.lname != null){
-            return this.userDetails.fname + " " + this.userDetails.lname;
+        if(this.userDetails != null){
+            return (this.userDetails.fname != null ? this.userDetails.fname : ' ') + " " + (this.userDetails.lname != null? this.userDetails.lname : ' ');
         }
         else{
             return '';

@@ -40,7 +40,7 @@
         </div>
         <!-- redirec to certificate page -->
         <div *ngIf="overview.isCompleted">
-            <a class="waves-effect waves-light btn"><i class="material-icons left">done_all</i>Get Certificate</a>
+            <a (click)="getCertificate()" class="waves-effect waves-light btn"><i class="material-icons left">done_all</i>Get Certificate</a>
         </div>
     </div>
 </div>

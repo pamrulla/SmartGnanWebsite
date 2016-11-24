@@ -5,6 +5,10 @@ import { MaterializeAction } from 'angular2-materialize';
 import { CourseService } from '../../services/course.service';
 
 import { Overview } from '../../shared/header/overview';
+import { CourseImage } from '../../shared/CertificateImage';
+import { UserService } from '../../../shared/services/user.service';
+
+declare var jsPDF: any;
 
 @Component({
     moduleId: module.id,
@@ -25,9 +29,10 @@ export class CourseOverviewHeaderComponent implements OnInit {
     isCourseDiscounted: boolean;
     isReady = true;
 
-    constructor(private sanitizer: DomSanitizer, private courseService: CourseService) { }
+    constructor(private sanitizer: DomSanitizer, private courseService: CourseService, private userService: UserService) { }
 
     ngOnInit() {
+        this.uid = this.userService.getUserID();
         // this.courseService.getHeaderOverview(this.courseId, this.uid)
         //     .subscribe(
         //         o => this.extractData(o),
@@ -35,6 +40,50 @@ export class CourseOverviewHeaderComponent implements OnInit {
         //         () => this.isReady = true
         //     );
         this.extractData(this.courseService.getHeaderOverview(this.courseId, this.uid));
+    }
+
+    getCertificate(){
+        var doc = new jsPDF('landscape');
+        doc.addImage(CourseImage.imgData, 'JPEG', 0, 0, 295, 210);
+        doc.setFontSize(40);
+        doc.setTextColor(100);
+        doc.setFontType("italic");
+        doc.text(150, 115, this.userService.getUserName(), null, null, 'center');
+        doc.setFontSize(20);
+        doc.setFontType("normal");
+        doc.text(150, 145, this.courseService.getCourseName(this.courseId), null, null, 'center');
+        
+        var today = new Date();
+        console.log(today);
+        var dd = '';
+        var mm = ''; //January is 0!
+
+        var yyyy = today.getFullYear();
+        
+        if( today.getDate()<10){
+            dd = '0' +  today.getDate()
+        }
+        else{
+            dd += today.getDate();
+        }
+        if((today.getMonth()+1)<10){
+            mm='0'+ (today.getMonth()+1)
+        } 
+        else{
+            mm += today.getMonth() + 1;
+        }
+
+        var today1 = dd+'-'+mm+'-'+yyyy;        
+        
+        doc.setFontSize(10);
+        doc.setFontType("normal");
+        doc.text(205, 167, today1);
+        
+        doc.setFontSize(10);
+        doc.setFontType("normal");
+        doc.text(150, 182, 'www.smartgnan.com www.sweetymagicalworks.com', null, null, 'center');
+        
+        doc.save('Certificate.pdf');
     }
 
     private extractData(response: Overview) {
