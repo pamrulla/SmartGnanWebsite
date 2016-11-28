@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ChallengesComponent } from './challenges.component';
 
 const routes: Routes = [
-  { path: 'challenges', component: ChallengesComponent },
+  { path: 'challenges1', component: ChallengesComponent },
 //   { path: 'course/:id', component: CourseMainComponent}
 ];
 

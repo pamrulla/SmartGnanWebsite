@@ -26,7 +26,12 @@ export class CourseListComponent implements OnInit {
      }
 
      extractData(res: CourseList[]){
-         this.courseList = res;
+         if(this.isOnHome){
+            this.courseList = res.slice(0, 6);
+         }
+         else{
+            this.courseList = res;
+         }
      }
 
      showOnly(sortType){

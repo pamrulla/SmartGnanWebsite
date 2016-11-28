@@ -1,7 +1,78 @@
-<header>
+<header *ngIf="!isHome">
     <header-bar></header-bar>
 </header>
-Blog
-<footer class="page-footer" style="margin-top: 0px;">
+<div *ngIf="!isList" class="row">
+    <div class="col m2">
+        side bar1
+    </div>
+    <div class="col m8">
+        <div class="row">
+            <div class="card teal">
+                <div class="card-content">
+                    <span class="card-title">{{ title }}</span>
+                    <p><small>by {{ author }}, Date: {{ date }}</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <div [innerHtml]="body">
+
+                    </div>
+                    <div class='row' *ngIf="isChallenges">
+                        <div class='center-align'>
+                            <br>
+                            <h5>Prize Money</h5>
+                            <p>1st Prize: First Correct Answer : Rs. 200 Flipkart Gift Voucher</p>
+                            <p>2nd Prize: Second Correct Answer : 100 SMW Points</p>
+                            <p>3rd Prize: Third Correct Answer : 60 SMW Points</p>
+                            <p>Other Correct Answers: 40 SMW points</p>
+                            <p>Other Answers: 30 SMW points</p>
+                            <br>
+                            <p><strong>Note: Only registered members are considered for prizes.</strong></p>
+                            <br>
+                            <h5>Programming Language</h5>
+                            <p>You can use any programming language.</p>
+                            <br>
+                            <h5>How to submit answer</h5>
+                            <p>We recommend to write your program, save and run it at <a href="http://ideone.com/" target="_blank">http://ideone.com/</a>                                and share the link of your program in comments section. Alternatively you can submit entries
+                                in comments section, you should be Registered with us to participate.</p>
+                        </div>
+                    </div>
+                    <div *ngIf="!isChallenges">
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title"><div class='center-align'>Comments</div></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col m2">
+        side bar2
+    </div>
+</div>
+<div *ngIf="isList" class="row">
+    <div class="row">
+        <div *ngFor="let item of list; let idx = index">
+            <div class="col m2">
+                <div class="card">
+                    <div class="card-content {{ getColor(idx%6) }} white-text ">
+                        <span class="card-title">
+                        {{ item.title }}
+                    </span>
+                        <p><small>by {{ item.author }}, date: {{ item.date }}</small> {{isChallenges}} {{ isBlog }}</p>
+                    </div>
+                    <div class="card-action right-align {{ getColor(idx%6) }} darken-2">
+                        <a *ngIf="!isChallenges" [routerLink]="['/blog', item.id]">Read on...</a>
+                        <a *ngIf="isChallenges" [routerLink]="['/challenges', item.id]">Read on...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer *ngIf="!isHome" class="page-footer" style="margin-top: 0px;">
     <footer-bar></footer-bar>
 </footer>
