@@ -3,7 +3,16 @@
 </header>
 <div *ngIf="!isList" class="row">
     <div class="col m2">
-        side bar1
+        <div class="card-panel">
+            <div id="amazon-script">
+
+            </div>
+        </div>
+        <div class="card-panel">
+            <div id="flipkart-script">
+
+            </div>
+        </div>
     </div>
     <div class="col m8">
         <div class="row">
@@ -50,7 +59,30 @@
         </div>
     </div>
     <div class="col m2">
-        side bar2
+        <div class="card  blue darken-3">
+            <div class="card-content white-text">
+                <h6>Recent Courses</h6>
+            </div>
+            <div class="card-action">
+                <a href="#">Explore More...</a>
+            </div>
+        </div>
+        <div class="card teal">
+            <div class="card-content white-text">
+                <h6>Recent Challenges</h6>
+            </div>
+            <div class="card-action">
+                <a href="#">Explore More...</a>
+            </div>
+        </div>
+         <div class="card green darken-3">
+            <div class="card-content white-text">
+                <h6>Recent Blogs</h6>
+            </div>
+            <div class="card-action">
+                <a href="#">Explore More...</a>
+            </div>
+        </div>
     </div>
 </div>
 <div *ngIf="isList" class="row">
@@ -62,11 +94,11 @@
                         <span class="card-title">
                         {{ item.title }}
                     </span>
-                        <p><small>by {{ item.author }}, date: {{ item.date }}</small> {{isChallenges}} {{ isBlog }}</p>
+                        <p><small>by {{ item.author }}, date: {{ item.date }}</small> {{isChallenges}}</p>
                     </div>
                     <div class="card-action right-align {{ getColor(idx%6) }} darken-2">
-                        <a *ngIf="!isChallenges" [routerLink]="['/blog', item.id]">Read on...</a>
-                        <a *ngIf="isChallenges" [routerLink]="['/challenges', item.id]">Read on...</a>
+                        <a *ngIf="isChallenges != 'true'" [routerLink]="['/blog', item.id]">Read on...</a>
+                        <a *ngIf="isChallenges == 'true'" [routerLink]="['/challenges', item.id]">Read on...</a>
                     </div>
                 </div>
             </div>
